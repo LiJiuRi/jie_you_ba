@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lixu.jie_you_ba.dao.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.Store" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="bus_stop" property="busStop" jdbcType="VARCHAR" />
+    <result column="bus_stop_distance" property="busStopDistance" jdbcType="VARCHAR" />
+    <result column="subway_station" property="subwayStation" jdbcType="VARCHAR" />
+    <result column="subway_station_distance" property="subwayStationDistance" jdbcType="VARCHAR" />
+    <result column="sale_amount" property="saleAmount" jdbcType="INTEGER" />
+    <result column="delivery_time" property="deliveryTime" jdbcType="VARCHAR" />
+    <result column="delivery_type" property="deliveryType" jdbcType="VARCHAR" />
+    <result column="delivery_init_price" property="deliveryInitPrice" jdbcType="VARCHAR" />
+    <result column="delivery_cost" property="deliveryCost" jdbcType="VARCHAR" />
+    <result column="wifi_name" property="wifiName" jdbcType="VARCHAR" />
+    <result column="wifi_password" property="wifiPassword" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="open_time" property="openTime" jdbcType="VARCHAR" />
+    <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, phone, address, bus_stop, bus_stop_distance, subway_station, subway_station_distance, 
+    sale_amount, delivery_time, delivery_type, delivery_init_price, delivery_cost, wifi_name, 
+    wifi_password, description, open_time, operate_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from store
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from store
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Store" >
+    insert into store (id, name, phone, 
+      address, bus_stop, bus_stop_distance, 
+      subway_station, subway_station_distance, sale_amount, 
+      delivery_time, delivery_type, delivery_init_price, 
+      delivery_cost, wifi_name, wifi_password, 
+      description, open_time, operate_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{busStop,jdbcType=VARCHAR}, #{busStopDistance,jdbcType=VARCHAR}, 
+      #{subwayStation,jdbcType=VARCHAR}, #{subwayStationDistance,jdbcType=VARCHAR}, #{saleAmount,jdbcType=INTEGER}, 
+      #{deliveryTime,jdbcType=VARCHAR}, #{deliveryType,jdbcType=VARCHAR}, #{deliveryInitPrice,jdbcType=VARCHAR}, 
+      #{deliveryCost,jdbcType=VARCHAR}, #{wifiName,jdbcType=VARCHAR}, #{wifiPassword,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{openTime,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Store" >
+    insert into store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="busStop != null" >
+        bus_stop,
+      </if>
+      <if test="busStopDistance != null" >
+        bus_stop_distance,
+      </if>
+      <if test="subwayStation != null" >
+        subway_station,
+      </if>
+      <if test="subwayStationDistance != null" >
+        subway_station_distance,
+      </if>
+      <if test="saleAmount != null" >
+        sale_amount,
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time,
+      </if>
+      <if test="deliveryType != null" >
+        delivery_type,
+      </if>
+      <if test="deliveryInitPrice != null" >
+        delivery_init_price,
+      </if>
+      <if test="deliveryCost != null" >
+        delivery_cost,
+      </if>
+      <if test="wifiName != null" >
+        wifi_name,
+      </if>
+      <if test="wifiPassword != null" >
+        wifi_password,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="operateTime != null" >
+        operate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="busStop != null" >
+        #{busStop,jdbcType=VARCHAR},
+      </if>
+      <if test="busStopDistance != null" >
+        #{busStopDistance,jdbcType=VARCHAR},
+      </if>
+      <if test="subwayStation != null" >
+        #{subwayStation,jdbcType=VARCHAR},
+      </if>
+      <if test="subwayStationDistance != null" >
+        #{subwayStationDistance,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAmount != null" >
+        #{saleAmount,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null" >
+        #{deliveryType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryInitPrice != null" >
+        #{deliveryInitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCost != null" >
+        #{deliveryCost,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiName != null" >
+        #{wifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiPassword != null" >
+        #{wifiPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Store" >
+    update store
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="busStop != null" >
+        bus_stop = #{busStop,jdbcType=VARCHAR},
+      </if>
+      <if test="busStopDistance != null" >
+        bus_stop_distance = #{busStopDistance,jdbcType=VARCHAR},
+      </if>
+      <if test="subwayStation != null" >
+        subway_station = #{subwayStation,jdbcType=VARCHAR},
+      </if>
+      <if test="subwayStationDistance != null" >
+        subway_station_distance = #{subwayStationDistance,jdbcType=VARCHAR},
+      </if>
+      <if test="saleAmount != null" >
+        sale_amount = #{saleAmount,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time = #{deliveryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryType != null" >
+        delivery_type = #{deliveryType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryInitPrice != null" >
+        delivery_init_price = #{deliveryInitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCost != null" >
+        delivery_cost = #{deliveryCost,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiName != null" >
+        wifi_name = #{wifiName,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiPassword != null" >
+        wifi_password = #{wifiPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.Store" >
+    update store
+    set name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      bus_stop = #{busStop,jdbcType=VARCHAR},
+      bus_stop_distance = #{busStopDistance,jdbcType=VARCHAR},
+      subway_station = #{subwayStation,jdbcType=VARCHAR},
+      subway_station_distance = #{subwayStationDistance,jdbcType=VARCHAR},
+      sale_amount = #{saleAmount,jdbcType=INTEGER},
+      delivery_time = #{deliveryTime,jdbcType=VARCHAR},
+      delivery_type = #{deliveryType,jdbcType=VARCHAR},
+      delivery_init_price = #{deliveryInitPrice,jdbcType=VARCHAR},
+      delivery_cost = #{deliveryCost,jdbcType=VARCHAR},
+      wifi_name = #{wifiName,jdbcType=VARCHAR},
+      wifi_password = #{wifiPassword,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      open_time = #{openTime,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

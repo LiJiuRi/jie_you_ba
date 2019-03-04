@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    name: jie_you_ba
+    url: jdbc:mysql://123.207.101.186:3306/jie_you_ba
+    username: root
+    password: lx921530
+    driver-class-name: com.mysql.jdbc.Driver
+
+  thymeleaf:
+    prefix: classpath:/templates/
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.lixu.jie_you_ba.entity  # 注意：对应实体类的路径
