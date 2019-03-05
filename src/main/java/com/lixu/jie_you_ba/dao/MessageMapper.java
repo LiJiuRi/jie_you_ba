@@ -1,7 +1,9 @@
 package com.lixu.jie_you_ba.dao;
 
 import com.lixu.jie_you_ba.entity.Message;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface MessageMapper {
     int deleteByPrimaryKey(Long id);
 
