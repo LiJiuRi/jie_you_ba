@@ -22,7 +22,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.saytime.web"))
+                .apis(RequestHandlerSelectors.basePackage("com.lixu.jie_you_ba.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
