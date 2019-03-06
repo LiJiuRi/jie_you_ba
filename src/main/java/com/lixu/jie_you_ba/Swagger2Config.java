@@ -29,8 +29,8 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("springboot利用swagger构建api文档")
-                .description("简单优雅的restfun风格，http://blog.csdn.net/saytime")
+                .title("测试文档")
+                .description("毕设设计-微信小程序-外卖点餐")
                 .termsOfServiceUrl("http://blog.csdn.net/saytime")
                 .version("1.0")
                 .build();

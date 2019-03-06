@@ -4,10 +4,10 @@ server:
 spring:
   datasource:
     name: jie_you_ba
-    url: jdbc:mysql://123.207.101.186:3306/jie_you_ba
+    url: jdbc:mysql://123.207.101.186:3306/jie_you_ba?characterEncoding=utf-8
     username: root
     password: lx921530
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   thymeleaf:
     prefix: classpath:/templates/
