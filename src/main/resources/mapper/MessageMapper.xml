@@ -15,6 +15,11 @@
     from message
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from message
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from message
     where id = #{id,jdbcType=BIGINT}

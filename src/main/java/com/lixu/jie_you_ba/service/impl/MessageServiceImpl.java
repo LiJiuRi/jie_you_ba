@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther: liXu
@@ -47,5 +48,10 @@ public class MessageServiceImpl implements MessageService {
     public int updateByPrimaryKey(Message record) {
         record.setOperateTime(new Date());
         return messageMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Message> list() {
+        return messageMapper.list();
     }
 }

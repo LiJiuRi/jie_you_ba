@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author liXu
  * @Date: 2019/3/6 21:04
@@ -36,10 +38,15 @@ public class MessageController {
     public Message insert(@RequestBody Message message){
         Assert.notNull(message.getId(),"消息id不能为空");
         messageService.insert(message);
-        logger.info("message{}",message);
+        logger.info("message={}",message);
         return message;
     }
 
+    /**
+     * 更新一条消息
+     * @param message
+     * @return
+     */
     @ApiOperation(value="更新一条消息", notes="更新一条消息")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public Message update(@RequestBody Message message){
@@ -48,11 +55,27 @@ public class MessageController {
         return message;
     }
 
+    /**
+     * 删除一条消息
+     * @param id
+     * @return
+     */
     @ApiOperation(value="删除一条消息", notes="删除一条消息")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public int update(@RequestBody Long id){
         Assert.notNull(id,"消息id不能为空");
         int i = messageService.deleteByPrimaryKey(id);
         return i;
+    }
+
+    /**
+     * 获取全部消息
+     * @param
+     * @return
+     */
+    @ApiOperation(value="获取全部消息", notes="获取全部消息")
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public List<Message> list(){
+        return messageService.list();
     }
 }

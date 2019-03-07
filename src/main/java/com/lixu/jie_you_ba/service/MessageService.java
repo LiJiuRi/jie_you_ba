@@ -2,6 +2,8 @@ package com.lixu.jie_you_ba.service;
 
 import com.lixu.jie_you_ba.entity.Message;
 
+import java.util.List;
+
 /**
  * @Auther: liXu
  * @Date: 2019/3/6 21:10
@@ -20,5 +22,7 @@ public interface MessageService {
     int updateByPrimaryKeySelective(Message record);
 
     int updateByPrimaryKey(Message record);
+
+    List<Message> list();
 
 }

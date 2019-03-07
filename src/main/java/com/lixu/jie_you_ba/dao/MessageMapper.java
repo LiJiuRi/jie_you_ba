@@ -3,6 +3,8 @@ package com.lixu.jie_you_ba.dao;
 import com.lixu.jie_you_ba.entity.Message;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface MessageMapper {
     int deleteByPrimaryKey(Long id);
@@ -16,4 +18,6 @@ public interface MessageMapper {
     int updateByPrimaryKeySelective(Message record);
 
     int updateByPrimaryKey(Message record);
+
+    List<Message> list();
 }
