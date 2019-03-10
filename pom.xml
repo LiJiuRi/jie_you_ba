@@ -73,6 +73,20 @@
             <optional>true</optional>
             <scope>true</scope>
         </dependency>
+
+        <!--添加ID自动生成器-->
+        <dependency>
+            <groupId>com.robert.vesta</groupId>
+            <artifactId>vesta-service</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.robert.vesta</groupId>
+            <artifactId>vesta-intf</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

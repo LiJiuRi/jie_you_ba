@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,7 +33,6 @@ public class MessageController {
     @ApiOperation(value="插入一条消息", notes="插入一条消息")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public Message insert(@RequestBody Message message){
-        Assert.notNull(message.getId(),"消息id不能为空");
         messageService.insert(message);
         logger.info("message={}",message);
         return message;
@@ -62,7 +58,7 @@ public class MessageController {
      */
     @ApiOperation(value="删除一条消息", notes="删除一条消息")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public int update(@RequestBody Long id){
+    public int delete(@RequestParam("id") Long id){
         Assert.notNull(id,"消息id不能为空");
         int i = messageService.deleteByPrimaryKey(id);
         return i;

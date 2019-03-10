@@ -1,4 +1,4 @@
-package com.lixu.jie_you_ba;
+package com.lixu.jie_you_ba.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("测试文档")
+                .title("毕业设计")
                 .description("毕设设计-微信小程序-外卖点餐")
                 .termsOfServiceUrl("http://blog.csdn.net/saytime")
                 .version("1.0")

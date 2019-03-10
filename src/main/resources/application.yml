@@ -1,10 +1,10 @@
 server:
-  port: 80
+  port: 8080
 
 spring:
   datasource:
     name: jie_you_ba
-    url: jdbc:mysql://123.207.101.186:3306/jie_you_ba?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://123.207.101.186:3306/jie_you_ba?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
     username: root
     password: lx921530
     driver-class-name: com.mysql.cj.jdbc.Driver

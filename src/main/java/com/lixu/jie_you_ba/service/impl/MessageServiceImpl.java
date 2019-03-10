@@ -3,6 +3,7 @@ package com.lixu.jie_you_ba.service.impl;
 import com.lixu.jie_you_ba.dao.MessageMapper;
 import com.lixu.jie_you_ba.entity.Message;
 import com.lixu.jie_you_ba.service.MessageService;
+import com.lixu.jie_you_ba.service.UidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,12 @@ import java.util.List;
  */
 @Service
 public class MessageServiceImpl implements MessageService {
+
     @Autowired
     private MessageMapper messageMapper;
+
+    @Autowired
+    private UidService uidService;
 
     @Override
     public int deleteByPrimaryKey(Long id) {
@@ -26,6 +31,8 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public int insert(Message record) {
+        record.setId(uidService.genId());
+        record.setOperateTime(new Date());
         return messageMapper.insertSelective(record);
     }
 
