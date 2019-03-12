@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jie_you_ba:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>jie_you_ba</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="jie_you_ba-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="jie_you_ba:war exploded" />
+    </root>
+  </artifact>
+</component>

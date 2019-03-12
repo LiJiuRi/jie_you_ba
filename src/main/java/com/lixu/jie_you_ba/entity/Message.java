@@ -5,6 +5,8 @@ import java.util.Date;
 public class Message {
     private Long id;
 
+    private String url;
+
     private String content;
 
     private Date operateTime;
@@ -15,6 +17,14 @@ public class Message {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url == null ? null : url.trim();
     }
 
     public String getContent() {

@@ -1,11 +1,11 @@
 package com.lixu.jie_you_ba.dao;
 
 import com.lixu.jie_you_ba.entity.Message;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
+@Repository
 public interface MessageMapper {
     int deleteByPrimaryKey(Long id);
 

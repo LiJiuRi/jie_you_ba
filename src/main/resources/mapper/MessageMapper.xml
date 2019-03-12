@@ -3,11 +3,12 @@
 <mapper namespace="com.lixu.jie_you_ba.dao.MessageMapper" >
   <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.Message" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, content, operate_time
+    id, url, content, operate_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -25,16 +26,19 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Message" >
-    insert into message (id, content, operate_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}
-      )
+    insert into message (id, url, content, 
+      operate_time)
+    values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{operateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Message" >
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="url != null" >
+        url,
       </if>
       <if test="content != null" >
         content,
@@ -47,6 +51,9 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=VARCHAR},
       </if>
@@ -58,6 +65,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Message" >
     update message
     <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=VARCHAR},
       </if>
@@ -69,7 +79,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.Message" >
     update message
-    set content = #{content,jdbcType=VARCHAR},
+    set url = #{url,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
       operate_time = #{operateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
