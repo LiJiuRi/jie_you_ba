@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6b79b3fd-ba5f-4d2c-b46d-5f9d73b83556" name="腾讯云服务器" url="http://123.207.101.186">
+        <fileTransfer host="123.207.101.186" port="22" privateKey="$USER_HOME$/Desktop/first" rootFolder="/home/ubuntu/tomcat/tomcat/webapps" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

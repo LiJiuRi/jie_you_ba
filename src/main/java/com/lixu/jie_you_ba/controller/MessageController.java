@@ -70,7 +70,7 @@ public class MessageController {
      * @return
      */
     @ApiOperation(value="获取全部消息", notes="获取全部消息")
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = {RequestMethod.GET,RequestMethod.POST})
     public List<Message> list(){
         return messageService.list();
     }
