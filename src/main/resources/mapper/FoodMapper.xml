@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lixu.jie_you_ba.dao.FoodMapper" >
+  <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.Food" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="food_catalog_id" property="foodCatalogId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="praise" property="praise" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, food_catalog_id, name, count, price, praise, image, create_person, create_time, 
+    update_person, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from food
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Food" >
+    insert into food (id, food_catalog_id, name, 
+      count, price, praise, 
+      image, create_person, create_time, 
+      update_person, update_time)
+    values (#{id,jdbcType=BIGINT}, #{foodCatalogId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{praise,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Food" >
+    insert into food
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="foodCatalogId != null" >
+        food_catalog_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="praise != null" >
+        praise,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="foodCatalogId != null" >
+        #{foodCatalogId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="praise != null" >
+        #{praise,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Food" >
+    update food
+    <set >
+      <if test="foodCatalogId != null" >
+        food_catalog_id = #{foodCatalogId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="praise != null" >
+        praise = #{praise,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.Food" >
+    update food
+    set food_catalog_id = #{foodCatalogId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      praise = #{praise,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

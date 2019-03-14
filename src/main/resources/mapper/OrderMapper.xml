@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lixu.jie_you_ba.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.Order" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="admin_id" property="adminId" jdbcType="BIGINT" />
+    <result column="cost" property="cost" jdbcType="REAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_name" property="orderName" jdbcType="VARCHAR" />
+    <result column="order_phone" property="orderPhone" jdbcType="VARCHAR" />
+    <result column="order_address" property="orderAddress" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="food_sales" property="foodSales" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, admin_id, cost, remark, order_name, order_phone, order_address, status, 
+    food_sales, create_person, create_time, update_person, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Order" >
+    insert into order (id, user_id, admin_id, 
+      cost, remark, order_name, 
+      order_phone, order_address, status, 
+      food_sales, create_person, create_time, 
+      update_person, update_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{adminId,jdbcType=BIGINT}, 
+      #{cost,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, #{orderName,jdbcType=VARCHAR}, 
+      #{orderPhone,jdbcType=VARCHAR}, #{orderAddress,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{foodSales,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="orderName != null" >
+        order_name,
+      </if>
+      <if test="orderPhone != null" >
+        order_phone,
+      </if>
+      <if test="orderAddress != null" >
+        order_address,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="foodSales != null" >
+        food_sales,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null" >
+        #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null" >
+        #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddress != null" >
+        #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foodSales != null" >
+        #{foodSales,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Order" >
+    update order
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=BIGINT},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=REAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null" >
+        order_name = #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPhone != null" >
+        order_phone = #{orderPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAddress != null" >
+        order_address = #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="foodSales != null" >
+        food_sales = #{foodSales,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.Order" >
+    update order
+    set user_id = #{userId,jdbcType=BIGINT},
+      admin_id = #{adminId,jdbcType=BIGINT},
+      cost = #{cost,jdbcType=REAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      order_name = #{orderName,jdbcType=VARCHAR},
+      order_phone = #{orderPhone,jdbcType=VARCHAR},
+      order_address = #{orderAddress,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      food_sales = #{foodSales,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
