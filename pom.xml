@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <lombok.version>1.18.4</lombok.version>
     </properties>
 
     <dependencies>
@@ -74,6 +75,12 @@
         </dependency>
         <!-- Swagger end -->
 
+        <!--添加lombok依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
         <!--添加热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,6 +103,16 @@
         </dependency>
 
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

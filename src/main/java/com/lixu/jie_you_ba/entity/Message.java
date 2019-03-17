@@ -1,8 +1,12 @@
 package com.lixu.jie_you_ba.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Message {
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     private String url;

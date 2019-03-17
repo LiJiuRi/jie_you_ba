@@ -13,10 +13,12 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="sale" property="sale" jdbcType="REAL" />
+    <result column="sale_price" property="salePrice" jdbcType="REAL" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, food_catalog_id, name, count, price, praise, image, create_person, create_time, 
-    update_person, update_time
+    update_person, update_time, sale, sale_price
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -24,19 +26,31 @@
     from food
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from food
+    where food_catalog_id = #{foodCatalogId,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from food
     where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="remove" parameterType="java.lang.Long" >
+    delete from food
+    where food_catalog_id = #{foodCatalogId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Food" >
     insert into food (id, food_catalog_id, name, 
       count, price, praise, 
       image, create_person, create_time, 
-      update_person, update_time)
+      update_person, update_time, sale, 
+      sale_price)
     values (#{id,jdbcType=BIGINT}, #{foodCatalogId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{count,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{praise,jdbcType=VARCHAR}, 
       #{image,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{sale,jdbcType=REAL}, 
+      #{salePrice,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Food" >
     insert into food
@@ -74,6 +88,12 @@
       <if test="updateTime != null" >
         update_time,
       </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -108,6 +128,12 @@
       </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=REAL},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -144,6 +170,12 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=REAL},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=REAL},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -158,7 +190,9 @@
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      sale = #{sale,jdbcType=REAL},
+      sale_price = #{salePrice,jdbcType=REAL}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

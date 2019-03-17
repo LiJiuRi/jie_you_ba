@@ -4,15 +4,13 @@
   <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.FoodCatalog" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="is_have_food" property="isHaveFood" jdbcType="INTEGER" />
-    <result column="foods" property="foods" jdbcType="VARCHAR" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, is_have_food, foods, create_person, create_time, update_person, update_time
+    id, name, create_person, create_time, update_person, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -20,17 +18,22 @@
     from food_catalog
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from food_catalog
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from food_catalog
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.FoodCatalog" >
-    insert into food_catalog (id, name, is_have_food, 
-      foods, create_person, create_time, 
-      update_person, update_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{isHaveFood,jdbcType=INTEGER}, 
-      #{foods,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into food_catalog (id, name, create_person, 
+      create_time, update_person, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.FoodCatalog" >
     insert into food_catalog
@@ -40,12 +43,6 @@
       </if>
       <if test="name != null" >
         name,
-      </if>
-      <if test="isHaveFood != null" >
-        is_have_food,
-      </if>
-      <if test="foods != null" >
-        foods,
       </if>
       <if test="createPerson != null" >
         create_person,
@@ -67,12 +64,6 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="isHaveFood != null" >
-        #{isHaveFood,jdbcType=INTEGER},
-      </if>
-      <if test="foods != null" >
-        #{foods,jdbcType=VARCHAR},
-      </if>
       <if test="createPerson != null" >
         #{createPerson,jdbcType=VARCHAR},
       </if>
@@ -93,12 +84,6 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="isHaveFood != null" >
-        is_have_food = #{isHaveFood,jdbcType=INTEGER},
-      </if>
-      <if test="foods != null" >
-        foods = #{foods,jdbcType=VARCHAR},
-      </if>
       <if test="createPerson != null" >
         create_person = #{createPerson,jdbcType=VARCHAR},
       </if>
@@ -117,8 +102,6 @@
   <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.FoodCatalog" >
     update food_catalog
     set name = #{name,jdbcType=VARCHAR},
-      is_have_food = #{isHaveFood,jdbcType=INTEGER},
-      foods = #{foods,jdbcType=VARCHAR},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},

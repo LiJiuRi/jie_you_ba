@@ -21,8 +21,6 @@ public class Order {
 
     private Integer status;
 
-    private String foodSales;
-
     private String createPerson;
 
     private Date createTime;
@@ -101,14 +99,6 @@ public class Order {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getFoodSales() {
-        return foodSales;
-    }
-
-    public void setFoodSales(String foodSales) {
-        this.foodSales = foodSales == null ? null : foodSales.trim();
     }
 
     public String getCreatePerson() {

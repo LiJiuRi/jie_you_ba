@@ -1,7 +1,11 @@
 package com.lixu.jie_you_ba.dao;
 
 import com.lixu.jie_you_ba.entity.FoodCatalog;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface FoodCatalogMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -10,6 +14,8 @@ public interface FoodCatalogMapper {
     int insertSelective(FoodCatalog record);
 
     FoodCatalog selectByPrimaryKey(Long id);
+
+    List<FoodCatalog> list();
 
     int updateByPrimaryKeySelective(FoodCatalog record);
 

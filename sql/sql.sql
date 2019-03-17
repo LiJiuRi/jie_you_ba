@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `vip` (
 CREATE TABLE IF NOT EXISTS `food_catalog` (
   `id` bigint(20) NOT NULL COMMENT '分类id',
   `name` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '分类名称',
-  `is_have_food` int(1) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '是否有菜品：0-false，1-true',
-  `foods` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '子菜单',
+--`is_have_food` int(1) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '是否有菜品：0-false，1-true',-------可根据List foods的长度判断
+--`foods` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '子菜单',在数据库表中不需建这个字段，生成对应实体后添加该属性即可
   `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `food_catalog` (
 七、外卖菜品表
 -- ----------------------------
 CREATE TABLE IF NOT EXISTS `food` (
-  `id` bigint(20) NOT NULL COMMENT '菜单编号id',
+  `id` bigint(20) NOT NULL COMMENT '菜编号id',
   `food_catalog_id` bigint(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '外卖分类id',
   `name` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '菜名',
   `count` int(10) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '销量',
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `order` (
   `order_phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '下单号码',
   `order_address` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '下单配送地址',
   `status` int(1) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '订单状态：0-待付款，1-待发货，2-待收货，3-待评价，4-退货，5-退款，6-已完成',
-  `food_sales` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '该订单包含的菜品',
+--`food_sales` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '该订单包含的菜品',不要在表中新建
   `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
@@ -199,4 +199,4 @@ CREATE TABLE IF NOT EXISTS `food_sale` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-
+十二、首页轮播图表

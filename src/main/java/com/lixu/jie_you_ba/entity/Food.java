@@ -25,6 +25,10 @@ public class Food {
 
     private Date updateTime;
 
+    private Float sale;
+
+    private Float salePrice;
+
     public Long getId() {
         return id;
     }
@@ -111,5 +115,21 @@ public class Food {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Float getSale() {
+        return sale;
+    }
+
+    public void setSale(Float sale) {
+        this.sale = sale;
+    }
+
+    public Float getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(Float salePrice) {
+        this.salePrice = salePrice;
     }
 }

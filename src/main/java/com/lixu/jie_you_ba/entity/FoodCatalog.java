@@ -3,13 +3,10 @@ package com.lixu.jie_you_ba.entity;
 import java.util.Date;
 
 public class FoodCatalog {
+
     private Long id;
 
     private String name;
-
-    private Integer isHaveFood;
-
-    private String foods;
 
     private String createPerson;
 
@@ -33,22 +30,6 @@ public class FoodCatalog {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getIsHaveFood() {
-        return isHaveFood;
-    }
-
-    public void setIsHaveFood(Integer isHaveFood) {
-        this.isHaveFood = isHaveFood;
-    }
-
-    public String getFoods() {
-        return foods;
-    }
-
-    public void setFoods(String foods) {
-        this.foods = foods == null ? null : foods.trim();
     }
 
     public String getCreatePerson() {
