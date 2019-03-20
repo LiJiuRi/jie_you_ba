@@ -1,3 +1,6 @@
+将所有设置为枚举类型的改为varchar类型存储，加快进度
+
+
 -- ----------------------------
 一、门店基本信息表
 -- ----------------------------
@@ -29,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `store` (
 -- ----------------------------
 CREATE TABLE IF NOT EXISTS `message` (
   `id` bigint(20) NOT NULL COMMENT '公告记录id',
+  `store_id` bigint(20) NOT NULL COMMENT '店铺id',
   `content` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '公告内容',
   `operate_time` datetime DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE
@@ -150,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `order` (
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` bigint(20) NOT NULL COMMENT '管理员id',
   `name` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '姓名（昵称）',
-  `type` int(1) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '账号类型：0-普通管理员，1-老板',
+  `type` int(1) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '账号类型：0-店铺管理员，1-超级管理员',
   `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '手机号',
   `e_mail` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '邮箱号',
   `sex` int(1) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '性别：0-男，1-女',
@@ -198,5 +202,8 @@ CREATE TABLE IF NOT EXISTS `food_sale` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 十二、首页轮播图表
+
+十三、评价表
+
+十四、店铺管理员申请开通店铺表（此时店铺管理员同时注册一个管理员账号）

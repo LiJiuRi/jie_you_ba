@@ -5,15 +5,17 @@ import java.util.Date;
 public class Admin {
     private Long id;
 
+    private Long storeId;
+
     private String name;
 
-    private Integer type;
+    private String type;
 
     private String phone;
 
     private String eMail;
 
-    private Integer sex;
+    private String sex;
 
     private String createPerson;
 
@@ -31,6 +33,14 @@ public class Admin {
         this.id = id;
     }
 
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
+    }
+
     public String getName() {
         return name;
     }
@@ -39,12 +49,12 @@ public class Admin {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     public String getPhone() {
@@ -63,12 +73,12 @@ public class Admin {
         this.eMail = eMail == null ? null : eMail.trim();
     }
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
-        this.sex = sex;
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 
     public String getCreatePerson() {
