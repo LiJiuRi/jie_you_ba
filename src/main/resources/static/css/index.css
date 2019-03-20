@@ -1,7 +1,12 @@
 .indexlunbotu{
 	width: 800px;
 	height: 600px;
-	margin-top: 50px;
-	margin-left: 100px;
-	display: inline-block;
+	position: absolute;
+}
+
+.login{
+	position:absolute;
+	width:200px;
+	height:75px;
+	right:50px;
 }
