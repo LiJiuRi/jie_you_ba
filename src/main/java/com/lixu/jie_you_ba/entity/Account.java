@@ -5,24 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
-public class Admin {
+public class Account {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    @JsonProperty("store_id")
-    private Long storeId;
+    @JsonProperty("person_id")
+    private Long personId;
 
-    private String name;
+    private String password;
 
-    private String type;
-
-    private String phone;
-
-    @JsonProperty("e_mail")
-    private String eMail;
-
-    private String sex;
+    private Integer type;
 
     @JsonProperty("create_person")
     private String createPerson;
@@ -44,52 +37,28 @@ public class Admin {
         this.id = id;
     }
 
-    public Long getStoreId() {
-        return storeId;
+    public Long getPersonId() {
+        return personId;
     }
 
-    public void setStoreId(Long storeId) {
-        this.storeId = storeId;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
-
-    public String geteMail() {
-        return eMail;
-    }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail == null ? null : eMail.trim();
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getCreatePerson() {

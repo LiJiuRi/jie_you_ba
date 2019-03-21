@@ -31,7 +31,7 @@ $(document).ready(function(){
     
     $.ajax({
     	type : "post",
-    	url:"validate",
+    	url:"../login/validate",
     	//contentType:"application/json",
     	//contentType:"application/x-www-form-urlencoded",
         //data:JSON.stringify(data),

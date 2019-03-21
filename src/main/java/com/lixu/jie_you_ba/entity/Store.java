@@ -1,8 +1,12 @@
 package com.lixu.jie_you_ba.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class Store {
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
     private String name;
@@ -11,33 +15,55 @@ public class Store {
 
     private String address;
 
+    @JsonProperty("bus_stop")
     private String busStop;
 
+    @JsonProperty("bus_stop_distance")
     private String busStopDistance;
 
+    @JsonProperty("subway_station")
     private String subwayStation;
 
+    @JsonProperty("subway_station_distance")
     private String subwayStationDistance;
 
+    @JsonProperty("sale_amount")
     private Integer saleAmount;
 
+    @JsonProperty("delivery_time")
     private String deliveryTime;
 
+    @JsonProperty("delivery_type")
     private String deliveryType;
 
+    @JsonProperty("delivery_init_price")
     private String deliveryInitPrice;
 
+    @JsonProperty("delivery_cost")
     private String deliveryCost;
 
+    @JsonProperty("wifi_name")
     private String wifiName;
 
+    @JsonProperty("wifi_password")
     private String wifiPassword;
 
     private String description;
 
+    @JsonProperty("open_time")
     private String openTime;
 
-    private Date operateTime;
+    @JsonProperty("create_person")
+    private String createPerson;
+
+    @JsonProperty("create_time")
+    private Date createTime;
+
+    @JsonProperty("update_person")
+    private String updatePerson;
+
+    @JsonProperty("update_time")
+    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -175,11 +201,35 @@ public class Store {
         this.openTime = openTime == null ? null : openTime.trim();
     }
 
-    public Date getOperateTime() {
-        return operateTime;
+    public String getCreatePerson() {
+        return createPerson;
     }
 
-    public void setOperateTime(Date operateTime) {
-        this.operateTime = operateTime;
+    public void setCreatePerson(String createPerson) {
+        this.createPerson = createPerson == null ? null : createPerson.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdatePerson() {
+        return updatePerson;
+    }
+
+    public void setUpdatePerson(String updatePerson) {
+        this.updatePerson = updatePerson == null ? null : updatePerson.trim();
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

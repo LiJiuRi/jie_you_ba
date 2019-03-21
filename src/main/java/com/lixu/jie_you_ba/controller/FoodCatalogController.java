@@ -36,12 +36,12 @@ public class FoodCatalogController extends BaseController{
      */
     @ApiOperation(value="插入一条菜品分类", notes="插入一条菜品分类")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public FoodCatalogDto insert(@RequestBody FoodCatalogDto foodCatalogDto, HttpServletRequest httpServletRequest){
+    public FoodCatalogDto insert(@RequestBody FoodCatalogDto foodCatalogDto, @CookieValue(value = "token", required = false) String token){
         logger.info("foodCatalogDto={}",foodCatalogDto);
-        LoginUserVo loginUserVo = getLoginUserInfo(httpServletRequest);
-        if(null != loginUserVo){
-            String adminId = loginUserVo.getAdminId() + "";
-            foodCatalogDto.setCreatePerson(adminId);
+        //获取操作人
+        String personId = readCookie(token);
+        if(null != personId){
+            foodCatalogDto.setCreatePerson(personId);
         }
         foodCatalogService.insert(foodCatalogDto);
         return foodCatalogDto;
@@ -54,12 +54,12 @@ public class FoodCatalogController extends BaseController{
      */
     @ApiOperation(value="更新一条菜品分类", notes="更新一条菜品分类")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public FoodCatalogDto update(@RequestBody FoodCatalogDto foodCatalogDto, HttpServletRequest httpServletRequest){
+    public FoodCatalogDto update(@RequestBody FoodCatalogDto foodCatalogDto, @CookieValue(value = "token", required = false) String token){
         Assert.notNull(foodCatalogDto.getId(),"菜品分类id不能为空");
-        LoginUserVo loginUserVo = getLoginUserInfo(httpServletRequest);
-        if(null != loginUserVo){
-            String adminId = loginUserVo.getAdminId() + "";
-            foodCatalogDto.setUpdatePerson(adminId);
+        //获取操作人
+        String personId = readCookie(token);
+        if(null != personId){
+            foodCatalogDto.setUpdatePerson(personId);
         }
         foodCatalogService.update(foodCatalogDto);
         return foodCatalogDto;
