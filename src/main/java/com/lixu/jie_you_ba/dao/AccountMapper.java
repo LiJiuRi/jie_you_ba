@@ -13,6 +13,8 @@ public interface AccountMapper {
 
     Account selectByPrimaryKey(Long id);
 
+    Account getByPersonId(Long personId);
+
     int updateByPrimaryKeySelective(Account record);
 
     int updateByPrimaryKey(Account record);

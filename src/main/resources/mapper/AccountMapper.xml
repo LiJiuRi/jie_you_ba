@@ -20,6 +20,12 @@
     from account
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="getByPersonId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from account
+    where person_id = #{personId,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from account
     where id = #{id,jdbcType=BIGINT}

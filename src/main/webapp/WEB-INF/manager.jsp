@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 引入jstl -->
-<%@include file="common/tag.jsp" %>
 
 <!doctype html>
 <html lang="ch">
@@ -15,8 +14,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
         <title>会议室管理系统后台首页</title>
-        <script src="${basePath}resources/js/jquery.min.js"></script>
-        <script src="${basePath}resources/js/bootstrap.min.js"></script>
+        <script src="../../static/js/jquery.min.js"></script>
+        <script src="../../static/js/bootstrap.min.js"></script>
         <script>
             $(function() {
                 $(".meun-item").click(function() {
@@ -53,16 +52,16 @@
             })
         </script>
         <!--[if lt IE 9]>
-  <script src="js/html5shiv.min.js"></script>
-  <script src="js/respond.min.js"></script>
+  <script src="../../static/js/html5shiv.min.js"></script>
+  <script src="../../static/js/respond.min.js"></script>
 <![endif]-->
-        <link href="${basePath}resources/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/common.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/slide.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/flat-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/jquery.nouislider.css">
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/ownDefine.css">
+        <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../../static/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/slide.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/flat-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/jquery.nouislider.css">
+        <link rel="stylesheet" type="text/css" href="../../static/css/ownDefine.css">
     </head>
 
     <body>
@@ -70,7 +69,7 @@
             <!-- 左侧菜单栏目块 -->
             <div class="leftMeun" id="leftMeun">
                 <div id="logoDiv">
-                    <p id="logoP"><img id="logo" alt="会议室管理系统" src="${basePath}resources/images/logo.png"><span>会议室管理系统</span></p>
+                    <p id="logoP"><img id="logo" alt="会议室管理系统" src="../../static/images/logo.png"><span></span></p>
                 </div>
                 <div id="personInfor">
 					<p>欢迎您！</p>
@@ -87,34 +86,34 @@
                 	<span id="topA" class="glyphicon  glyphicon-triangle-bottom  "></span> <span>会议室管理</span>
                 </div>
                 <div id="collapseMeeting" class="collapse in" aria-expanded="true">
-                	<div class="meun-item meun-item-active" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_source.png">新增会议室</div>
-                	<div class="meun-item" id="modifyRoomDiv" href="#modifyRoomPane" aria-controls="modifyRoomPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_chara_grey.png">修改会议室</div>
-                	<div class="meun-item" id="showRoomDiv" href="#showRoomPane" aria-controls="showRoomPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_user_grey.png">查看会议室</div>
+                	<div class="meun-item meun-item-active" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_source.png">新增会议室</div>
+                	<div class="meun-item" id="modifyRoomDiv" href="#modifyRoomPane" aria-controls="modifyRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_chara_grey.png">修改会议室</div>
+                	<div class="meun-item" id="showRoomDiv" href="#showRoomPane" aria-controls="showRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_user_grey.png">查看会议室</div>
                 </div>
                 <!-- 预约管理折叠 -->
                 <div class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBookedFunction" aria-expanded="true" aria-controls="collapseOne">
                 	<span id="topB" class="glyphicon  glyphicon-triangle-bottom  "></span> <span>预约管理</span>
                 </div>
                 <div id="collapseBookedFunction" class="collapse " aria-expanded="true">
-                	<div class="meun-item" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_house_grey.png">查看当前预约</div>
-                	<div class="meun-item" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_rule_grey.png">查看历史预约</div>
+                	<div class="meun-item" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看当前预约</div>
+                	<div class="meun-item" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">查看历史预约</div>
             	</div>
             	<!-- 用户管理折叠 -->
             	<div class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseStaffFunction" aria-expanded="true" aria-controls="collapseOne">
                 	<span id="top111" class="glyphicon  glyphicon-triangle-bottom  "></span> <span>用户管理</span>
                 </div>
                 <div id="collapseStaffFunction" class="collapse " aria-expanded="true">
-                	<div class="meun-item" id="showUsersMenu" href="#showStaffPane" aria-controls="showStaffPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_house_grey.png">查看用户</div>
-                	<div class="meun-item" id="modifyPassM" href="#modifyPassword" aria-controls="modifyPassword" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_rule_grey.png">修改密码</div>
+                	<div class="meun-item" id="showUsersMenu" href="#showStaffPane" aria-controls="showStaffPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看用户</div>
+                	<div class="meun-item" id="modifyPassM" href="#modifyPassword" aria-controls="modifyPassword" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改密码</div>
                 </div>
                 <!-- 设备管理折叠 -->
                 <div class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDeviceFunction" aria-expanded="true" aria-controls="collapseOne">
                 	<span id="topB" class="glyphicon  glyphicon-triangle-bottom  "></span> <span>设备管理</span>
                 </div>
                 <div id="collapseDeviceFunction" class="collapse " aria-expanded="true">
-                	<div class="meun-item" id = "addDeviceMenu" href="#addDevicePane" aria-controls="addDevicePane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_house_grey.png">新增设备</div>
-                	<div class="meun-item" id = "modifyDeviceMenu" href="#modifyDevicePane" aria-controls="modifyDevicePane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_rule_grey.png">修改设备</div>
-                	<div class="meun-item" id = "showDeviceMenu" href="#showDevicePane" aria-controls="showDevicePane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_card_grey.png">查看设备</div>      	
+                	<div class="meun-item" id = "addDeviceMenu" href="#addDevicePane" aria-controls="addDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">新增设备</div>
+                	<div class="meun-item" id = "modifyDeviceMenu" href="#modifyDevicePane" aria-controls="modifyDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改设备</div>
+                	<div class="meun-item" id = "showDeviceMenu" href="#showDevicePane" aria-controls="showDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_card_grey.png">查看设备</div>      	
             	</div>
             	</div>
             </div>
@@ -1217,18 +1216,18 @@
  		</div>
 
 		<!-- <script src="js/jquery.nouislider.js"></script> -->
-		 <script src="${basePath}resources/js/manager.addroom.js"></script> 
-		<script src="${basePath}resources/js/manager.modifyRoom.js"></script>
-		<script src="${basePath}resources/js/exitLogin.js"></script>
-		<script src="${basePath}resources/js/manager.commom.js"></script>
-		<script src="${basePath}resources/js/manager.showRoom.js"></script>
-		<script src="${basePath}resources/js/manager.showNowBooked.js"></script>
-		<script src="${basePath}resources/js/manager.showHistoryBooked.js"></script>
-		<script src="${basePath}resources/js/manager.showUser.js"></script>
-		<script src="${basePath}resources/js/manager.modifyPass.js"></script>
-		<script src="${basePath}resources/js/manager.addDevice.js"></script>
-		<script src="${basePath}resources/js/manager.modifyDevice.js"></script>
-		<script src="${basePath}resources/js/manager.showDevice.js"></script>
+		 <script src="../../static/js/manager.addroom.js"></script> 
+		<script src="../../static/js/manager.modifyRoom.js"></script>
+		<script src="../../static/js/exitLogin.js"></script>
+		<script src="../../static/js/manager.commom.js"></script>
+		<script src="../../static/js/manager.showRoom.js"></script>
+		<script src="../../static/js/manager.showNowBooked.js"></script>
+		<script src="../../static/js/manager.showHistoryBooked.js"></script>
+		<script src="../../static/js/manager.showUser.js"></script>
+		<script src="../../static/js/manager.modifyPass.js"></script>
+		<script src="../../static/js/manager.addDevice.js"></script>
+		<script src="../../static/js/manager.modifyDevice.js"></script>
+		<script src="../../static/js/manager.showDevice.js"></script>
 	
 	</body>
 

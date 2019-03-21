@@ -1,4 +1,5 @@
 将所有设置为枚举类型的改为varchar类型存储，加快进度
+要注意一个问题：之前只是在navicat中将int类型改为varchar类型，不是重新创建，可能有默认值为0的情况
 
 
 -- ----------------------------
@@ -22,7 +23,10 @@ CREATE TABLE IF NOT EXISTS `store` (
   `wifi_password` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'WiFi密码',
   `description` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺简介',
   `open_time` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '营业时间',
-  `operate_time` datetime DEFAULT NULL COMMENT '操作时间',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -195,6 +199,21 @@ CREATE TABLE IF NOT EXISTS `food_sale` (
   `food_name` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '菜名',
   `number` int(3) COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '数量',
   `pay_price` float(6,3) COLLATE utf8mb4_general_ci DEFAULT '0.00' COMMENT '支付单价（根据是否为vip显示打折菜单，支付价格根据food_catalog_id最终决定）',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+十二、账号表
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `account` (
+  `id` bigint(20) NOT NULL COMMENT '账号id',
+  `person_id` bigint(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '个人id（两种类型：普通用户user_id、管理员admin_id）',
+  `password` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '账号密码',
+  `type`  int(1) COLLATE utf8mb4_general_ci DEFAULT "1" COMMENT '账号类型：0-用户，1-管理员',
   `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',

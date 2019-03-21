@@ -1,6 +1,8 @@
 package com.lixu.jie_you_ba.service.impl;
 
+import com.lixu.jie_you_ba.dao.AccountMapper;
 import com.lixu.jie_you_ba.dao.LoginDao;
+import com.lixu.jie_you_ba.entity.Account;
 import com.lixu.jie_you_ba.entity.Login;
 import com.lixu.jie_you_ba.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDao loginDao;
 	//@Autowired
 	//private StaffDao staffDao ;
+	@Autowired
+	private AccountMapper accountMapper;
 
 	/**
 	 * 判断登陆是否成功
@@ -21,9 +25,10 @@ public class LoginServiceImpl implements LoginService {
 	 */
 	@Override
 	public boolean login(String staffNumber, String password) {
-		Login login = loginDao.getByID(staffNumber);
+		Long personId = Long.valueOf(staffNumber);
+		Account account = accountMapper.getByPersonId(personId);
 		// login == null表示没有该用户
-		if ((login==null) || (!password.equals(login.getPassword()))) {
+		if ((account==null) || (!password.equals(account.getPassword()))) {
 			return false;
 		} else {
 			return true;

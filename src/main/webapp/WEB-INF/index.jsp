@@ -70,14 +70,14 @@
             <p style="width: 400px;text-align: center;margin: 27px auto 17px auto;">请正确输入您的信息！</p>
             <div style="padding-left: 45px;padding-bottom: 10px;">
 
-                <input type="text" id="userId" placeholder="请输入账号" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;required=required;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
+                <input type="text" id="person_id" placeholder="请输入账号" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;required=required;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
 
                 <input type="password" id="password" placeholder="请输入密码" autocomplete="new-password" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;required=required;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
 
                 <input type="submit" value="登录"  id="login1" style="margin-left: 23px;margin-top: 20px;width: 270px;height: 46px;border-radius: 15px;border: none;background-color: #86ce2f;"/>
             </div>
             <div align = "center"id = "loginTip"></div>
-            <p style="width: 400px;text-align: center;margin: 14px auto 0 auto;">还没有账号？<a href="/jsp/register" style="color: #d06b6b;text-decoration: none;">立即注册</a></p>
+            <p style="width: 400px;text-align: center;margin: 4px auto 0 auto;">还没有账号？<a href="/jsp/register" style="color: #d06b6b;text-decoration: none;">立即注册</a></p>
         </div>
     </div>
 

@@ -1,7 +1,10 @@
 package com.lixu.jie_you_ba.controller;
 
+import com.lixu.jie_you_ba.service.AccountService;
 import com.lixu.jie_you_ba.service.JwtService;
 import com.lixu.jie_you_ba.service.LoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +19,14 @@ import java.util.Map;
 @Controller
 public class LoginController extends BaseController{
 
+	private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 	@Autowired
 	private LoginService loginService;
+
+
+	@Autowired
+	private AccountService accountService;
 	@Autowired
 	private JwtService jwtService;
 
@@ -40,19 +49,9 @@ public class LoginController extends BaseController{
 	public boolean validateLogin(HttpServletRequest request, HttpServletResponse response) {
 		String staffNumber = request.getParameter("staffNumber");
 		String password = request.getParameter("password");
-		System.out.println(staffNumber);
-		System.out.println(password);
-		// 前端注意要有参数，不然会报500
-		// 理论上后台也要再确认一次，然后返回对应的错误码（但目前懒得弄）
-		if ((staffNumber == null) || (password == null)) {
-			System.out.println("参数不完整");
-			return false;
-		}
+		logger.info("账号+密码={}",staffNumber+"     "+password);
 		// 确定是否登陆成功
 		boolean isLogin = loginService.login(staffNumber, password);
-		//Staff staff = new Staff();
-		/*Map<String, Object> map = new HashMap<String, Object>();
-		map.put("isLogin", isLogin);*/
 		if (isLogin) {
 			// 如果登陆成功，创建token并写入cookie中
 			this.writeCookie(response, staffNumber);
