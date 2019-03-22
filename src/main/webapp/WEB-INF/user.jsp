@@ -1,22 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- 引入jstl -->
-<%@include file="common/tag.jsp" %>
 
 <!doctype html>
 <html lang="ch">
 
     <head>
-    	<%@include file="common/head.jsp"%>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="会议室预约系统用户页面">
         <meta name="keywords" content="会议室 管理 ">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
+		<link rel="shortcut icon" href="../../static/images/ai.jpg" media="screen">
         <title>会议室预约系统用户首页</title>
-        <script src="${basePath}resources/js/jquery.min.js"></script>
-        <script src="${basePath}resources/js/bootstrap.min.js"></script>
+        <script src="../../static/js/jquery.min.js"></script>
+        <script src="../../static/js/bootstrap.min.js"></script>
         <script>
             $(function() {
             	//此代码用于测试根据会议室号查询会议室信息,测试完成后user.jsp的id为test的button要去掉这的"test"Id
@@ -77,13 +75,13 @@
   <script src="js/html5shiv.min.js"></script>
   <script src="js/respond.min.js"></script>
 <![endif]-->
-        <link href="${basePath}resources/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/common.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/slide.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/flat-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/jquery.nouislider.css">
-        <link rel="stylesheet" type="text/css" href="${basePath}resources/css/ownDefine.css">
+        <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../../static/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/slide.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/flat-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../static/css/jquery.nouislider.css">
+        <link rel="stylesheet" type="text/css" href="../../static/css/ownDefine.css">
     </head>
 
     <body>
@@ -91,7 +89,7 @@
             <!-- 左侧菜单栏目块 -->
             <div class="leftMeun" id="leftMeun">
                 <div id="logoDiv">
-                    <p id="logoP"><img id="logo" alt="会议室预约系统" src="${basePath}resources/images/logo.png"><span>会议室预约系统</span></p>
+                    <p id="logoP"><img id="logo" alt="会议室预约系统" src="../../static/images/logo.png"><span></span></p>
                 </div>
                 <div id="personInfor">
 					<p>欢迎您！</p>
@@ -109,16 +107,16 @@
                 	<span id="topB" class="glyphicon  glyphicon-triangle-bottom  "></span> <span>预约功能</span>
                 </div>
                 <div id="collapseBookedFunction" class="collapse in" aria-expanded="true">
-                	<div class="meun-item" id = "userBookedRoom" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_house_grey.png">预约会议室</div>
-                	<div class="meun-item" id = "userBookedRecord" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_rule_grey.png">预约记录</div>
+                	<div class="meun-item" id = "userBookedRoom" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">预约会议室</div>
+                	<div class="meun-item" id = "userBookedRecord" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">预约记录</div>
             	</div>
             	<!-- 用户管理折叠 -->
             	<div class="meun-title" onClick="changeA()" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseStaffFunction" aria-expanded="true" aria-controls="collapseOne">
                 	<span id="top111" class="glyphicon  glyphicon-triangle-bottom  "></span> <span>个人信息</span>
                 </div>
                 <div id="collapseStaffFunction" class="collapse " aria-expanded="true">
-                	<div class="meun-item" id = "modifyMyInfoMenu1" href="#modifyInformation" aria-controls="modifyInformation" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_house_grey.png">修改个人信息</div>
-                	<div class="meun-item" id = "modifyMyPassMenu" href="#modifyPassword" aria-controls="modifyPassword" role="tab" data-toggle="tab"><img src="${basePath}resources/images/icon_rule_grey.png">修改密码</div>
+                	<div class="meun-item" id = "modifyMyInfoMenu1" href="#modifyInformation" aria-controls="modifyInformation" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">修改个人信息</div>
+                	<div class="meun-item" id = "modifyMyPassMenu" href="#modifyPassword" aria-controls="modifyPassword" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改密码</div>
                 </div>
             	</div>
             </div>
@@ -588,12 +586,12 @@
     		
  		</div>
 
-		<script src="${basePath}resources/js/jquery.nouislider.js"></script>
-		<script src="${basePath}resources/js/exitLogin.js"></script>
-		<script src="${basePath}resources/js/user.commom.js"></script>
-		<script src="${basePath}resources/js/user.modifyInfo.js"></script>
-		<script src="${basePath}resources/js/user.modifyMyPassword.js"></script>
-		<script src="${basePath}resources/js/user.myBookedRecord.js"></script>
-		<script src="${basePath}resources/js/user.booked.js"></script> 
+		<script src="../../static/js/jquery.nouislider.js"></script>
+		<script src="../../static/js/exitLogin.js"></script>
+		<script src="../../static/js/user.commom.js"></script>
+		<script src="../../static/js/user.modifyInfo.js"></script>
+		<script src="../../static/js/user.modifyMyPassword.js"></script>
+		<script src="../../static/js/user.myBookedRecord.js"></script>
+		<script src="../../static/js/user.booked.js"></script> 
 	</body>
 </html>

@@ -1,5 +1,7 @@
 package com.lixu.jie_you_ba.controller;
 
+import com.lixu.jie_you_ba.dao.AdminMapper;
+import com.lixu.jie_you_ba.entity.Admin;
 import com.lixu.jie_you_ba.service.AccountService;
 import com.lixu.jie_you_ba.service.JwtService;
 import com.lixu.jie_you_ba.service.LoginService;
@@ -24,13 +26,9 @@ public class LoginController extends BaseController{
 	@Autowired
 	private LoginService loginService;
 
-
 	@Autowired
-	private AccountService accountService;
-	@Autowired
-	private JwtService jwtService;
+	private AdminMapper adminMapper;
 
-	// index.jsp重定向到登陆界面
 	@RequestMapping("/login")
 	public String toLoginjsp() {
 
@@ -49,24 +47,12 @@ public class LoginController extends BaseController{
 	public boolean validateLogin(HttpServletRequest request, HttpServletResponse response) {
 		String staffNumber = request.getParameter("staffNumber");
 		String password = request.getParameter("password");
-		logger.info("账号+密码={}",staffNumber+"     "+password);
 		// 确定是否登陆成功
 		boolean isLogin = loginService.login(staffNumber, password);
 		if (isLogin) {
 			// 如果登陆成功，创建token并写入cookie中
 			this.writeCookie(response, staffNumber);
-			/*// 返回前端用户信息
-			staff = staffService.getStaff(staffNumber);*/
 		}
-		/*map.put("staffNumber", staff.getStaffNumber());
-		map.put("staffName", staff.getName());
-		map.put("level", staff.getLevel());
-		map.put("department", staff.getDepartment());
-		map.put("position", staff.getPosition());
-		map.put("birthday", staff.getBirthday());
-		map.put("phone", staff.getPhone());
-		map.put("address", staff.getAddress());
-		return map;*/
 		return isLogin ;
 	}
 
@@ -78,24 +64,11 @@ public class LoginController extends BaseController{
 	 */
 	@RequestMapping("/current")
 	@ResponseBody
-	public Map<String, String> getCurrentStaff(@CookieValue(value = "token", required = false) String token) {
-		String staffNumber = this.readCookie(token);
-		Map<String, String> map = new HashMap<String, String>();
-		
-		/** 返回前端用户信息
-		Staff staff = staffService.getStaff(staffNumber);
-		
-		map.put("staffNumber", staff.getStaffNumber());
-		map.put("staffName", staff.getName());
-		//int转String
-		String level = String.valueOf(staff.getLevel());
-		map.put("level", level);
-		map.put("department", staff.getDepartment());
-		map.put("position", staff.getPosition());
-		map.put("birthday", staff.getBirthday());
-		map.put("phone", staff.getPhone());
-		map.put("address", staff.getAddress());*/
-		return map;
+	public Admin getCurrentStaff(@CookieValue(value = "token", required = false) String token) {
+		String personId = this.readCookie(token);
+		Long adminId = Long.valueOf(personId);
+		Admin admin = adminMapper.selectByPrimaryKey(adminId);
+		return admin;
 		
 	}
 
@@ -106,7 +79,6 @@ public class LoginController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	
 	public String logout(HttpServletRequest request, HttpServletResponse response){
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies){
@@ -117,9 +89,7 @@ public class LoginController extends BaseController{
                 response.addCookie(cookie);
             }
 		}
-		/*Map<String,String> map = new HashMap<String,String>();
-		map.put("msg", "成功登出");*/
-		return "login";
+		return "index";
 	}
 
 	// 通过登录验证后定向到管理员或用户界面

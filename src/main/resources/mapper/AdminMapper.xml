@@ -5,10 +5,10 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="store_id" property="storeId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="e_mail" property="eMail" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
@@ -34,8 +34,8 @@
       sex, create_person, create_time, 
       update_person, update_time)
     values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Admin" >
@@ -86,7 +86,7 @@
         #{name,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
@@ -95,7 +95,7 @@
         #{eMail,jdbcType=VARCHAR},
       </if>
       <if test="sex != null" >
-        #{sex,jdbcType=VARCHAR},
+        #{sex,jdbcType=INTEGER},
       </if>
       <if test="createPerson != null" >
         #{createPerson,jdbcType=VARCHAR},
@@ -121,7 +121,7 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -130,7 +130,7 @@
         e_mail = #{eMail,jdbcType=VARCHAR},
       </if>
       <if test="sex != null" >
-        sex = #{sex,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=INTEGER},
       </if>
       <if test="createPerson != null" >
         create_person = #{createPerson,jdbcType=VARCHAR},
@@ -151,10 +151,10 @@
     update admin
     set store_id = #{storeId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       phone = #{phone,jdbcType=VARCHAR},
       e_mail = #{eMail,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},

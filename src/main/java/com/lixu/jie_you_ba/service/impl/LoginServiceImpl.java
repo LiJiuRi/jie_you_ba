@@ -1,9 +1,10 @@
 package com.lixu.jie_you_ba.service.impl;
 
 import com.lixu.jie_you_ba.dao.AccountMapper;
+import com.lixu.jie_you_ba.dao.AdminMapper;
 import com.lixu.jie_you_ba.dao.LoginDao;
 import com.lixu.jie_you_ba.entity.Account;
-import com.lixu.jie_you_ba.entity.Login;
+import com.lixu.jie_you_ba.entity.Admin;
 import com.lixu.jie_you_ba.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class LoginServiceImpl implements LoginService {
 	//private StaffDao staffDao ;
 	@Autowired
 	private AccountMapper accountMapper;
+	@Autowired
+	private AdminMapper adminMapper;
 
 	/**
 	 * 判断登陆是否成功
@@ -42,26 +45,23 @@ public class LoginServiceImpl implements LoginService {
 	 */
 	@Override
 	public String managerOrUser(String staffNumber){
-		//Staff staff = staffDao.queryStaffById(staffNumber);
-		//返回参数
-		String position ="manager";
-		/**if(staff != null){
-			//查有此人
-			
-			//level为0表示用户，1表示管理员
-			if(staff.getLevel() == 0){
+		Long personId = Long.valueOf(staffNumber);
+		Admin admin = adminMapper.selectByPrimaryKey(personId);
+		String position = null;
+		if(admin != null){
+			//level为0表示店铺，1表示超级管理员
+			if(admin.getType() == 0){
 				position = "user";
-			}else if(staff.getLevel() == 1){
+			}else if(admin.getType() == 1){
 				position = "manager";
 			}else{
-				//都不是就返回“noPeople"
-				position = "noPeople";
+				position = "login";
 			}
 			return position ;
 		}else{
 			//查无此人
-			position = "noPeople";
-		}*/
+			position = "login";
+		}
 		
 		return position ;
 	}

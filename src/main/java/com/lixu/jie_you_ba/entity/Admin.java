@@ -15,14 +15,14 @@ public class Admin {
 
     private String name;
 
-    private String type;
+    private Integer type;
 
     private String phone;
 
     @JsonProperty("e_mail")
     private String eMail;
 
-    private String sex;
+    private Integer sex;
 
     @JsonProperty("create_person")
     private String createPerson;
@@ -60,12 +60,12 @@ public class Admin {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String getPhone() {
@@ -84,12 +84,12 @@ public class Admin {
         this.eMail = eMail == null ? null : eMail.trim();
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
     public String getCreatePerson() {

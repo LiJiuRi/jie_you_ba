@@ -12,9 +12,7 @@ $(document).ready(function(){
         //data:JSON.stringify(data),
     	//data:data,
         success:function(result){
-        	//alert(result.staffNumber + result.staffName);
-        	$("#userName").text(result.staffName);
-        	$("#userId").text(result.staffNumber);
+        	$("#userName").text(result.name);
         }
 	});
 	

@@ -24,6 +24,16 @@ public class JspPageController {
     }
 
     /**
+     * 跳转到login页面
+     * @return
+     */
+    @RequestMapping("/login")
+    public String login() {
+
+        return "login";
+    }
+
+    /**
      * 跳转到注册页面
      * @return
      */
