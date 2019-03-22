@@ -35,6 +35,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public List<Store> list(Long storeId, String storeName) {
-        return null;
+        List<Store> storeList = storeMapper.list(storeId,storeName);
+        return storeList;
     }
 }

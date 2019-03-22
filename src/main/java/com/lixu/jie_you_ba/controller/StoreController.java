@@ -1,6 +1,7 @@
 package com.lixu.jie_you_ba.controller;
 
 import com.lixu.jie_you_ba.dto.FoodDto;
+import com.lixu.jie_you_ba.dto.StoreDto;
 import com.lixu.jie_you_ba.entity.Account;
 import com.lixu.jie_you_ba.entity.Admin;
 import com.lixu.jie_you_ba.entity.Store;
@@ -65,11 +66,10 @@ public class StoreController extends BaseController{
      */
     @ApiOperation(value="根据店铺id或店铺名一个店铺", notes="根据店铺id或店铺名一个店铺")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public List<Store> list(HttpServletRequest request){
-        List<Store> storeList = new ArrayList<>();
-        String storeIdSearch = request.getParameter("storeIdSearch");
-        String storeNameSearch = request.getParameter("storeNameSearch");
-        storeList = storeService.list(Long.valueOf(storeIdSearch),storeNameSearch);
+    public List<Store> list(StoreDto storeDto){
+        Long storeIdSearch = storeDto.getStoreIdSearch();
+        String storeNameSearch = storeDto.getStoreNameSearch();
+        List<Store> storeList  = storeService.list(storeIdSearch,storeNameSearch);
         return storeList;
     }
 

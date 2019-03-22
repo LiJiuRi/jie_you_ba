@@ -36,6 +36,19 @@
     from store
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from store
+    <where>
+      <if test="storeId != null and storeId != ''">
+        id = #{storeId,jdbcType=BIGINT}
+      </if>
+      <if test="storeName != null and storeName !=''">
+        and name = #{storeName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from store
     where id = #{id,jdbcType=BIGINT}

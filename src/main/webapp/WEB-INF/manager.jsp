@@ -11,10 +11,10 @@
 	<meta name="keywords" content="会议室 管理 ">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="shortcut icon" href="static/static/images/ai.jpg" media="screen">
+	<link rel="shortcut icon" href="../../static/images/ai.jpg" media="screen">
 	<title>后台-超级管理员</title>
-	<script src="static/static/js/jquery.min.js"></script>
-	<script src="static/static/js/bootstrap.min.js"></script>
+	<script src="../../static/js/jquery.min.js"></script>
+	<script src="../../static/js/bootstrap.min.js"></script>
 	<script>
 		$(function() {
 			$(".meun-item").click(function() {
@@ -51,16 +51,16 @@
 		})
 	</script>
 	<!--[if lt IE 9]>
-	<script src="static/static/js/html5shiv.min.js"></script>
-	<script src="static/static/js/respond.min.js"></script>
+	<script src="../../static/js/html5shiv.min.js"></script>
+	<script src="../../static/js/respond.min.js"></script>
 	<![endif]-->
-	<link href="static/static/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="static/static/css/common.css" />
-	<link rel="stylesheet" type="text/css" href="static/static/css/slide.css" />
-	<link rel="stylesheet" type="text/css" href="static/static/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="static/static/css/flat-ui.min.css" />
-	<link rel="stylesheet" type="text/css" href="static/static/css/jquery.nouislider.css">
-	<link rel="stylesheet" type="text/css" href="static/static/css/ownDefine.css">
+	<link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../static/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../../static/css/slide.css" />
+	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../static/css/flat-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../static/css/jquery.nouislider.css">
+	<link rel="stylesheet" type="text/css" href="../../static/css/ownDefine.css">
 </head>
 
 <body>
@@ -70,7 +70,7 @@
 	<div class="leftMeun" id="leftMeun">
 
 		<div id="logoDiv" style="background-color: #0c190f;">
-			<p id="logoP"><img id="logo" alt="会议室管理系统" src="static/static/images/logo.png"><span></span></p>
+			<p id="logoP"><img id="logo" alt="会议室管理系统" src="../../static/images/logo.png"><span></span></p>
 		</div>
 		<div id="personInfor">
 			<p style="margin-left:30px;margin-bottom:5px;">欢迎您！</p>
@@ -80,15 +80,15 @@
 
 			<!-- 会议室管理折叠 -->
 			<div id="topAD" class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMeeting" aria-expanded="true" aria-controls="collapseOne">
-				<img class="leftitem" src="static/static/images/dianpu.png"><span style="padding-left:10px;">店铺管理</span><span id="topA" class="glyphicon glyphicon-triangle-right"></span>
+				<img class="leftitem" src="../../static/images/dianpu.png"><span style="padding-left:10px;">店铺管理</span><span id="topA" class="glyphicon glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseMeeting" class="collapse" aria-expanded="true">
 
-				<div class="meun-item leftitem" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="static/static/images/add_grey.png">新增店铺</div>
+				<div class="meun-item leftitem" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/add_grey.png">新增店铺</div>
 
-				<div class="meun-item leftitem" id="modifyRoomDiv" href="#modifyRoomPane" aria-controls="modifyRoomPane" role="tab" data-toggle="tab"><img src="static/static/images/modify_grey.png">修改店铺</div>
+				<div class="meun-item leftitem" id="modifyRoomDiv" href="#modifyRoomPane" aria-controls="modifyRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/modify_grey.png">修改店铺</div>
 
-				<div class="meun-item leftitem" id="showRoomDiv" href="#showRoomPane" aria-controls="showRoomPane" role="tab" data-toggle="tab"><img src="static/static/images/search_grey.png">店铺操作</div>
+				<div class="meun-item leftitem" id="showRoomDiv" href="#showRoomPane" aria-controls="showRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/search_grey.png">店铺操作</div>
 
 			</div>
 
@@ -97,8 +97,8 @@
 				<span class="leftitem">申请审核</span><span id="topB" class="glyphicon glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseBookedFunction" class="collapse " aria-expanded="true">
-				<div class="meun-item leftitem" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="static/static/images/icon_house_grey.png">查看当前预约</div>
-				<div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="static/static/images/icon_rule_grey.png">查看历史预约</div>
+				<div class="meun-item leftitem" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看当前预约</div>
+				<div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">查看历史预约</div>
 			</div>
 
 
@@ -107,8 +107,8 @@
 				<span class="leftitem">用户管理</span><span id="topC" class="glyphicon glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseStaffFunction" class="collapse " aria-expanded="true">
-				<div class="meun-item leftitem" id="showUsersMenu" href="#showStaffPane" aria-controls="showStaffPane" role="tab" data-toggle="tab"><img src="static/static/images/icon_house_grey.png">查看用户</div>
-				<div class="meun-item leftitem" id="modifyPassM" href="#modifyPassword" aria-controls="modifyPassword" role="tab" data-toggle="tab"><img src="static/static/images/icon_rule_grey.png">修改密码</div>
+				<div class="meun-item leftitem" id="showUsersMenu" href="#showStaffPane" aria-controls="showStaffPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看用户</div>
+				<div class="meun-item leftitem" id="modifyPassM" href="#modifyPassword" aria-controls="modifyPassword" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改密码</div>
 			</div>
 
 
@@ -117,9 +117,9 @@
 				<span class="leftitem">设备管理</span><span id="topD" class="glyphicon  glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseDeviceFunction" class="collapse " aria-expanded="true">
-				<div class="meun-item leftitem" id = "addDeviceMenu" href="#addDevicePane" aria-controls="addDevicePane" role="tab" data-toggle="tab"><img src="static/static/images/icon_house_grey.png">新增设备</div>
-				<div class="meun-item leftitem" id = "modifyDeviceMenu" href="#modifyDevicePane" aria-controls="modifyDevicePane" role="tab" data-toggle="tab"><img src="static/static/images/icon_rule_grey.png">修改设备</div>
-				<div class="meun-item leftitem" id = "showDeviceMenu" href="#showDevicePane" aria-controls="showDevicePane" role="tab" data-toggle="tab"><img src="static/static/images/icon_card_grey.png">查看设备</div>
+				<div class="meun-item leftitem" id = "addDeviceMenu" href="#addDevicePane" aria-controls="addDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">新增设备</div>
+				<div class="meun-item leftitem" id = "modifyDeviceMenu" href="#modifyDevicePane" aria-controls="modifyDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改设备</div>
+				<div class="meun-item leftitem" id = "showDeviceMenu" href="#showDevicePane" aria-controls="showDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_card_grey.png">查看设备</div>
 			</div>
 		</div>
 		<p style="margin-bottom:5px;margin-left:45px;">
@@ -919,18 +919,18 @@
 </div>
 
 <!-- <script src="js/jquery.nouislider.js"></script> -->
-<script src="static/static/js/manager.addroom.js"></script>
-<script src="static/static/js/manager.modifyRoom.js"></script>
-<script src="static/static/js/exitLogin.js"></script>
-<script src="static/static/js/manager.commom.js"></script>
-<script src="static/static/js/manager.showRoom.js"></script>
-<script src="static/static/js/manager.showNowBooked.js"></script>
-<script src="static/static/js/manager.showHistoryBooked.js"></script>
-<script src="static/static/js/manager.showUser.js"></script>
-<script src="static/static/js/manager.modifyPass.js"></script>
-<script src="static/static/js/manager.addDevice.js"></script>
-<script src="static/static/js/manager.modifyDevice.js"></script>
-<script src="static/static/js/manager.showDevice.js"></script>
+<script src="../../static/js/manager.addroom.js"></script>
+<script src="../../static/js/manager.modifyRoom.js"></script>
+<script src="../../static/js/exitLogin.js"></script>
+<script src="../../static/js/manager.commom.js"></script>
+<script src="../../static/js/manager.showRoom.js"></script>
+<script src="../../static/js/manager.showNowBooked.js"></script>
+<script src="../../static/js/manager.showHistoryBooked.js"></script>
+<script src="../../static/js/manager.showUser.js"></script>
+<script src="../../static/js/manager.modifyPass.js"></script>
+<script src="../../static/js/manager.addDevice.js"></script>
+<script src="../../static/js/manager.modifyDevice.js"></script>
+<script src="../../static/js/manager.showDevice.js"></script>
 
 </body>
 
