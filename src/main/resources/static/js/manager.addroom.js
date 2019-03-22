@@ -41,7 +41,7 @@ $(document).ready(function(){
 	        success:function(result){
 	        	alert("得到了数据");
 	        	allDevices = result ;
-	        	
+
 	        }
 		});*/
 
@@ -77,65 +77,85 @@ $(document).ready(function(){
 		var storeAddress = $("#storeAddress").val();
 		var storeDescription = $("#storeDescription").val();
 		var adminName = $("#adminName").val();
-		//封装参数
-		var data = {
-			storeName:storeName,
-			storePhone:storePhone,
-			storeAddress:storeAddress,
-			storeDescription:storeDescription,
-			adminName:adminName
-		}
-		//AJAX
-		$.ajax({
-			type : "post",
-			url:"../room/add",
-			//contentType:"application/json",
-			//data:JSON.stringify(data),
-			data:data,
-			success:function(result){
+		if(adminName == 'null' || adminName == '' || adminName == ' '){
+			alert("店铺管理员不能为空");
+		}else {
+			//封装参数
+			var data = {
+				storeName:storeName,
+				storePhone:storePhone,
+				storeAddress:storeAddress,
+				storeDescription:storeDescription,
+				adminName:adminName
+			}
+			//AJAX
+			$.ajax({
+				type : "post",
+				url:"../store/add",
+				//contentType:"application/json",
+				//data:JSON.stringify(data),
+				data:data,
+				success:function(result){
 
-				//此时的result应该是String值，用parseJSON把其转换为boolean值
-				result = $.parseJSON(result);
-				if(result){
+					var admin = result["admin"];
+					var store = result["store"];
 					//alert("添加会议室成功");
 					//将新增的会议室信息展示在表格上，接下来是设置空闲时间和设备信息
 					var addRoomRow = '<tr>'+
-						'<td>1</td>'+
-						'<td class = "roomNumber">'+ roomNumber+'</td>'+
-						'<td>'+capability+'</td>'+
-						'<td class="freeTimeS">'+
-						'</td>'+
-						'<td class = "deviceS">'+
-						'</td>'+
-						'<td>'+
-						'<div>'+
-						'<button class="btn btn-success btn-xs setTimeBtn" data-toggle="modal" data-target="#setFreeTimePop">设置时间</button>'+
-						'<button class="btn btn-danger btn-xs setDeviceBtn"  data-toggle="modal" data-target="#setDevicePop">设置设备</button>'+
-						'</div>'+
-						'</td>'+
+						'<td style="color:#e66e79;">'+ store.id+ '</td>'+
+						'<td>'+ store.name +'</td>'+
+						'<td style="color:#e66e79;">'+ store.phone +'</td>'+
+						'<td>'+ store.address +'</td>'+
+						'<td>'+ store.description +'</td>'+
+						'<td style="color:#e66e79;">'+ admin.id +'</td>'+
+						'<td>'+ admin.name +'</td>'+
 						'</tr>';
 
 					//先删除表格原数据
 					$("#addRoomBody").find("tr").remove();
 					$("#addRoomBody").append(addRoomRow);
-					//设置会议室设备信息弹出框的设备下拉框填上数据
-					//从后台得到所有设备信息
-					$.ajax({
-						type : "post",
-						url:"../device/getAll",
-						//contentType:"application/json",
-						//data:JSON.stringify(data),
-						//data:data,
-						success:function(result){
-							//alert("得到了数据");
-							allDevices = result ;
-							//alert(allDevices.length);
-						}
-					});
-
-				}else{
-					alert("添加失败");
 				}
+			});
+		}
+	});
+
+
+	//查看店铺
+	$("#searchStore").click(function(){
+
+		var storeIdSearch = $("#storeIdSearch").val();
+		var storeNameSearch = $("#storeNameSearch").val();
+		//封装参数
+		var data = {
+			storeIdSearch:storeIdSearch,
+			storeNameSearch:storeNameSearch
+		}
+		//AJAX
+		$.ajax({
+			type : "post",
+			url:"../store/list",
+			//contentType:"application/json",
+			//data:JSON.stringify(data),
+			data:data,
+			success:function(result){
+
+				var admin = result["admin"];
+				var store = result["store"];
+				//alert("添加会议室成功");
+				//将新增的会议室信息展示在表格上，接下来是设置空闲时间和设备信息
+				var addRoomRow = '<tr>'+
+					'<td style="color:#e66e79;">'+ store.id+ '</td>'+
+					'<td>'+ store.name +'</td>'+
+					'<td style="color:#e66e79;">'+ store.phone +'</td>'+
+					'<td>'+ store.address +'</td>'+
+					'<td>'+ store.description +'</td>'+
+					'<td style="color:#e66e79;">'+ admin.id +'</td>'+
+					'<td>'+ admin.name +'</td>'+
+					'</tr>';
+
+				//先删除表格原数据
+				$("#searchStoreBody").find("tr").remove();
+				$("#searchStoreBody").append(addRoomRow);
 			}
 		});
 	});

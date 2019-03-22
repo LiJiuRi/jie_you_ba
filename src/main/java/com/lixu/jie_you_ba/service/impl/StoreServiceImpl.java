@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Classname StoreServiceImpl
@@ -30,5 +31,10 @@ public class StoreServiceImpl implements StoreService {
         store.setCreateTime(new Date());
         storeMapper.insertSelective(store);
         return store;
+    }
+
+    @Override
+    public List<Store> list(Long storeId, String storeName) {
+        return null;
     }
 }

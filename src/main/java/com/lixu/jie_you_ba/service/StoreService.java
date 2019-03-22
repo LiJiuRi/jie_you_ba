@@ -2,6 +2,8 @@ package com.lixu.jie_you_ba.service;
 
 import com.lixu.jie_you_ba.entity.Store;
 
+import java.util.List;
+
 /**
  * @Classname StoreService
  * @Description TODO
@@ -10,4 +12,5 @@ import com.lixu.jie_you_ba.entity.Store;
  */
 public interface StoreService {
     Store insert(Store store);
+    List<Store> list(Long storeId,String storeName);
 }

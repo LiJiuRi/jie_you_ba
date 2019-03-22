@@ -2,6 +2,9 @@ package com.lixu.jie_you_ba.dao;
 
 import com.lixu.jie_you_ba.entity.Store;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface StoreMapper {
@@ -12,6 +15,8 @@ public interface StoreMapper {
     int insertSelective(Store record);
 
     Store selectByPrimaryKey(Long id);
+
+    List<Store> list(@Param("storeId")Long storeId, @Param("storeName")String storeName);
 
     int updateByPrimaryKeySelective(Store record);
 
