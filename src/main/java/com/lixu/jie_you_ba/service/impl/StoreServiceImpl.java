@@ -43,4 +43,11 @@ public class StoreServiceImpl implements StoreService {
     public Store get(Long storeId) {
         return storeMapper.selectByPrimaryKey(storeId);
     }
+
+    @Override
+    public Store update(Store store) {
+        store.setUpdateTime(new Date());
+        storeMapper.updateByPrimaryKeySelective(store);
+        return store;
+    }
 }

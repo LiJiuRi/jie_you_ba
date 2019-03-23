@@ -14,4 +14,5 @@ public interface StoreService {
     Store insert(Store store);
     List<Store> list(Long storeId,String storeName);
     Store get(Long storeId);
+    Store update(Store store);
 }

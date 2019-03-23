@@ -102,13 +102,13 @@ public class StoreController extends BaseController{
 
         //新建店铺
         Store store = new Store();
-        if(null != storeName)
+        if(null != storeName && storeName != "")
             store.setName(storeName);
-        if(null != storePhone)
+        if(null != storePhone && storePhone != "")
             store.setPhone(storePhone);
-        if(null != storeAddress)
+        if(null != storeAddress && storeAddress != "")
             store.setAddress(storeAddress);
-        if(null != storeDescription)
+        if(null != storeDescription && storeDescription != "")
             store.setDescription(storeDescription);
         String personId = readCookie(token);
         if(null != personId) {
@@ -119,7 +119,7 @@ public class StoreController extends BaseController{
         //新建一个管理员
         Admin admin = new Admin();
         admin.setStoreId(store.getId());
-        if(null != adminName)
+        if(null != adminName && adminName != "")
             admin.setName(adminName);
         admin.setType(0);
         if(null != personId) {
@@ -143,5 +143,43 @@ public class StoreController extends BaseController{
         map.put("admin",admin);
 
         return map;
+    }
+
+    /**
+     * 超级管理员修改一个店铺
+     * @param
+     * @return
+     */
+    @ApiOperation(value="超级管理员修改一个店铺", notes="超级管理员修改一个店铺")
+    @RequestMapping(value = "/modify", method = RequestMethod.POST)
+    public Store modify(HttpServletRequest request, @CookieValue(value = "token", required = false) String token){
+
+        String storeName = request.getParameter("storeName");
+        String storePhone = request.getParameter("storePhone");
+        String storeAddress = request.getParameter("storeAddress");
+        String storeDescription = request.getParameter("storeDescription");
+        String storeId = request.getParameter("storeId");
+
+        //新建店铺
+        Store store = new Store();
+        store.setId(Long.valueOf(storeId));
+        if(null != storeName && storeName != "")
+            store.setName(storeName);
+        if(null != storePhone && storePhone != "")
+            store.setPhone(storePhone);
+        if(null != storeAddress && storeAddress != "")
+            store.setAddress(storeAddress);
+        if(null != storeDescription && storeDescription != "")
+            store.setDescription(storeDescription);
+        String personId = readCookie(token);
+        if(null != personId) {
+            store.setUpdatePerson(personId);
+        }
+
+        storeService.update(store);
+
+        Store store1 = storeService.get(Long.valueOf(storeId));
+
+        return store1;
     }
 }

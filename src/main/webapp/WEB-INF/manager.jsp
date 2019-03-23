@@ -313,6 +313,56 @@
 				</div>
 				<!-- /.modal -->
 
+				<!--点击修改弹出窗口-->
+				<div class="modal fade" id="modifyStore" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">请输入要修改的资料</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<input type="hidden" class="form-control input-sm duiqi" id="ModifystoreId" placeholder="此时还没隐藏">
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">店铺名称：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="ModifystoreName" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storePhone" class="col-xs-3 control-label">电话号码：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="ModifystorePhone" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storeAddress" class="col-xs-3 control-label">店铺地址：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="ModifystoreAddress" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storeDescription" class="col-xs-3 control-label">店铺简介：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="ModifystoreDescription" placeholder="">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelModifyRoom">取 消</button>
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmModifyRoom">修 改</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+
 			</div>
 
 

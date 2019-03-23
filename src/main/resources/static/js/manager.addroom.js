@@ -36,6 +36,22 @@
 			}
 		});
 	};
+
+    //此时接收过来的参数为string类型
+    $.modifyStore = function (storeId) {
+        // 清除数据
+        // 这里的逻辑可以一直被有效触发
+        //$(this).removeData("bs.modal");
+
+        // 模态框隐藏
+        /*$("#modifyStore").on('hide.bs.modal', function () {
+            // 清除数据
+            // 这里的逻辑只能在模态框第一次关闭时被触发, 之后再无效
+            $("#modifyStore").removeData("bs.modal");
+        })*/
+
+        $("#ModifystoreId").val(storeId);
+    };
 })(jQuery);
 
 $(document).ready(function(){
@@ -124,10 +140,10 @@ $(document).ready(function(){
 						'<td>'+ result[store].address +'</td>'+
 						'<td>'+ result[store].description +'</td>'+
 						'<td>'+ result[store].sale_amount +'</td>'+
-						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" id="'+result[store].id+'" onclick="$.storeDetails(\''+result[store].id+'\')">' +
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" onclick="$.storeDetails(\''+result[store].id+'\')">' +
 						'                                        详情' +
 						'                                    </button>' +'</td>'+
-						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning">' +
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyStore" onclick="$.modifyStore(\''+result[store].id+'\')">' +
 						'                                        修改' +
 						'                                    </button>' +'</td>'+
 						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger">' +
@@ -140,7 +156,61 @@ $(document).ready(function(){
 		});
 	});
 
+    //修改会议室弹出框确认按钮点击事件
+    $("#confirmModifyRoom").click(function(){
 
+
+        var ModifystoreId = $("#ModifystoreId").val();
+        var ModifystoreName = $("#ModifystoreName").val();
+        var ModifystorePhone = $("#ModifystorePhone").val();
+        var ModifystoreAddress = $("#ModifystoreAddress").val();
+        var ModifystoreDescription = $("#ModifystoreDescription").val();
+        //封装参数
+        var data = {
+            storeId:ModifystoreId,
+            storeName:ModifystoreName,
+            storePhone:ModifystorePhone,
+            storeAddress:ModifystoreAddress,
+            storeDescription:ModifystoreDescription
+        }
+        //AJAX
+        $.ajax({
+            type : "post",
+            url:"../store/modify",
+            //contentType:"application/json",
+            //data:JSON.stringify(data),
+            data:data,
+            success:function(result){
+                //先删除表格原数据
+                $("#searchStoreBody").find("tr").remove();
+                var addRoomRow;
+                addRoomRow = '<tr>'+
+                    '<td style="color:#e66e79;">'+ result.id+ '</td>'+
+                    '<td>'+ result.name +'</td>'+
+                    '<td style="color:#e66e79;">'+ result.phone +'</td>'+
+                    '<td>'+ result.address +'</td>'+
+                    '<td>'+ result.description +'</td>'+
+                    '<td>'+ result.sale_amount +'</td>'+
+                    '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" onclick="$.storeDetails(\''+result.id+'\')">' +
+                    '                                        详情' +
+                    '                                    </button>' +'</td>'+
+                    '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyStore" onclick="$.modifyStore(\''+result.id+'\')">' +
+                    '                                        修改' +
+                    '                                    </button>' +'</td>'+
+                    '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger">' +
+                    '                                        删除' +
+                    '                                    </button>' +'</td>'+
+                    '</tr>';
+                $("#searchStoreBody").append(addRoomRow);
+            }
+        });
+
+        $("#ModifystoreId").val('');
+        $("#ModifystoreName").val('');
+        $("#ModifystorePhone").val('');
+        $("#ModifystoreAddress").val('');
+        $("#ModifystoreDescription").val('');
+    });
 
 
 	//因为动态增加的元素，使用原本的$(selector).click()不起作用，所以用下面这种方法
