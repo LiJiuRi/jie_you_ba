@@ -14,14 +14,22 @@
 
 		}
 	};
-	//判断字输入账号id是否为纯数字
-	$.test = function (i) {
-		alert(i);
+
+	//此时接收过来的参数为string类型
+	$.storeDetails = function (storeId) {
+		$.ajax({
+			type : "post",
+			url:"../store/get",
+			//contentType:"application/json",
+			//data:JSON.stringify(data),
+			data: storeId,
+			success:function(result){
+				console.log(result);
+				console.log(JSON.stringify(result));
+			}
+		});
 	};
 })(jQuery);
-
-
-
 
 $(document).ready(function(){
 
@@ -29,41 +37,6 @@ $(document).ready(function(){
 	var roomNumber ;
 	//定义全局变量；保存所有设备信息，方便设置设备信息的下拉框
 	var allDevices ;
-
-	//左上角添加会议室按钮点击事件，弹出框的同时得到所有设备保存于全局变量
-	$("#addRoomBtn").click(function(){
-		//allDevices = $.getAllDevices();
-		/*alert("点击了");
-		$.ajax({
-	    	type : "post",
-	    	url:"../device/getAll",
-	    	//contentType:"application/json",
-	        //data:JSON.stringify(data),
-	    	//data:data,
-	        success:function(result){
-	        	alert("得到了数据");
-	        	allDevices = result ;
-
-	        }
-		});*/
-
-	});
-
-	//设置空闲时间按钮点击事件,更改当前操作的会议室号
-	$(document).on('click','.setTimeBtn',function(){
-		roomNumber = $(this).parents("tr").find(".roomNumber").text();
-		//alert("roomNumber:" + roomNumber);
-	});
-
-	//设置设备信息按钮点击事件，更改当前操作的会议室号,更新设备下拉框
-	$(document).on('click','.setDeviceBtn',function(){
-		roomNumber = $(this).parents("tr").find(".roomNumber").text();
-
-		//调用自定义函数更新下拉框
-		var selector = $("#deviceSelect12");
-		$.showDevices(selector,allDevices);
-
-	});
 
 	//新增会议室弹出框确认按钮点击事件
 	$("#confirmAddRoom").click(function(){
@@ -143,7 +116,7 @@ $(document).ready(function(){
 						'<td style="color:#e66e79;">'+ result[store].phone +'</td>'+
 						'<td>'+ result[store].address +'</td>'+
 						'<td>'+ result[store].description +'</td>'+
-						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" id="'+result[store].id+'" onclick="$.test(\''+result[store].id+'\')">' +
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" id="'+result[store].id+'" onclick="$.storeDetails(\''+result[store].id+'\')">' +
 						'                                        详情' +
 						'                                    </button>' +'</td>'+
 						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning">' +
@@ -169,6 +142,41 @@ $(document).ready(function(){
 		//删除所在的父级为form的元素，由于不是直接父级，因此是parents,不是parent
 		$(this).parents("form").remove();
 	})
+
+	//左上角添加会议室按钮点击事件，弹出框的同时得到所有设备保存于全局变量
+	$("#addRoomBtn").click(function(){
+		//allDevices = $.getAllDevices();
+		/*alert("点击了");
+		$.ajax({
+	    	type : "post",
+	    	url:"../device/getAll",
+	    	//contentType:"application/json",
+	        //data:JSON.stringify(data),
+	    	//data:data,
+	        success:function(result){
+	        	alert("得到了数据");
+	        	allDevices = result ;
+
+	        }
+		});*/
+
+	});
+
+	//设置空闲时间按钮点击事件,更改当前操作的会议室号
+	$(document).on('click','.setTimeBtn',function(){
+		roomNumber = $(this).parents("tr").find(".roomNumber").text();
+		//alert("roomNumber:" + roomNumber);
+	});
+
+	//设置设备信息按钮点击事件，更改当前操作的会议室号,更新设备下拉框
+	$(document).on('click','.setDeviceBtn',function(){
+		roomNumber = $(this).parents("tr").find(".roomNumber").text();
+
+		//调用自定义函数更新下拉框
+		var selector = $("#deviceSelect12");
+		$.showDevices(selector,allDevices);
+
+	});
 
 
 	//新增表单

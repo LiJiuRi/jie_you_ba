@@ -38,4 +38,9 @@ public class StoreServiceImpl implements StoreService {
         List<Store> storeList = storeMapper.list(storeId,storeName);
         return storeList;
     }
+
+    @Override
+    public Store get(Long storeId) {
+        return storeMapper.selectByPrimaryKey(storeId);
+    }
 }

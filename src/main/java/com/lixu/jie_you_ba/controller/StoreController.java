@@ -74,6 +74,19 @@ public class StoreController extends BaseController{
     }
 
     /**
+     * 根据店铺id获取一个店铺
+     * @param
+     * @return
+     */
+    @ApiOperation(value="根据店铺id获取一个店铺", notes="根据店铺id获取一个店铺")
+    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    public Store get(HttpServletRequest request){
+        String storeId = request.getParameter("storeId");
+        Store store = storeService.get(Long.valueOf(storeId));
+        return store;
+    }
+
+    /**
      * 超级管理员新建一个店铺
      * @param
      * @return
