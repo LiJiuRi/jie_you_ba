@@ -227,88 +227,10 @@
 				<!-- /.modal -->
 			</div>
 
-			<!-- 修改会议室模块 -->
-			<div role="tabpanel" class="tab-pane" id="modifyRoomPane">
-				<div class="check-div form-inline">
-					<div class="col-xs-3">
-						<button class="btn btn-yellow btn-xs" >修改店铺</button>
-					</div>
-					<div class="col-xs-4">
-						<input type="text" class="form-control input-sm" placeholder="输入会议室号搜索">
-						<button class="btn btn-white btn-xs ">查 询 </button>
-					</div>
-					<!-- <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
-                        <label for="paixu">排序:&nbsp;</label>
-                        <select class=" form-control">
-                            <option>地区</option>
-                            <option>地区</option>
-                            <option>班期</option>
-                            <option>性别</option>
-                            <option>年龄</option>
-                            <option>份数</option>
-                        </select>
-                    </div> -->
-				</div>
-				<div class="data-div">
-					<!--自己写table -->
-					<table style="width:1500px;" id = "modifyStoreTable">
-						<caption><div align="center" class="text-success" id = "modifyStoreTableTip">店铺信息</div></caption>
-						<thead class="row tableHeader">
-						<tr>
-							<th class="col-xs-1">店铺编号</th>
-							<th class="col-xs-1">店铺名称</th>
-							<th class="col-xs-1">电话号码</th>
-							<th class="col-xs-2">店铺地址</th>
-							<th class="col-xs-2">店铺简介</th>
-							<th class="col-xs-1">管理员id</th>
-							<th class="col-xs-1">管理员名称</th>
-						</tr>
-						</thead>
-						<tbody class="tablebody" id = "addRoomBody">
-						<!--<tr>
-                            <td>1</td>
-                            <td>10001</td>
-                            <td>100</td>
-                            <td>椅子*120</td>
-                            <td>椅子*120</td>
-                            <td>椅子*120</td>
-                            <td>椅子*120</td>
-                        </tr> -->
-						</tbody>
-					</table>
-
-				</div>
-
-				<!-- 删除会议室提示弹出窗口 -->
-				<div class="modal fade" id="deleteRoomPop" role="dialog" aria-labelledby="gridSystemModalLabel">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-							</div>
-							<div class="modal-body">
-								<div class="container-fluid">
-									确定要删除该会议室
-									<p id = "roomDeleteId"></p>
-									？删除后不可恢复！
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-								<button type="button" class="btn  btn-xs btn-danger" data-dismiss="modal"id= "confirmDeleteRoom">确定</button>
-							</div>
-						</div>
-						<!-- /.modal-content -->
-					</div>
-					<!-- /.modal-dialog -->
-				</div>
-				<!-- /.modal -->
-			</div>
-
 
 			<!-- 店铺操作模块 -->
 			<div role="tabpanel" class="tab-pane" id="showRoomPane">
+
 				<div class="check-div form-inline">
 					<div class="col-xs-3">
 						<input type="text" class="form-control input-sm" id = "storeIdSearch" placeholder="输入店铺号搜索">
@@ -318,9 +240,9 @@
 						<button class="btn btn-white btn-xs " id="searchStore" style="margin-left:40px;">查 询 </button>
 					</div>
 				</div>
+
 				<div class="data-div">
 					<!--自己写table -->
-
 					<table style="width: 1240px;" class="table table-striped table-hover">
 						<caption><div align="center" class="text-success" id = "storeTableTip">店铺信息查询结果</div></caption>
 						<thead class="row tableHeader">
@@ -328,8 +250,9 @@
 							<th style="width:10%;">店铺编号</th>
 							<th style="width:10%;">店铺名称</th>
 							<th style="width:10%;">电话号码</th>
-							<th style="width:18%;">店铺地址</th>
-							<th style="width:37%;">店铺简介</th>
+							<th style="width:14%;">店铺地址</th>
+							<th style="width:34%;">店铺简介</th>
+							<th style="width:7%;">总销量</th>
 							<th style="width:5%;">详情</th>
 							<th style="width:5%;">修改</th>
 							<th style="width:5%;">删除</th>
@@ -348,6 +271,48 @@
 						</tbody>
 					</table>
 				</div>
+
+				<!--点击详情弹出窗口-->
+				<div class="modal fade" id="storeDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="storeDetailsPane">店铺详情</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">公交站：</label>
+											<label id="storeDetailsbusStop" class="control-label"></label>
+										</div>
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">地铁站：</label>
+											<label id="storeDetailsubwayStation" class="control-label"></label>
+										</div>
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">配送：</label>
+											<label id="storeDetaildelivery" class="control-label"></label>
+										</div>
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">WiFi：</label>
+											<label id="storeDetailwifi" class="control-label"></label>
+										</div>
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">时间：</label>
+											<label id="storeDetailopenTime" class="control-label"></label>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+
 			</div>
 
 

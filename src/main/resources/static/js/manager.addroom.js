@@ -22,10 +22,17 @@
 			url:"../store/get",
 			//contentType:"application/json",
 			//data:JSON.stringify(data),
-			data: storeId,
+			data: "storeId="+storeId,
 			success:function(result){
 				console.log(result);
-				console.log(JSON.stringify(result));
+				console.log(result.id);
+				console.log(result.bus_stop);storeDetailsubwayStation
+				$("#storeDetails #storeDetailsbusStop").text(result.bus_stop + result.bus_stop_distance + "米");
+				$("#storeDetails #storeDetailsubwayStation").text(result.subway_station + result.subway_station_distance + "米");
+				$("#storeDetails #storeDetaildelivery").text(result.delivery_time + "分钟、" + result.delivery_type + "、" + result.delivery_init_price + "元起送");
+				$("#storeDetails #storeDetailwifi").html("账号:"+result.wifi_name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码:" + result.wifi_password);
+				$("#storeDetails #storeDetailopenTime").text(result.open_time);
+				$("#storeDetails").modal("show");
 			}
 		});
 	};
@@ -116,6 +123,7 @@ $(document).ready(function(){
 						'<td style="color:#e66e79;">'+ result[store].phone +'</td>'+
 						'<td>'+ result[store].address +'</td>'+
 						'<td>'+ result[store].description +'</td>'+
+						'<td>'+ result[store].sale_amount +'</td>'+
 						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" id="'+result[store].id+'" onclick="$.storeDetails(\''+result[store].id+'\')">' +
 						'                                        详情' +
 						'                                    </button>' +'</td>'+
