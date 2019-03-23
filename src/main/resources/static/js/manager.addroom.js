@@ -13,10 +13,12 @@
 			selector.append("<option value='"+devices[i].deviceId+"'>"+text+"</option>");
 
 		}
-	}
-
-
-})(jQuery)
+	};
+	//判断字输入账号id是否为纯数字
+	$.test = function (i) {
+		alert(i);
+	};
+})(jQuery);
 
 
 
@@ -47,7 +49,6 @@ $(document).ready(function(){
 
 	});
 
-
 	//设置空闲时间按钮点击事件,更改当前操作的会议室号
 	$(document).on('click','.setTimeBtn',function(){
 		roomNumber = $(this).parents("tr").find(".roomNumber").text();
@@ -63,11 +64,6 @@ $(document).ready(function(){
 		$.showDevices(selector,allDevices);
 
 	});
-
-
-
-
-
 
 	//新增会议室弹出框确认按钮点击事件
 	$("#confirmAddRoom").click(function(){
@@ -119,7 +115,6 @@ $(document).ready(function(){
 		}
 	});
 
-
 	//查看店铺
 	$("#searchStore").click(function(){
 
@@ -144,13 +139,19 @@ $(document).ready(function(){
 				for(var store in result){
 					addRoomRow = '<tr>'+
 						'<td style="color:#e66e79;">'+ result[store].id+ '</td>'+
-						'<td>'+ store.name +'</td>'+
+						'<td>'+ result[store].name +'</td>'+
 						'<td style="color:#e66e79;">'+ result[store].phone +'</td>'+
 						'<td>'+ result[store].address +'</td>'+
 						'<td>'+ result[store].description +'</td>'+
-						'<td style="color:#e66e79;">'+ '详情' +'</td>'+
-						'<td style="color:#e66e79;">'+ '修改' +'</td>'+
-						'<td style="color:#e66e79;">'+ '删除' +'</td>'+
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" id="'+result[store].id+'" onclick="$.test('+result[store].id+')">' +
+						'                                        详情' +
+						'                                    </button>' +'</td>'+
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning">' +
+						'                                        修改' +
+						'                                    </button>' +'</td>'+
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger">' +
+						'                                        删除' +
+						'                                    </button>' +'</td>'+
 						'</tr>';
 					$("#searchStoreBody").append(addRoomRow);
 				}

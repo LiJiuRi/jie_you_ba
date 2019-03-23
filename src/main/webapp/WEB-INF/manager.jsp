@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
-
 <!doctype html>
 <html lang="ch">
 
@@ -321,19 +320,19 @@
 				</div>
 				<div class="data-div">
 					<!--自己写table -->
-					<!--自己写table -->
-					<table style="width:1240px;" id = "searchStoreTable">
-						<caption><div align="center" class="text-success" id = "storeTableTip">店铺信息</div></caption>
+
+					<table style="width: 1240px;" class="table table-striped table-hover">
+						<caption><div align="center" class="text-success" id = "storeTableTip">店铺信息查询结果</div></caption>
 						<thead class="row tableHeader">
 						<tr>
-							<th class="col-xs-1">店铺编号</th>
-							<th class="col-xs-1">店铺名称</th>
-							<th class="col-xs-1">电话号码</th>
-							<th class="col-xs-2">店铺地址</th>
-							<th class="col-xs-2">店铺简介</th>
-							<th class="col-xs-1">详情</th>
-							<th class="col-xs-1">修改</th>
-							<th class="col-xs-1">删除</th>
+							<th style="width:10%;">店铺编号</th>
+							<th style="width:10%;">店铺名称</th>
+							<th style="width:10%;">电话号码</th>
+							<th style="width:18%;">店铺地址</th>
+							<th style="width:37%;">店铺简介</th>
+							<th style="width:5%;">详情</th>
+							<th style="width:5%;">修改</th>
+							<th style="width:5%;">删除</th>
 						</tr>
 						</thead>
 						<tbody class="tablebody" id = "searchStoreBody">
@@ -348,7 +347,6 @@
                         </tr> -->
 						</tbody>
 					</table>
-
 				</div>
 			</div>
 

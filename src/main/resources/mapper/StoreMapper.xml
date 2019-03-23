@@ -45,7 +45,7 @@
         id = #{storeId,jdbcType=BIGINT}
       </if>
       <if test="storeName != null and storeName !=''">
-        and name = #{storeName,jdbcType=VARCHAR}
+        and name LIKE CONCAT(CONCAT('%',#{storeName},'%'))
       </if>
     </where>
   </select>
