@@ -143,7 +143,7 @@ $(document).ready(function(){
 						'<td style="color:#e66e79;">'+ result[store].phone +'</td>'+
 						'<td>'+ result[store].address +'</td>'+
 						'<td>'+ result[store].description +'</td>'+
-						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" id="'+result[store].id+'" onclick="$.test('+result[store].id+')">' +
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" id="'+result[store].id+'" onclick="$.test(\''+result[store].id+'\')">' +
 						'                                        详情' +
 						'                                    </button>' +'</td>'+
 						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning">' +

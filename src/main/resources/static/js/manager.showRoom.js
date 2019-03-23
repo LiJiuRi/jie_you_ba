@@ -56,60 +56,6 @@ $(document).ready(function(){
 	//点击左侧查看会议室按钮，即从后台得到所有会议室详情
 	$("#showRoomDiv").click(function(){
 		
-		//从后台得到所有会议室的数据
-		$.ajax({
-	    	type : "post",
-	    	url:"../room/getAllRoom",
-	    	//contentType:"application/json",
-	        //data:JSON.stringify(data),
-	    	//data:data,
-	        success:function(result){
-	        	//alert("组");
-	        	//保存数据到全局变量
-	        	allModifyRoom = result ;
-	        	
-	        	//先删除表上的旧数据
-	        	$("#showRoomBody").find("tr").remove();
-	        	//TODO把数据展示出来，包括编号，会议室号，容纳人数，空闲时间，设备信息
-	        	for(var i = 0 ; i < result.length ; i ++){
-	        		
-	        		//调用函数展示
-	        		$.showRoomIntable(result[i],(i+1));
-	        		
-	        		
-	        		/*  //得到会议室号
-	        		  var roomNumber = result[i].roomNumber;
-	        		  //得到容纳人数
-	        		  var capability = result[i].capability ;
-	        		  //遍历得到所有空闲时间
-	        		  var freeText ;
-	        		  for(var j = 0 ; j< result[i].freeTime.length ; j++){
-	        			  freeText = freeText + result[i].freeTime[j].startDate +
-	        			  			"~" + result[i].freeTime[j].endDate + 
-	        			  			" " + result[i].freeTime[j].startTime +
-	        			  			"~" + result[i].freeTime[j].endTime +"\n"
-	        			  ;
-	        		  }
-	        		  
-    	    		  //得到设备信息//TODO
-	        		  var deviceText ;
-	        		  for(var j = 0 ; j <result[i].device.length ; j ++){
-	        			  deviceText = deviceText + result[i].device[j].name +
-	        			      			"*" + result[i].device[j].count +"\n"
-	        			  ;
-	        		  }
-	        		  
-    	    		  $("#showRoomBody").append('<tr><td class = "index">'+(i+1)+
-    	    				              '</td><td class="roomNumber">'+roomNumber+
-    	    				              '</td><td class = "nowCapability">'+capability+
-    	    				              '</td><td class = "nowFreeTime">'+freeText+
-    	    				              '</td><td class = "nowDevice">'+deviceText+
-    	    				              '</td><tr>'
-    	    		  ); */
-    	    	  }
-	        }
-	    });
-		
 	});
 	
 	
