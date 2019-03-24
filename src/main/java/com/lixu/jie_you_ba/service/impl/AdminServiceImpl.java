@@ -31,4 +31,10 @@ public class AdminServiceImpl implements AdminService {
         adminMapper.insertSelective(admin);
         return admin;
     }
+
+    @Override
+    public int setStoreIdNull(Long storeId, String updatePerson) {
+        Date date = new Date();
+        return adminMapper.setStoreIdNull(storeId,updatePerson,date);
+    }
 }

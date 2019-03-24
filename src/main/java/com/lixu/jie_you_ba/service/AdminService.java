@@ -10,4 +10,5 @@ import com.lixu.jie_you_ba.entity.Admin;
  */
 public interface AdminService {
     Admin insert(Admin admin);
+    int setStoreIdNull(Long storeId,String updatePerson);
 }

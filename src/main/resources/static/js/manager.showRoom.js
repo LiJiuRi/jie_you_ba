@@ -49,8 +49,10 @@ $(document).ready(function(){
 	
 	//定义全局数据，保存所有会议室信息
 	var allModifyRoom ;
-	
-	
+
+	$("#addRoomDiv").click(function(){
+		$("#addRoomBody").find("tr").remove();
+	});
 	
 	
 	//点击左侧查看会议室按钮，即从后台得到所有会议室详情

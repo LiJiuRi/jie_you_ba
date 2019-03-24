@@ -83,7 +83,7 @@
 			</div>
 			<div id="collapseMeeting" class="collapse" aria-expanded="true">
 
-				<div class="meun-item leftitem" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/add_grey.png">新增店铺</div>
+				<div class="meun-item leftitem" id="addRoomDiv" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/add_grey.png">新增店铺</div>
 
 				<div class="meun-item leftitem" id="modifyRoomDiv" href="#modifyRoomPane" aria-controls="modifyRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/modify_grey.png">修改店铺</div>
 
@@ -411,8 +411,7 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal">确 认</button>
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStoreUpdate">确 认</button>
 							</div>
 						</div>
 						<!-- /.modal-content -->

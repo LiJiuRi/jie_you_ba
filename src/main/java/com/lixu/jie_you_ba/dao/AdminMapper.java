@@ -2,6 +2,9 @@ package com.lixu.jie_you_ba.dao;
 
 import com.lixu.jie_you_ba.entity.Admin;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
 
 @Mapper
 public interface AdminMapper {
@@ -16,4 +19,6 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+    int setStoreIdNull(@Param("storeId") Long storeId, @Param("updatePerson") String updatePerson,@Param("updateTime")Date updateTime);
 }

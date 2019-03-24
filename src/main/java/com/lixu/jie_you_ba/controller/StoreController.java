@@ -97,7 +97,7 @@ public class StoreController extends BaseController{
         String storeId = request.getParameter("storeId");
         //获取操作人
         String personId = readCookie(token);
-        adminService.setStoreIdNull(Long.valueOf(storeId),Long.valueOf(personId));
+        adminService.setStoreIdNull(Long.valueOf(storeId),personId);
 
         return storeService.delete(Long.valueOf(storeId));
     }

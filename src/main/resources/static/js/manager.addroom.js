@@ -45,7 +45,7 @@
     };
 })(jQuery);
 
-$(document).ready(function(){
+var ready = $(document).ready(function(){
 
 	//定义全局变量，会议室号，根据按钮点击事件改变
 	var roomNumber ;
@@ -234,7 +234,10 @@ $(document).ready(function(){
             }
         });
 
-        //显示删除数据结果后显示全部店铺信息
+    });
+
+    //删除会议室弹出结果提示框后，点击确认
+    $("#confirmDeleteStoreUpdate").click(function(){
         var storeIdSearch = $("#storeIdSearch").val();
         var storeNameSearch = $("#storeNameSearch").val();
         //封装参数
@@ -275,8 +278,8 @@ $(document).ready(function(){
                 }
             }
         });
-
     });
+
 
 
 	//因为动态增加的元素，使用原本的$(selector).click()不起作用，所以用下面这种方法
@@ -517,5 +520,6 @@ $(document).ready(function(){
 
 	});
 
-})
+});
+
 

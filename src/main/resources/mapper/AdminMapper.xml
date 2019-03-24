@@ -111,6 +111,21 @@
       </if>
     </trim>
   </insert>
+  <update id="setStoreIdNull">
+    update admin
+    <set >
+      <if test="storeId != null" >
+        store_id = null,
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Admin" >
     update admin
     <set >
