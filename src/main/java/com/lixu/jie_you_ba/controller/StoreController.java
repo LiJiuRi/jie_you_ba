@@ -1,6 +1,5 @@
 package com.lixu.jie_you_ba.controller;
 
-import com.lixu.jie_you_ba.dto.FoodDto;
 import com.lixu.jie_you_ba.dto.StoreDto;
 import com.lixu.jie_you_ba.entity.Account;
 import com.lixu.jie_you_ba.entity.Admin;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Classname AdminServiceImpl
@@ -26,7 +27,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin insert(Admin admin) {
-        admin.setId(uidService.genId());
+        if (null == admin.getId()){
+            admin.setId(uidService.genId());
+        }
         admin.setCreateTime(new Date());
         adminMapper.insertSelective(admin);
         return admin;
@@ -36,5 +39,10 @@ public class AdminServiceImpl implements AdminService {
     public int setStoreIdNull(Long storeId, String updatePerson) {
         Date date = new Date();
         return adminMapper.setStoreIdNull(storeId,updatePerson,date);
+    }
+
+    @Override
+    public List<Admin> list() {
+        return adminMapper.list();
     }
 }

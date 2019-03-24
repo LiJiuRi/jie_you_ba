@@ -32,7 +32,6 @@ $(document).ready(function(){
     if(id == 'null' || id == '' || password == 'null' || password == ''){
 		$("#loginTip").html('<label class = "text-danger">提示：账号和密码不能为空</label>').show(230);
 	}else {
-    	console.log("进入");
 		if($.checkNumber(id)){
 			var data = {
 				staffNumber:id,

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.List;
 
 @Mapper
 public interface AdminMapper {
@@ -15,6 +16,8 @@ public interface AdminMapper {
     int insertSelective(Admin record);
 
     Admin selectByPrimaryKey(Long id);
+
+    List<Admin> list();
 
     int updateByPrimaryKeySelective(Admin record);
 

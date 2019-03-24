@@ -24,11 +24,11 @@ public class AdminController extends BaseController{
     private AdminService adminService;
 
     /**
-     * 增加一个管理员账号
+     * 此时为超级管理员新建店铺的时候增加的一个管理员账号，与自己注册方式增加的管理员账号不一样
      * @param admin
      * @return
      */
-    @ApiOperation(value="增加一个管理员账号", notes="增加一个管理员账号")
+    @ApiOperation(value="此时为超级管理员新建店铺的时候增加的一个管理员账号", notes="此时为超级管理员新建店铺的时候增加的一个管理员账号")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public Admin insert(@RequestBody Admin admin, @CookieValue(value = "token", required = false) String token){
         logger.info("admin={}",admin);

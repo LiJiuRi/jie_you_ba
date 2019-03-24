@@ -50,7 +50,7 @@ public class JspPageController {
     @RequestMapping("/manager")
     public String manager() {
 
-        return "manager";
+        return "admin";
     }
 
     /**

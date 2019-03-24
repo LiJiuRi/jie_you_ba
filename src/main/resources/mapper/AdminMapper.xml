@@ -24,6 +24,11 @@
     from admin
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from admin
     where id = #{id,jdbcType=BIGINT}
