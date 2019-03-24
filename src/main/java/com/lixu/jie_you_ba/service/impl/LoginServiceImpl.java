@@ -48,21 +48,22 @@ public class LoginServiceImpl implements LoginService {
 		Long personId = Long.valueOf(staffNumber);
 		Admin admin = adminMapper.selectByPrimaryKey(personId);
 		String position = null;
+		//此处if语句嵌套过多，需优化
 		if(admin != null){
-			//level为0表示店铺，1表示超级管理员
-			if(admin.getType() == 0){
-				position = "user";
-			}else if(admin.getType() == 1){
+			//level为0表示店铺管理员，1表示超级管理员；当level为0并且又没有storeid对应的话，则该用户是普通平台用户，跳转到account页面
+			if(admin.getType() == 0) {
+				if (null != admin.getStoreId()) {
+					position = "user";
+				} else {
+					position = "account";
+				}
+			}else {
 				position = "manager";
-			}else{
-				position = "login";
 			}
-			return position ;
 		}else{
 			//查无此人
 			position = "login";
 		}
-		
 		return position ;
 	}
 	

@@ -45,6 +45,11 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    public int delete(Long storeId) {
+        return storeMapper.deleteByPrimaryKey(storeId);
+    }
+
+    @Override
     public Store update(Store store) {
         store.setUpdateTime(new Date());
         storeMapper.updateByPrimaryKeySelective(store);

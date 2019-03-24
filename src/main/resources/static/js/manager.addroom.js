@@ -24,9 +24,6 @@
 			//data:JSON.stringify(data),
 			data: "storeId="+storeId,
 			success:function(result){
-				console.log(result);
-				console.log(result.id);
-				console.log(result.bus_stop);storeDetailsubwayStation
 				$("#storeDetails #storeDetailsbusStop").text(result.bus_stop + result.bus_stop_distance + "米");
 				$("#storeDetails #storeDetailsubwayStation").text(result.subway_station + result.subway_station_distance + "米");
 				$("#storeDetails #storeDetaildelivery").text(result.delivery_time + "分钟、" + result.delivery_type + "、" + result.delivery_init_price + "元起送");
@@ -39,18 +36,12 @@
 
     //此时接收过来的参数为string类型
     $.modifyStore = function (storeId) {
-        // 清除数据
-        // 这里的逻辑可以一直被有效触发
-        //$(this).removeData("bs.modal");
-
-        // 模态框隐藏
-        /*$("#modifyStore").on('hide.bs.modal', function () {
-            // 清除数据
-            // 这里的逻辑只能在模态框第一次关闭时被触发, 之后再无效
-            $("#modifyStore").removeData("bs.modal");
-        })*/
-
         $("#ModifystoreId").val(storeId);
+    };
+
+    //此时接收过来的参数为string类型
+    $.deleteStore = function (storeId) {
+        $("#DeletestoreId").val(storeId);
     };
 })(jQuery);
 
@@ -109,6 +100,11 @@ $(document).ready(function(){
 				}
 			});
 		}
+        $("#storeName").val('');
+        $("#storePhone").val('');
+        $("#storeAddress").val('');
+        $("#storeDescription").val('');
+        $("#adminName").val('');
 	});
 
 	//查看店铺
@@ -146,7 +142,7 @@ $(document).ready(function(){
 						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyStore" onclick="$.modifyStore(\''+result[store].id+'\')">' +
 						'                                        修改' +
 						'                                    </button>' +'</td>'+
-						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger">' +
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteStore" onclick="$.deleteStore(\''+result[store].id+'\')">' +
 						'                                        删除' +
 						'                                    </button>' +'</td>'+
 						'</tr>';
@@ -197,7 +193,7 @@ $(document).ready(function(){
                     '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyStore" onclick="$.modifyStore(\''+result.id+'\')">' +
                     '                                        修改' +
                     '                                    </button>' +'</td>'+
-                    '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger">' +
+                    '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deleteStore" onclick="$.deleteStore(\''+result.id+'\')">' +
                     '                                        删除' +
                     '                                    </button>' +'</td>'+
                     '</tr>';
@@ -210,6 +206,76 @@ $(document).ready(function(){
         $("#ModifystorePhone").val('');
         $("#ModifystoreAddress").val('');
         $("#ModifystoreDescription").val('');
+    });
+
+    //删除会议室弹出框确认按钮点击事件
+    $("#confirmDeleteStore").click(function(){
+
+        var DeletestoreId = $("#DeletestoreId").val();
+        $("#deleteStoreResultTip").text('');
+        //封装参数
+        var data = {
+            storeId:DeletestoreId
+        }
+        //AJAX
+        $.ajax({
+            type : "post",
+            url:"../store/delete",
+            //contentType:"application/json",
+            //data:JSON.stringify(data),
+            data:data,
+            success:function(result){
+                if(result){
+                    $("#deleteStoreResultTip").text('已成功删除该店铺');
+                }else {
+                    $("#deleteStoreResultTip").text('删除该店铺失败');
+                }
+                $("#deleteStoreResult").modal("show");
+            }
+        });
+
+        //显示删除数据结果后显示全部店铺信息
+        var storeIdSearch = $("#storeIdSearch").val();
+        var storeNameSearch = $("#storeNameSearch").val();
+        //封装参数
+        var data = {
+            storeIdSearch:storeIdSearch,
+            storeNameSearch:storeNameSearch
+        }
+        //AJAX
+        $.ajax({
+            type : "post",
+            url:"../store/list",
+            //contentType:"application/json",
+            //data:JSON.stringify(data),
+            data:data,
+            success:function(result){
+                //先删除表格原数据
+                var addRoomRow;
+                $("#searchStoreBody").find("tr").remove();
+                for(var store in result){
+                    addRoomRow = '<tr>'+
+                        '<td style="color:#e66e79;">'+ result[store].id+ '</td>'+
+                        '<td>'+ result[store].name +'</td>'+
+                        '<td style="color:#e66e79;">'+ result[store].phone +'</td>'+
+                        '<td>'+ result[store].address +'</td>'+
+                        '<td>'+ result[store].description +'</td>'+
+                        '<td>'+ result[store].sale_amount +'</td>'+
+                        '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" onclick="$.storeDetails(\''+result[store].id+'\')">' +
+                        '                                        详情' +
+                        '                                    </button>' +'</td>'+
+                        '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyStore" onclick="$.modifyStore(\''+result[store].id+'\')">' +
+                        '                                        修改' +
+                        '                                    </button>' +'</td>'+
+                        '<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteStore" onclick="$.deleteStore(\''+result[store].id+'\')">' +
+                        '                                        删除' +
+                        '                                    </button>' +'</td>'+
+                        '</tr>';
+                    $("#searchStoreBody").append(addRoomRow);
+                }
+            }
+        });
+
     });
 
 

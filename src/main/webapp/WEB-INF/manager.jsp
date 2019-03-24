@@ -144,17 +144,17 @@
 				<div class="data-div">
 
 					<!--自己写table -->
-					<table style="width:1500px;" id = "addRoomTable">
-						<caption><div align="center" class="text-success" id = "teachTableTip">店铺信息</div></caption>
+					<table style="width:1240px;" id = "addRoomTable">
+						<caption><div align="center" class="text-success">店铺信息</div></caption>
 						<thead class="row tableHeader">
 						<tr>
-							<th class="col-xs-1">店铺编号</th>
-							<th class="col-xs-1">店铺名称</th>
-							<th class="col-xs-1">电话号码</th>
-							<th class="col-xs-2">店铺地址</th>
-							<th class="col-xs-2">店铺简介</th>
-							<th class="col-xs-1">管理员id</th>
-							<th class="col-xs-1">管理员名称</th>
+							<th style="width:10%;">店铺编号</th>
+							<th style="width:10%;">店铺名称</th>
+							<th style="width:10%;">电话号码</th>
+							<th style="width:19%;">店铺地址</th>
+							<th style="width:31%;">店铺简介</th>
+							<th style="width:10%;">管理员id</th>
+							<th style="width:10%;">管理员名称</th>
 						</tr>
 						</thead>
 						<tbody class="tablebody" id = "addRoomBody">
@@ -177,7 +177,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="gridSystemModalLabel">添加店铺</h4>
+								<h4 class="modal-title">添加店铺</h4>
 							</div>
 							<div class="modal-body">
 								<div class="container-fluid">
@@ -355,6 +355,64 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelModifyRoom">取 消</button>
 								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmModifyRoom">修 改</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+
+
+				<!--点击删除店铺弹出窗口-->
+				<div class="modal fade" id="deleteStore" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">操作提示</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<input type="hidden" class="form-control input-sm duiqi" id="DeletestoreId" placeholder="此时还没隐藏">
+										<div class="form-group ">
+											<label id="deleteStoreTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">确认要删除选择的数据吗？</label>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelDeleteRoom">取 消</button>
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStore">删 除</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+
+				<!--删除店铺处理结果-->
+				<div class="modal fade" id="deleteStoreResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">操作提示</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<div class="form-group ">
+											<label id="deleteStoreResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal">确 认</button>
 							</div>
 						</div>
 						<!-- /.modal-content -->

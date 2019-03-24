@@ -87,6 +87,22 @@ public class StoreController extends BaseController{
     }
 
     /**
+     * 根据店铺id删除一个店铺
+     * @param
+     * @return
+     */
+    @ApiOperation(value="根据店铺id删除一个店铺", notes="根据店铺id删除一个店铺")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public int delete(HttpServletRequest request,@CookieValue(value = "token", required = false) String token){
+        String storeId = request.getParameter("storeId");
+        //获取操作人
+        String personId = readCookie(token);
+        adminService.setStoreIdNull(Long.valueOf(storeId),Long.valueOf(personId));
+
+        return storeService.delete(Long.valueOf(storeId));
+    }
+
+    /**
      * 超级管理员新建一个店铺
      * @param
      * @return
