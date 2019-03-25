@@ -259,7 +259,7 @@
 						<caption><div align="center" class="text-success" id = "storeTableTip">当前申请</div></caption>
 						<thead class="row tableHeader">
 						<tr>
-							<th style="width:12%;text-align: center;">店铺申请id</th>
+							<th style="width:12%;text-align: center;">申请记录id</th>
 							<th style="width:12%;text-align: center;">店铺名称</th>
 							<th style="width:8%;text-align: center;">店铺类型</th>
 							<th style="width:25%;text-align: center;">店铺地址</th>
@@ -292,13 +292,13 @@
 						<caption><div align="center" class="text-success">历史申请列表</div></caption>
 						<thead class="row tableHeader">
 						<tr>
-							<th style="width:12%;text-align: center;">店铺申请id</th>
+							<th style="width:12%;text-align: center;">申请记录id</th>
 							<th style="width:12%;text-align: center;">店铺名称</th>
 							<th style="width:7%;text-align: center;">店铺类型</th>
 							<th style="width:22%;text-align: center;">店铺地址</th>
 							<th style="width:20%;text-align: center;">店铺简介</th>
-							<th style="width:7%;text-align: center;">审核结果</th>
-							<th style="width:20%;text-align: center;">审核建议</th>
+							<th style="width:7%;text-align: center;">审核状态</th>
+							<th style="width:20%;text-align: center;">建议\操作</th>
 						</tr>
 						</thead>
 						<tbody class="tablebody" id = "historyApplyBody">

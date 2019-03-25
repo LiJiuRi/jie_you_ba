@@ -17,6 +17,8 @@ public interface StoreApplyMapper {
 
     List<StoreApply> nowApply(Long personId);
 
+    List<StoreApply> history(Long personId);
+
     int updateByPrimaryKeySelective(StoreApply record);
 
     int updateByPrimaryKey(StoreApply record);

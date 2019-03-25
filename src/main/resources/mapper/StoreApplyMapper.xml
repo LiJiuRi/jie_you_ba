@@ -32,7 +32,13 @@
     select
     <include refid="Base_Column_List" />
     from store_apply
-    where apply_person_id = #{id,jdbcType=BIGINT} and status = 0
+    where apply_person_id = #{personId,jdbcType=BIGINT} and status = 0
+  </select>
+  <select id="history" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from store_apply
+    where apply_person_id = #{personId,jdbcType=BIGINT} and status != 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from store_apply

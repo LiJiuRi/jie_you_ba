@@ -38,4 +38,9 @@ public class StoreApplyServiceImpl implements StoreApplyService {
     public List<StoreApply> nowApply(Long personId) {
         return storeApplyMapper.nowApply(personId);
     }
+
+    @Override
+    public List<StoreApply> history(Long personId) {
+        return storeApplyMapper.history(personId);
+    }
 }
