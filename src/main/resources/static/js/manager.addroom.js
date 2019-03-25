@@ -85,13 +85,13 @@ var ready = $(document).ready(function(){
 					//alert("添加会议室成功");
 					//将新增的会议室信息展示在表格上，接下来是设置空闲时间和设备信息
 					var addRoomRow = '<tr>'+
-						'<td style="color:#e66e79;">'+ store.id+ '</td>'+
-						'<td>'+ store.name +'</td>'+
-						'<td style="color:#e66e79;">'+ store.phone +'</td>'+
-						'<td>'+ store.address +'</td>'+
-						'<td>'+ store.description +'</td>'+
-						'<td style="color:#e66e79;">'+ admin.id +'</td>'+
-						'<td>'+ admin.name +'</td>'+
+						'<td style="color:#e66e79;text-align: center;">'+ store.id+ '</td>'+
+						'<td style="text-align: center;">'+ store.name +'</td>'+
+						'<td style="color:#e66e79;text-align: center;">'+ store.phone +'</td>'+
+						'<td style="text-align: center;">'+ store.address +'</td>'+
+						'<td style="text-align: center;">'+ store.description +'</td>'+
+						'<td style="color:#e66e79;text-align: center;">'+ admin.id +'</td>'+
+						'<td style="text-align: center;">'+ admin.name +'</td>'+
 						'</tr>';
 
 					//先删除表格原数据

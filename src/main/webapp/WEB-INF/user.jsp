@@ -78,7 +78,9 @@
 
 			<!-- 会议室管理折叠 -->
 			<div id="topAD" class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMeeting" aria-expanded="true" aria-controls="collapseOne">
-				<img class="leftitem" src="../../static/images/dianpu.png"><span style="padding-left:10px;">店铺管理</span><span id="topA" class="glyphicon glyphicon-triangle-right"></span>
+				<img class="leftitem" src="../../static/images/dianpu.png">
+				<span style="padding-left:10px;">店铺管理</span>
+				<span id="topA" class="glyphicon glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseMeeting" class="collapse" aria-expanded="true">
 
@@ -88,11 +90,13 @@
 
 			<!-- 预约管理折叠 -->
 			<div id="topBD" class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBookedFunction" aria-expanded="true" aria-controls="collapseOne">
-				<span class="leftitem">申请审核</span><span id="topB" class="glyphicon glyphicon-triangle-right"></span>
+				<img class="leftitem" src="../../static/images/shenqing.png">
+				<span style="padding-left:10px;">我的申请</span>
+				<span id="topB" class="glyphicon glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseBookedFunction" class="collapse " aria-expanded="true">
-				<div class="meun-item leftitem" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看当前申请</div>
-				<div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">查看历史预约</div>
+				<div class="meun-item leftitem" id = "nowApplyMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">当前申请</div>
+				<div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">历史申请</div>
 			</div>
 
 
@@ -131,21 +135,21 @@
 		<!-- Tab panes -->
 		<div class="tab-content">
 
-			<!-- 新增会议室模块 -->
+			<!-- 申请店铺 -->
 			<div role="tabpanel" class="tab-pane" id="addRoomPane">
 
 				<div class="check-div">
-					<button id = "addRoomBtn" class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addRoomPop">资料填写</button>
+					<button id = "addRoomBtn" class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addRoomPop"  style="margin-top: 15px;">资料填写</button>
 				</div>
 				<div class="data-div">
 
 					<!--自己写table -->
-					<table style="width:100%;" id = "addRoomTable">
-						<caption><div align="center" class="text-success">点击左上角按钮提交申请</div></caption>
+					<table style="width:1240px;" id = "addRoomTable">
+						<caption><div align="center" class="text-success">点击左上角按钮填写信息</div></caption>
 					</table>
 				</div>
 
-				<!--添加会议室弹出窗口-->
+				<!--填写店铺申请资料弹出窗口-->
 				<div class="modal fade" id="addRoomPop" role="dialog" aria-labelledby="gridSystemModalLabel">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -162,6 +166,22 @@
 											<label for="storeName" class="col-xs-3 control-label">店铺名称：</label>
 											<div class="col-xs-6 ">
 												<input type="text" class="form-control input-sm duiqi" id="storeName" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storeType" class="col-xs-3 control-label">店铺类型：</label>
+											<div class="col-xs-2">
+												<select id="storeType" class="form-control input-sm duiqi">
+													<option value="正餐">正餐</option>
+													<option value="水果">水果</option>
+													<option value="蛋糕">蛋糕</option>
+													<option value="汉堡">汉堡</option>
+													<option value="夜宵">夜宵</option>
+													<option value="药">药</option>
+													<option value="鲜花">鲜花</option>
+													<option value="饮料">饮料</option>
+													<option value="其他">其他</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group ">
@@ -193,7 +213,34 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelAddRoom">取 消</button>
-								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmAddRoom">提 交</button>
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmApplyStore">提 交</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+
+				<!--申请店铺处理结果-->
+				<div class="modal fade" id="deleteStoreResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">操作提示</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<div class="form-group ">
+											<label id="deleteStoreResultTip" style="text-align: left;font-size: 25px;font-weight: bold;" class="col-xs-10 control-label"></label>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStoreUpdate">确 认</button>
 							</div>
 						</div>
 						<!-- /.modal-content -->
@@ -203,14 +250,122 @@
 				<!-- /.modal -->
 			</div>
 
+			<!-- 查看当前申请记录模块 -->
+			<div role="tabpanel" class="tab-pane" id="showNowBookedPane">
+
+				<div class="data-div">
+					<!--自己写table -->
+					<table style="width: 1240px;" class="table table-striped table-hover">
+						<caption><div align="center" class="text-success" id = "storeTableTip">当前申请</div></caption>
+						<thead class="row tableHeader">
+						<tr>
+							<th style="width:12%;text-align: center;">店铺申请id</th>
+							<th style="width:12%;text-align: center;">店铺名称</th>
+							<th style="width:8%;text-align: center;">店铺类型</th>
+							<th style="width:25%;text-align: center;">店铺地址</th>
+							<th style="width:28%;text-align: center;">店铺简介</th>
+							<th style="width:25%;text-align: center;">申请理由</th>
+						</tr>
+						</thead>
+						<tbody class="tablebody" id = "nowApplyBody">
+						<!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+			<!-- 查看历史申请记录模块 -->
+			<div role="tabpanel" class="tab-pane" id="showHistoryBookedPane">
+
+				<div class="data-div">
+					<!--自己写table -->
+					<table style="width: 1240px;" class="table table-striped table-hover">
+						<caption><div align="center" class="text-success">历史申请列表</div></caption>
+						<thead class="row tableHeader">
+						<tr>
+							<th style="width:12%;text-align: center;">店铺申请id</th>
+							<th style="width:12%;text-align: center;">店铺名称</th>
+							<th style="width:7%;text-align: center;">店铺类型</th>
+							<th style="width:22%;text-align: center;">店铺地址</th>
+							<th style="width:20%;text-align: center;">店铺简介</th>
+							<th style="width:7%;text-align: center;">审核结果</th>
+							<th style="width:20%;text-align: center;">审核建议</th>
+						</tr>
+						</thead>
+						<tbody class="tablebody" id = "historyApplyBody">
+						<!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+			<!-- 修改密码 模块-->
+			<div role="tabpanel" class="tab-pane" id="modifyPassword">
+				<div class="check-div">
+					<!-- 原始密码为12312313 -->
+					<!-- 用于显示用户修改密码操作结果 -->
+					<div align="center"><span id="isTwoPassSame"></span></div>
+				</div>
+				<div style="padding: 50px 0;margin-top: 50px;background-color: #fff; text-align: right;width: 420px;margin: 50px auto;">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label for="userId" class="col-xs-4 control-label">ID：</label>
+							<div class="col-xs-5">
+								<input type="text" class="form-control input-sm duiqi" id="userIdModifyP" placeholder="" style="margin-top: 7px;">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="sKnot" class="col-xs-4 control-label">新密码：</label>
+							<div class="col-xs-5">
+								<input type="password" class="form-control input-sm duiqi" id="newPassword1" placeholder="" style="margin-top: 7px;">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="sKnot" class="col-xs-4 control-label" >确认密码：</label>
+							<div class="col-xs-5">
+								<input type="password" class="form-control input-sm duiqi" id="defineNewPassword1" placeholder="" style="margin-top: 7px;">
+							</div>
+						</div>
+						<div class="form-group text-right">
+							<div class="col-xs-offset-4 col-xs-5" style="margin-left: 169px;">
+								<button type="reset" class="btn btn-xs btn-white">取 消</button>
+								<button type="submit" class="btn btn-xs btn-green" id = "modifyPassBtn">修改</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--修改密码模块结束(上面的div) -->
+
 		</div>
 	</div>
+
 
 </div>
 
 <script src="../../static/js/exitLogin.js"></script>
-<script src="../../static/js/user.js"></script>
+<script src="../../static/js/user.applyStore.js"></script>
+<script src="../../static/js/user.nowApply.js"></script>
 <script src="../../static/js/user.commom.js"></script>
+
 </body>
 
 </html>

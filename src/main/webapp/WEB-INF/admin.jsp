@@ -146,13 +146,13 @@
 						<caption><div align="center" class="text-success">店铺信息</div></caption>
 						<thead class="row tableHeader">
 						<tr>
-							<th style="width:10%;">店铺编号</th>
-							<th style="width:10%;">店铺名称</th>
-							<th style="width:10%;">电话号码</th>
-							<th style="width:19%;">店铺地址</th>
-							<th style="width:31%;">店铺简介</th>
-							<th style="width:10%;">管理员id</th>
-							<th style="width:10%;">管理员名称</th>
+							<th style="width:10%;text-align: center;">店铺编号</th>
+							<th style="width:10%;text-align: center;">店铺名称</th>
+							<th style="width:10%;text-align: center;">电话号码</th>
+							<th style="width:19%;text-align: center;">店铺地址</th>
+							<th style="width:31%;text-align: center;">店铺简介</th>
+							<th style="width:10%;text-align: center;">管理员id</th>
+							<th style="width:10%;text-align: center;">管理员名称</th>
 						</tr>
 						</thead>
 						<tbody class="tablebody" id = "addRoomBody">

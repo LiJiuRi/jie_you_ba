@@ -225,4 +225,22 @@ CREATE TABLE IF NOT EXISTS `account` (
 
 十三、评价表
 
-十四、店铺管理员申请开通店铺表（此时店铺管理员同时注册一个管理员账号）
+十四、店铺管理员申请开通店铺表（此时为普通账号先注册，然后再在店铺申请栏提交申请）
+CREATE TABLE IF NOT EXISTS `store_apply` (
+  `id` bigint(20) NOT NULL COMMENT '店铺申请记录id（即为店铺id）',
+  `apply_person_id` bigint(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '申请人id',
+  `apply_person_name` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '申请人姓名',
+  `name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺名称',
+  `type`  varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺类型：0-正餐，1-水果，2-蛋糕，3-汉堡，4-夜宵，5-药，6-鲜花，7-饮料，8-其他',
+  `phone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '电话号码',
+  `address` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺地址',
+  `description` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺简介',
+  `reason` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '申请理由',
+  `result_opinion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '审核回馈',
+  `status`  int(1) COLLATE utf8mb4_general_ci DEFAULT "0" COMMENT '申请状态：0-待审核，1-审核通过，2-审核不通过',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

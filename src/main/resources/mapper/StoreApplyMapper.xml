@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lixu.jie_you_ba.dao.StoreApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.StoreApply" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_person_id" property="applyPersonId" jdbcType="BIGINT" />
+    <result column="apply_person_name" property="applyPersonName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="result_opinion" property="resultOpinion" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_person_id, apply_person_name, name, type, phone, address, description, 
+    reason, result_opinion, status, create_person, create_time, update_person, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from store_apply
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="nowApply" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from store_apply
+    where apply_person_id = #{id,jdbcType=BIGINT} and status = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from store_apply
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.StoreApply" >
+    insert into store_apply (id, apply_person_id, apply_person_name, 
+      name, type, phone, 
+      address, description, reason, 
+      result_opinion, status, create_person, 
+      create_time, update_person, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{applyPersonId,jdbcType=BIGINT}, #{applyPersonName,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{resultOpinion,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createPerson,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.StoreApply" >
+    insert into store_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyPersonId != null" >
+        apply_person_id,
+      </if>
+      <if test="applyPersonName != null" >
+        apply_person_name,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="resultOpinion != null" >
+        result_opinion,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applyPersonId != null" >
+        #{applyPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="applyPersonName != null" >
+        #{applyPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="resultOpinion != null" >
+        #{resultOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.StoreApply" >
+    update store_apply
+    <set >
+      <if test="applyPersonId != null" >
+        apply_person_id = #{applyPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="applyPersonName != null" >
+        apply_person_name = #{applyPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="resultOpinion != null" >
+        result_opinion = #{resultOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.StoreApply" >
+    update store_apply
+    set apply_person_id = #{applyPersonId,jdbcType=BIGINT},
+      apply_person_name = #{applyPersonName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      result_opinion = #{resultOpinion,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
