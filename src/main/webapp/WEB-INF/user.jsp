@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
-<!doctype html>
 <html lang="ch">
 
 <head>
@@ -83,9 +82,7 @@
 			</div>
 			<div id="collapseMeeting" class="collapse" aria-expanded="true">
 
-				<div class="meun-item leftitem" id="addRoomDiv" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/add_grey.png">新增店铺</div>
-
-				<div class="meun-item leftitem" id="showRoomDiv" href="#showRoomPane" aria-controls="showRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/search_grey.png">店铺操作</div>
+				<div class="meun-item leftitem" id="addRoomDiv" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/add_grey.png">申请店铺</div>
 
 			</div>
 
@@ -134,6 +131,77 @@
 		<!-- Tab panes -->
 		<div class="tab-content">
 
+			<!-- 新增会议室模块 -->
+			<div role="tabpanel" class="tab-pane" id="addRoomPane">
+
+				<div class="check-div">
+					<button id = "addRoomBtn" class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addRoomPop">资料填写</button>
+				</div>
+				<div class="data-div">
+
+					<!--自己写table -->
+					<table style="width:100%;" id = "addRoomTable">
+						<caption><div align="center" class="text-success">点击左上角按钮提交申请</div></caption>
+					</table>
+				</div>
+
+				<!--添加会议室弹出窗口-->
+				<div class="modal fade" id="addRoomPop" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">资料填写</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<input type="hidden" class="form-control input-sm duiqi" id="applyPersonId" placeholder="登录后便给其赋值">
+										<input type="hidden" class="form-control input-sm duiqi" id="applyPersonName" placeholder="登录后便给其赋值">
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">店铺名称：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="storeName" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storePhone" class="col-xs-3 control-label">电话号码：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="storePhone" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storeAddress" class="col-xs-3 control-label">店铺地址：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="storeAddress" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storeDescription" class="col-xs-3 control-label">店铺简介：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="storeDescription" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storeReason" class="col-xs-3 control-label">申请理由：</label>
+											<div class="col-xs-6 ">
+												<input type="text" class="form-control input-sm duiqi" id="storeReason" placeholder="">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelAddRoom">取 消</button>
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmAddRoom">提 交</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
+			</div>
 
 		</div>
 	</div>
@@ -141,7 +209,8 @@
 </div>
 
 <script src="../../static/js/exitLogin.js"></script>
-<script src="../../static/js/manager.commom.js"></script>
+<script src="../../static/js/user.js"></script>
+<script src="../../static/js/user.commom.js"></script>
 </body>
 
 </html>

@@ -12,7 +12,14 @@ $(document).ready(function(){
         //data:JSON.stringify(data),
     	//data:data,
         success:function(result){
-        	$("#userName").text(result.name);
+    		//如何判断后端返回的null，此时后端返回为null，转化为json类型后，其结果为""
+			JSON.stringify(result);
+        	if(result != ""){
+				$("#userName").text(result.name);
+			}else {
+				var url = "../jsp/index";
+				window.location.href=url;
+			}
         }
 	});
 	

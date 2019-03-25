@@ -111,10 +111,13 @@ public class LoginAndRegisterController extends BaseController{
 	@ResponseBody
 	public Admin getCurrentStaff(@CookieValue(value = "token", required = false) String token) {
 		String personId = this.readCookie(token);
-		Long adminId = Long.valueOf(personId);此处做判断，当token不存在时不能回退页面
+		//此处做判断，当token不存在时不能回退页面
+		if(personId == null){
+			return null;
+		}
+		Long adminId = Long.valueOf(personId);
 		Admin admin = adminMapper.selectByPrimaryKey(adminId);
 		return admin;
-		
 	}
 
 	/**
@@ -142,6 +145,9 @@ public class LoginAndRegisterController extends BaseController{
 	public String navigate(@CookieValue(value = "token", required = false) String token) {
 		//转成员工号
 		String staffNumber = this.readCookie(token);
+		if(null == staffNumber){
+			return "index";
+		}
 		//查询属于员工还是管理员
 		String position = loginService.managerOrUser(staffNumber);
 
