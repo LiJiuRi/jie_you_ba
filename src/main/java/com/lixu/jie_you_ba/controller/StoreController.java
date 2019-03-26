@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +67,8 @@ public class StoreController extends BaseController{
     public List<Store> list(StoreDto storeDto){
         Long storeIdSearch = storeDto.getStoreIdSearch();
         String storeNameSearch = storeDto.getStoreNameSearch();
-        List<Store> storeList  = storeService.list(storeIdSearch,storeNameSearch);
+        String storeTypeSearch = storeDto.getStoreTypeSearch();
+        List<Store> storeList  = storeService.list(storeIdSearch,storeNameSearch,storeTypeSearch);
         return storeList;
     }
 
@@ -110,6 +110,7 @@ public class StoreController extends BaseController{
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Map add(HttpServletRequest request, @CookieValue(value = "token", required = false) String token){
         String storeName = request.getParameter("storeName");
+        String storeType = request.getParameter("storeType");
         String storePhone = request.getParameter("storePhone");
         String storeAddress = request.getParameter("storeAddress");
         String storeDescription = request.getParameter("storeDescription");
@@ -119,6 +120,8 @@ public class StoreController extends BaseController{
         Store store = new Store();
         if(null != storeName && storeName != "")
             store.setName(storeName);
+        if(null != storeType && storeType != "")
+            store.setType(storeType);
         if(null != storePhone && storePhone != "")
             store.setPhone(storePhone);
         if(null != storeAddress && storeAddress != "")
@@ -170,6 +173,7 @@ public class StoreController extends BaseController{
     public Store modify(HttpServletRequest request, @CookieValue(value = "token", required = false) String token){
 
         String storeName = request.getParameter("storeName");
+        String storeType = request.getParameter("storeType");
         String storePhone = request.getParameter("storePhone");
         String storeAddress = request.getParameter("storeAddress");
         String storeDescription = request.getParameter("storeDescription");
@@ -180,6 +184,8 @@ public class StoreController extends BaseController{
         store.setId(Long.valueOf(storeId));
         if(null != storeName && storeName != "")
             store.setName(storeName);
+        if(null != storeType && storeType != "")
+            store.setType(storeType);
         if(null != storePhone && storePhone != "")
             store.setPhone(storePhone);
         if(null != storeAddress && storeAddress != "")

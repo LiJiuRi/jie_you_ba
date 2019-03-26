@@ -12,7 +12,10 @@ import java.util.List;
  */
 public interface StoreApplyService {
     StoreApply insert(StoreApply storeApply);
+    StoreApply update(StoreApply storeApply);
+    List<StoreApply> nowNotDeal();
     List<StoreApply> nowApply(Long personId);
     List<StoreApply> history(Long personId);
+    List<StoreApply> adminHistory(String personId);
     int pass(Long personId,Long storeId);
 }

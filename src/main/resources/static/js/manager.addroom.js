@@ -56,6 +56,7 @@ var ready = $(document).ready(function(){
 	$("#confirmAddRoom").click(function(){
 
 		var storeName = $("#storeName").val();
+		var storeType = $("#storeType").val();
 		var storePhone = $("#storePhone").val();
 		var storeAddress = $("#storeAddress").val();
 		var storeDescription = $("#storeDescription").val();
@@ -66,6 +67,7 @@ var ready = $(document).ready(function(){
 			//封装参数
 			var data = {
 				storeName:storeName,
+				storeType:storeType,
 				storePhone:storePhone,
 				storeAddress:storeAddress,
 				storeDescription:storeDescription,
@@ -87,7 +89,7 @@ var ready = $(document).ready(function(){
 					var addRoomRow = '<tr>'+
 						'<td style="color:#e66e79;text-align: center;">'+ store.id+ '</td>'+
 						'<td style="text-align: center;">'+ store.name +'</td>'+
-						'<td style="color:#e66e79;text-align: center;">'+ store.phone +'</td>'+
+						'<td style="color:#e66e79;text-align: center;">'+ store.type +'</td>'+
 						'<td style="text-align: center;">'+ store.address +'</td>'+
 						'<td style="text-align: center;">'+ store.description +'</td>'+
 						'<td style="color:#e66e79;text-align: center;">'+ admin.id +'</td>'+
@@ -111,10 +113,12 @@ var ready = $(document).ready(function(){
 	$("#searchStore").click(function(){
 
 		var storeIdSearch = $("#storeIdSearch").val();
+		var storeTypeSearch = $("#storeTypeSearch").val();
 		var storeNameSearch = $("#storeNameSearch").val();
 		//封装参数
 		var data = {
 			storeIdSearch:storeIdSearch,
+			storeTypeSearch:storeTypeSearch,
 			storeNameSearch:storeNameSearch
 		}
 		//AJAX
@@ -132,7 +136,7 @@ var ready = $(document).ready(function(){
 					addRoomRow = '<tr>'+
 						'<td style="color:#e66e79;">'+ result[store].id+ '</td>'+
 						'<td>'+ result[store].name +'</td>'+
-						'<td style="color:#e66e79;">'+ result[store].phone +'</td>'+
+						'<td style="color:#e66e79;">'+ result[store].type +'</td>'+
 						'<td>'+ result[store].address +'</td>'+
 						'<td>'+ result[store].description +'</td>'+
 						'<td>'+ result[store].sale_amount +'</td>'+
@@ -158,6 +162,7 @@ var ready = $(document).ready(function(){
 
         var ModifystoreId = $("#ModifystoreId").val();
         var ModifystoreName = $("#ModifystoreName").val();
+		var ModifystoreType = $("#ModifystoreType").val();
         var ModifystorePhone = $("#ModifystorePhone").val();
         var ModifystoreAddress = $("#ModifystoreAddress").val();
         var ModifystoreDescription = $("#ModifystoreDescription").val();
@@ -165,6 +170,7 @@ var ready = $(document).ready(function(){
         var data = {
             storeId:ModifystoreId,
             storeName:ModifystoreName,
+			storeType:ModifystoreType,
             storePhone:ModifystorePhone,
             storeAddress:ModifystoreAddress,
             storeDescription:ModifystoreDescription
@@ -183,7 +189,7 @@ var ready = $(document).ready(function(){
                 addRoomRow = '<tr>'+
                     '<td style="color:#e66e79;">'+ result.id+ '</td>'+
                     '<td>'+ result.name +'</td>'+
-                    '<td style="color:#e66e79;">'+ result.phone +'</td>'+
+                    '<td style="color:#e66e79;">'+ result.type +'</td>'+
                     '<td>'+ result.address +'</td>'+
                     '<td>'+ result.description +'</td>'+
                     '<td>'+ result.sale_amount +'</td>'+
@@ -203,6 +209,7 @@ var ready = $(document).ready(function(){
 
         $("#ModifystoreId").val('');
         $("#ModifystoreName").val('');
+		$("#ModifystoreType").val('');
         $("#ModifystorePhone").val('');
         $("#ModifystoreAddress").val('');
         $("#ModifystoreDescription").val('');

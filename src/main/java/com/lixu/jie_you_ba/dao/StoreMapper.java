@@ -16,7 +16,7 @@ public interface StoreMapper {
 
     Store selectByPrimaryKey(Long id);
 
-    List<Store> list(@Param("storeId")Long storeId, @Param("storeName")String storeName);
+    List<Store> list(@Param("storeId")Long storeId, @Param("storeName")String storeName, @Param("storeType")String storeType);
 
     int updateByPrimaryKeySelective(Store record);
 

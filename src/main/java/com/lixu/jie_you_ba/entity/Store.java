@@ -11,6 +11,8 @@ public class Store {
 
     private String name;
 
+    private String type;
+
     private String phone;
 
     private String address;
@@ -79,6 +81,14 @@ public class Store {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     public String getPhone() {

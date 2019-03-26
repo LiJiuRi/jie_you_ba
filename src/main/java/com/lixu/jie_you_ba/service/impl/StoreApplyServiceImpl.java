@@ -40,6 +40,18 @@ public class StoreApplyServiceImpl implements StoreApplyService {
     }
 
     @Override
+    public StoreApply update(StoreApply storeApply) {
+        storeApply.setUpdateTime(new Date());
+        storeApplyMapper.updateByPrimaryKeySelective(storeApply);
+        return storeApply;
+    }
+
+    @Override
+    public List<StoreApply> nowNotDeal() {
+        return storeApplyMapper.nowNotDeal();
+    }
+
+    @Override
     public List<StoreApply> nowApply(Long personId) {
         return storeApplyMapper.nowApply(personId);
     }
@@ -47,6 +59,11 @@ public class StoreApplyServiceImpl implements StoreApplyService {
     @Override
     public List<StoreApply> history(Long personId) {
         return storeApplyMapper.history(personId);
+    }
+
+    @Override
+    public List<StoreApply> adminHistory(String personId) {
+        return storeApplyMapper.adminHistory(personId);
     }
 
     @Override

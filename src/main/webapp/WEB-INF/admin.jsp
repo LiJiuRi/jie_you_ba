@@ -91,11 +91,13 @@
 
 			<!-- 预约管理折叠 -->
 			<div id="topBD" class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBookedFunction" aria-expanded="true" aria-controls="collapseOne">
-				<span class="leftitem">申请审核</span><span id="topB" class="glyphicon glyphicon-triangle-right"></span>
+				<img class="leftitem" src="../../static/images/shenqing.png">
+				<span style="padding-left:10px;">店铺审核</span>
+				<span id="topB" class="glyphicon glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseBookedFunction" class="collapse " aria-expanded="true">
-				<div class="meun-item leftitem" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看当前申请</div>
-				<div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">查看历史预约</div>
+				<div class="meun-item leftitem" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">当前未审核</div>
+				<div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">审核记录</div>
 			</div>
 
 
@@ -148,7 +150,7 @@
 						<tr>
 							<th style="width:10%;text-align: center;">店铺编号</th>
 							<th style="width:10%;text-align: center;">店铺名称</th>
-							<th style="width:10%;text-align: center;">电话号码</th>
+							<th style="width:10%;text-align: center;">店铺类型</th>
 							<th style="width:19%;text-align: center;">店铺地址</th>
 							<th style="width:31%;text-align: center;">店铺简介</th>
 							<th style="width:10%;text-align: center;">管理员id</th>
@@ -184,6 +186,22 @@
 											<label for="storeName" class="col-xs-3 control-label">店铺名称：</label>
 											<div class="col-xs-6 ">
 												<input type="text" class="form-control input-sm duiqi" id="storeName" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="storeType" class="col-xs-3 control-label">店铺类型：</label>
+											<div class="col-xs-2">
+												<select id="storeType" class="form-control input-sm duiqi">
+													<option value="正餐">正餐</option>
+													<option value="水果">水果</option>
+													<option value="蛋糕">蛋糕</option>
+													<option value="汉堡">汉堡</option>
+													<option value="夜宵">夜宵</option>
+													<option value="药">药</option>
+													<option value="鲜花">鲜花</option>
+													<option value="饮料">饮料</option>
+													<option value="其他">其他</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group ">
@@ -224,7 +242,7 @@
 				</div>
 				<!-- /.modal -->
 			</div>
-
+			<!-- 新增会议室模块结束 -->
 
 			<!-- 店铺操作模块 -->
 			<div role="tabpanel" class="tab-pane" id="showRoomPane">
@@ -232,6 +250,20 @@
 				<div class="check-div form-inline">
 					<div class="col-xs-3">
 						<input type="text" class="form-control input-sm" id = "storeIdSearch" placeholder="输入店铺号搜索">
+					</div>
+					<div class="col-xs-2">
+						<select id="storeTypeSearch" class="form-control input-sm" placeholder="店铺类型">
+							<option selected="selected" value=''>全部</option>
+							<option value="正餐">正餐</option>
+							<option value="水果">水果</option>
+							<option value="蛋糕">蛋糕</option>
+							<option value="汉堡">汉堡</option>
+							<option value="夜宵">夜宵</option>
+							<option value="药">药</option>
+							<option value="鲜花">鲜花</option>
+							<option value="饮料">饮料</option>
+							<option value="其他">其他</option>
+						</select>
 					</div>
 					<div class="col-xs-4">
 						<input type="text" class="form-control input-sm" id = "storeNameSearch" placeholder="输入店铺名称搜索">
@@ -247,7 +279,7 @@
 						<tr>
 							<th style="width:10%;">店铺编号</th>
 							<th style="width:10%;">店铺名称</th>
-							<th style="width:10%;">电话号码</th>
+							<th style="width:10%;">店铺类型</th>
 							<th style="width:14%;">店铺地址</th>
 							<th style="width:34%;">店铺简介</th>
 							<th style="width:7%;">总销量</th>
@@ -311,7 +343,7 @@
 				</div>
 				<!-- /.modal -->
 
-				<!--点击修改弹出窗口-->
+				<!--点击修改店铺弹出窗口-->
 				<div class="modal fade" id="modifyStore" role="dialog" aria-labelledby="gridSystemModalLabel">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -327,6 +359,22 @@
 											<label for="storeName" class="col-xs-3 control-label">店铺名称：</label>
 											<div class="col-xs-6 ">
 												<input type="text" class="form-control input-sm duiqi" id="ModifystoreName" placeholder="">
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="ModifystoreType" class="col-xs-3 control-label">店铺类型：</label>
+											<div class="col-xs-2">
+												<select id="ModifystoreType" class="form-control input-sm duiqi">
+													<option value="正餐">正餐</option>
+													<option value="水果">水果</option>
+													<option value="蛋糕">蛋糕</option>
+													<option value="汉堡">汉堡</option>
+													<option value="夜宵">夜宵</option>
+													<option value="药">药</option>
+													<option value="鲜花">鲜花</option>
+													<option value="饮料">饮料</option>
+													<option value="其他">其他</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group ">
@@ -359,7 +407,7 @@
 					</div>
 					<!-- /.modal-dialog -->
 				</div>
-				<!-- /.modal -->
+				<!-- /.modal点击修改店铺弹出窗口-->
 
 
 				<!--点击删除店铺弹出窗口-->
@@ -389,7 +437,7 @@
 					</div>
 					<!-- /.modal-dialog -->
 				</div>
-				<!-- /.modal -->
+				<!-- /.modal点击删除店铺弹出窗口 -->
 
 				<!--删除店铺处理结果-->
 				<div class="modal fade" id="deleteStoreResult" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -416,107 +464,142 @@
 					</div>
 					<!-- /.modal-dialog -->
 				</div>
-				<!-- /.modal -->
+				<!-- /.modal删除店铺处理结果 -->
 
 			</div>
+			<!-- 店铺操作模块结束 -->
 
-
-			<!-- 查看当前预约记录 -->
+			<!-- 查看当前申请记录模块 -->
 			<div role="tabpanel" class="tab-pane" id="showNowBookedPane">
-				<div class="check-div form-inline">
-					<div class="col-xs-3">
-						<button class="btn btn-yellow btn-xs" >查看当前预约记录</button>
-					</div>
-					<div class="col-xs-4">
-						<input type="text" class="form-control input-sm" placeholder="输入会议室号搜索">
-						<button class="btn btn-white btn-xs ">查 询 </button>
-					</div>
-					<div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
-						<label for="sortNowBooked">排序:&nbsp;</label>
-						<select class=" form-control" id = "sortNowBooked">
-							<option>会议室号</option>
-							<option>时间升序</option>
-							<option>时间倒序</option>
-							<option>员工号</option>
-						</select>
-					</div>
-				</div>
+
 				<div class="data-div">
 					<!--自己写table -->
-					<table class = "table" id = "showNowBookedTable">
-						<caption><div align="center" class="text-success" id = "modifyMeetingTableTip">当前预约记录</div></caption>
+					<table style="width: 1240px;" class="table table-striped table-hover">
+						<caption><div align="center" class="text-success">当前申请</div></caption>
 						<thead class="row tableHeader">
 						<tr>
-							<th class="col-xs-2">编号</th>
-							<th class="col-xs-2">预约员工</th>
-							<th class="col-xs-2">会议室号</th>
-							<th class="col-xs-4">预约时段</th>
-							<th class="col-xs-2">状态</th>
+							<th style="width:7%;text-align: center;">申请人</th>
+							<th style="width:12%;text-align: center;">店铺名称</th>
+							<th style="width:8%;text-align: center;">店铺类型</th>
+							<th style="width:20%;text-align: center;">店铺地址</th>
+							<th style="width:21%;text-align: center;">店铺简介</th>
+							<th style="width:21%;text-align: center;">申请理由</th>
+							<th style="width:7%;text-align: center;">先阅</th>
+							<th style="width:7%;text-align: center;">通过</th>
+							<th style="width:7%;text-align: center;">不通过</th>
 						</tr>
 						</thead>
-						<tbody class="tablebody" id = "showNowBookedBody">
-						<tr>
-							<td>1</td>
-							<td>
-								<!-- 可以点击弹出框查看预约员工的详情 -->
-								<p  style = "cursor:pointer;" data-toggle="modal" data-target="#showStaffDetailPop">张浩晖(9999)</p>
-
-							</td>
-							<td>
-								<!-- 可以点击查看该会议室详情 -->
-								<p  style = "cursor:pointer;" data-toggle="modal" data-target="#showRoomDetailPop">10001</p>
-							</td>
-							<td>
-								2018-07-21~2018-08-25 09:30~16:00<br>
-							</td>
-							<td>预约成功</td>
-						</tr>
+						<tbody class="tablebody" id = "nowApplyBody">
+						<!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
 						</tbody>
 					</table>
 				</div>
+
+				<!--超级管理员点击通过或不通过弹出处理框-->
+				<div class="modal fade" id="adminPass" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">审批</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<input type="hidden" class="form-control input-sm duiqi" id="applyId" placeholder="此时还没隐藏">
+										<input type="hidden" class="form-control input-sm duiqi" id="applyStatus" placeholder="此时还没隐藏">
+										<label for="resultOpinion" class="col-xs-4 control-label">审批意见：</label>
+										<div class="col-xs-6 ">
+											<textarea rows="3" cols="20" type="text" class="form-control input-sm duiqi" id="resultOpinion" placeholder="请输入审批意见">
+
+											</textarea>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="adminNotPassApply">取 消</button>
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "adminPassApply">确 认</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal超级管理员点击通过或不通过弹出处理框结束 -->
+
+				<!--超级管理员点击通过或不通过弹出处理框-->
+				<div class="modal fade" id="firstDo" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">查询结果</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<div class="form-group ">
+											<label id="firstDoResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal">确 认</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.超级管理员点击通过或不通过弹出处理框结束 -->
+
 			</div>
+			<!-- 查看当前申请记录模块结束 -->
 
-
-			<!-- 查看历史预约记录 -->
+			<!-- 查看历史审核记录模块 -->
 			<div role="tabpanel" class="tab-pane" id="showHistoryBookedPane">
-				<div class="check-div form-inline">
-					<div class="col-xs-3">
-						<button class="btn btn-yellow btn-xs" >查看历史预约记录</button>
-					</div>
-					<div class="col-xs-4">
-						<input type="text" class="form-control input-sm" placeholder="输入会议室号搜索">
-						<button class="btn btn-white btn-xs ">查 询 </button>
-					</div>
-					<div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
-						<label for="sortHistoryBooked">排序:&nbsp;</label>
-						<select class=" form-control" id = "sortHistoryBooked">
-							<option>会议室号</option>
-							<option>时间升序</option>
-							<option>时间倒序</option>
-							<option>员工号</option>
-						</select>
-					</div>
-				</div>
+
 				<div class="data-div">
 					<!--自己写table -->
-					<table class = "table" id = "showHistoryBookedTable">
-						<caption><div align="center" class="text-success" id = "modifyMeetingTableTip">历史预约记录</div></caption>
+					<table style="width: 1240px;" class="table table-striped table-hover">
+						<caption><div align="center" class="text-success">历史审核列表</div></caption>
 						<thead class="row tableHeader">
 						<tr>
-							<th class="col-xs-2">编号</th>
-							<th class="col-xs-2">预约员工</th>
-							<th class="col-xs-2">会议室号</th>
-							<th class="col-xs-4">预约时段</th>
-							<th class="col-xs-2">状态</th>
+							<th style="width:12%;text-align: center;">申请记录id</th>
+							<th style="width:12%;text-align: center;">店铺名称</th>
+							<th style="width:7%;text-align: center;">店铺类型</th>
+							<th style="width:22%;text-align: center;">店铺地址</th>
+							<th style="width:20%;text-align: center;">店铺简介</th>
+							<th style="width:7%;text-align: center;">审核状态</th>
+							<th style="width:20%;text-align: center;">建议\操作</th>
 						</tr>
 						</thead>
-						<tbody class="tablebody" id = "showHistoryBookedBody">
-
+						<tbody class="tablebody" id = "historyApplyBody">
+						<!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
 						</tbody>
 					</table>
 				</div>
-			</div>
 
+			</div>
+			<!-- 查看历史审核记录模块结束 -->
 
 			<!-- 查看所有用户 -->
 			<div role="tabpanel" class="tab-pane" id="showStaffPane">
@@ -831,158 +914,6 @@
 		</div>
 	</div>
 
-	<!-- 定义模态框开始 -->
-	<!--会议室信息详情弹出窗口，点击会议室ID即可弹出(因为这个模态框被多个元素调用，因此放在根节点才能满足多个子节点去调用-->
-	<div class="modal fade " id="showRoomDetailPop" role="dialog" aria-labelledby="gridSystemModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="gridSystemModalLabel">会议室详情</h4>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form class="form-horizontal">
-							<div class="form-group ">
-								<label for="roomID" class="col-xs-3 control-label">会议室号：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="roomID" placeholder="">
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="capabilityShow" class="col-xs-3 control-label">容纳人数：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="capabilityShow" placeholder="">
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="deviceOwn" class="col-xs-3 control-label">配备设备：</label>
-								<div class="col-xs-6 ">
-									<!-- <input type="text" class="form-control input-sm duiqi" id="deviceOwn" placeholder=""> -->
-									<textarea class="form-control input-sm duiqi" id="deviceOwn" placeholder=""></textarea>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" >关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
-
-
-	<!--预约员工信息详情弹出窗口，点击员工即可弹出-->
-	<div class="modal fade" id="showStaffDetailPop" role="dialog" aria-labelledby="gridSystemModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="gridSystemModalLabel">员工详情</h4>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form class="form-horizontal">
-							<div class="form-group ">
-								<label for="staffID" class="col-xs-3 control-label">员工ID：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="staffID" placeholder="">
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="staffNameShow" class="col-xs-3 control-label">姓名：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="staffNameShow" placeholder="">
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="departmemtShow" class="col-xs-3 control-label">部门：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="departmemtShow" placeholder="">
-
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="positionShow" class="col-xs-3 control-label">职位：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="positionShow" placeholder="">
-
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="phoneShow" class="col-xs-3 control-label">手机：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="phoneShow" placeholder="">
-
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" >关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
-
-
-	<!--设备信息详情弹出窗口，点击设备名称即可弹出-->
-	<div class="modal fade" id="showDeviceDetailPop" role="dialog" aria-labelledby="gridSystemModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="gridSystemModalLabel">设备详情</h4>
-				</div>
-				<div class="modal-body">
-					<div class="container-fluid">
-						<form class="form-horizontal">
-							<div class="form-group ">
-								<label for="deviceID" class="col-xs-3 control-label">设备ID：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="deviceID" placeholder="">
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="deviceNameShow" class="col-xs-3 control-label">设备名：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="deviceNameShow" placeholder="">
-								</div>
-							</div>
-							<div class="form-group ">
-								<label for="deviceTypeShow" class="col-xs-3 control-label">设备型号：</label>
-								<div class="col-xs-6 ">
-									<input type="text" class="form-control input-sm duiqi" id="deviceTypeShow" placeholder="">
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-xs btn-green" data-dismiss="modal" >关闭</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
-
-
-
-	<!-- 定义模态框结束 -->
-
 
 </div>
 
@@ -992,13 +923,11 @@
 <script src="../../static/js/exitLogin.js"></script>
 <script src="../../static/js/manager.commom.js"></script>
 <script src="../../static/js/manager.showRoom.js"></script>
-<script src="../../static/js/manager.showNowBooked.js"></script>
-<script src="../../static/js/manager.showHistoryBooked.js"></script>
 <script src="../../static/js/manager.showUser.js"></script>
 <script src="../../static/js/manager.modifyPass.js"></script>
 <script src="../../static/js/manager.addDevice.js"></script>
 <script src="../../static/js/manager.modifyDevice.js"></script>
-<script src="../../static/js/manager.showDevice.js"></script>
+<script src="../../static/js/admin.apply.js"></script>
 
 </body>
 

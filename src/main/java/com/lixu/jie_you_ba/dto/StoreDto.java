@@ -19,4 +19,6 @@ public class StoreDto {
     private Long storeIdSearch;
 
     private String storeNameSearch;
+
+    private String storeTypeSearch;
 }

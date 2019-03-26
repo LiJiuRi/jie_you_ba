@@ -15,9 +15,13 @@ public interface StoreApplyMapper {
 
     StoreApply selectByPrimaryKey(Long id);
 
+    List<StoreApply> nowNotDeal();
+
     List<StoreApply> nowApply(Long personId);
 
     List<StoreApply> history(Long personId);
+
+    List<StoreApply> adminHistory(String personId);
 
     int updateByPrimaryKeySelective(StoreApply record);
 

@@ -58,10 +58,12 @@ $(document).ready(function(){
 	//点击左侧查看会议室按钮，即从后台得到所有会议室详情
 	$("#showRoomDiv").click(function(){
 		var storeIdSearch = $("#storeIdSearch").val();
+		var storeTypeSearch = $("#storeTypeSearch").val();
 		var storeNameSearch = $("#storeNameSearch").val();
 		//封装参数
 		var data = {
 			storeIdSearch:storeIdSearch,
+			storeTypeSearch:storeTypeSearch,
 			storeNameSearch:storeNameSearch
 		}
 		//AJAX
@@ -79,7 +81,7 @@ $(document).ready(function(){
 					addRoomRow = '<tr>'+
 						'<td style="color:#e66e79;">'+ result[store].id+ '</td>'+
 						'<td>'+ result[store].name +'</td>'+
-						'<td style="color:#e66e79;">'+ result[store].phone +'</td>'+
+						'<td style="color:#e66e79;">'+ result[store].type +'</td>'+
 						'<td>'+ result[store].address +'</td>'+
 						'<td>'+ result[store].description +'</td>'+
 						'<td>'+ result[store].sale_amount +'</td>'+

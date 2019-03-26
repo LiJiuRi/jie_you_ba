@@ -70,6 +70,49 @@ public class StoreApplyController extends BaseController{
         return true;
     }
 
+    /**
+     * 超级管理员点击通过或不通过按钮弹出
+     * @return
+     */
+    @ApiOperation(value="超级管理员点击通过或不通过按钮弹出", notes="超级管理员点击通过或不通过按钮弹出")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public boolean update(HttpServletRequest request,@CookieValue(value = "token", required = false) String token){
+
+        String personId = readCookie(token);
+        String applyId = request.getParameter("applyId");
+        String applyStatus = request.getParameter("applyStatus");
+        String resultOpinion = request.getParameter("resultOpinion");
+
+
+        StoreApply storeApply = new StoreApply();
+
+        if(null != applyId && applyId != ""){
+            storeApply.setId(Long.valueOf(applyId));
+        }
+        if(null != applyStatus && applyStatus != ""){
+            storeApply.setStatus(Integer.valueOf(applyStatus));
+        }
+        if(null != resultOpinion && resultOpinion != ""){
+            storeApply.setResultOpinion(resultOpinion);
+        }
+
+        storeApply.setUpdatePerson(personId);
+
+        storeApplyService.update(storeApply);
+
+        return true;
+    }
+
+    /**
+     * 超级管理员获取当前所有未审核记录
+     * @return
+     */
+    @ApiOperation(value="超级管理员获取当前所有未审核记录", notes="超级管理员获取当前所有未审核记录")
+    @RequestMapping(value = "/nowNotDeal", method = RequestMethod.POST)
+    public List<StoreApply> nowNotDeal(){
+        List<StoreApply> storeApplies = storeApplyService.nowNotDeal();
+        return storeApplies;
+    }
 
     /**
      * 普通用户获取其当前店铺申请记录
@@ -84,6 +127,18 @@ public class StoreApplyController extends BaseController{
     }
 
     /**
+     * 超级管理员获取其所有已审核记录
+     * @return
+     */
+    @ApiOperation(value="超级管理员获取其所有已审核记录", notes="超级管理员获取其所有已审核记录")
+    @RequestMapping(value = "/adminHistory", method = RequestMethod.POST)
+    public List<StoreApply> adminHistory(@CookieValue(value = "token", required = false) String token){
+        String personId = readCookie(token);
+        List<StoreApply> storeApplies = storeApplyService.adminHistory(personId);
+        return storeApplies;
+    }
+
+    /**
      * 普通用户获取其历史店铺申请记录
      * @return
      */
@@ -94,5 +149,7 @@ public class StoreApplyController extends BaseController{
         List<StoreApply> storeApplies = storeApplyService.history(Long.valueOf(personId));
         return storeApplies;
     }
+
+
 
 }

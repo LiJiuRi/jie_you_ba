@@ -28,6 +28,12 @@
     from store_apply
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="nowNotDeal" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from store_apply
+    where status = 0
+  </select>
   <select id="nowApply" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />
@@ -39,6 +45,12 @@
     <include refid="Base_Column_List" />
     from store_apply
     where apply_person_id = #{personId,jdbcType=BIGINT} and status != 0
+  </select>
+  <select id="adminHistory" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from store_apply
+    where update_person = #{personId,jdbcType=VARCHAR} and status != 0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from store_apply
