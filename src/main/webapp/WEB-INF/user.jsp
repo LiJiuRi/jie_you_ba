@@ -327,6 +327,7 @@
 								<div class="container-fluid">
 									<form class="form-horizontal">
 										<input type="hidden" class="form-control input-sm duiqi" id="confirmPassId" placeholder="此时还没隐藏">
+										<input type="hidden" class="form-control input-sm duiqi" id="confirmApplyPersonId" placeholder="此时还没隐藏">
 										<div class="form-group ">
 											<label id="deleteStoreTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">点击确认后将跳转到首页，确认？</label>
 										</div>

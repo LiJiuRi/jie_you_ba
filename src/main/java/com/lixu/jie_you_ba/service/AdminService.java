@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface AdminService {
     Admin insert(Admin admin);
+    Admin update(Admin admin);
     /**
      * 删除店铺时，将对应管理员的storeid置空
      */

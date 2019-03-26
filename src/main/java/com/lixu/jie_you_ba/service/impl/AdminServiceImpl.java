@@ -36,6 +36,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Admin update(Admin admin) {
+        admin.setUpdateTime(new Date());
+        adminMapper.updateByPrimaryKeySelective(admin);
+        return admin;
+    }
+
+    @Override
     public int setStoreIdNull(Long storeId, String updatePerson) {
         Date date = new Date();
         return adminMapper.setStoreIdNull(storeId,updatePerson,date);

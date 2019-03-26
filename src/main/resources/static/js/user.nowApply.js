@@ -2,8 +2,10 @@
 (function ($) {
 
     //此时接收过来的参数为string类型
-    $.confirmPass = function (storeId) {
+    $.confirmPass = function (storeId,applyPersonId) {
         $("#confirmPassId").val(storeId);
+        $("#confirmApplyPersonId").val(applyPersonId);
+        $("#confirmPass").modal("show");
     };
 })(jQuery);
 
@@ -55,7 +57,7 @@ $(document).ready(function(){
                             '<td style="text-align: center;">'+ result[store].address +'</td>'+
                             '<td style="text-align: center;">'+ result[store].description +'</td>'+
                             '<td style="text-align: center;">'+ "通过" +'</td>'+
-                            '<td style="text-align: center;">'+ '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmPass" onclick="$.confirmPass(\''+result[store].id+'\')">' +
+                            '<td style="text-align: center;">'+ '<button type="button" class="btn btn-success" onclick="$.confirmPass(\''+result[store].id+'\',\''+result[store].applyPersonId+'\')">' +
                             '                                        确认' +
                             '                                    </button>' +'</td>'+
                             '</tr>';
@@ -80,15 +82,18 @@ $(document).ready(function(){
     //通过店铺申请弹出框确认按钮点击事件
     $("#confirmPassApply").click(function(){
 
-        var DeletestoreId = $("#DeletestoreId").val();
+        var confirmPassId = $("#confirmPassId").val();
+        var confirmApplyPersonId = $("#confirmApplyPersonId").val();
         //封装参数
         var data = {
-            storeId:DeletestoreId
+            id:confirmPassId,
+            applyPersonId:confirmApplyPersonId
         }
         //AJAX
         $.ajax({
             type : "post",
-            url:"../../jsp/pass",
+            //更新该账号的店铺id
+            url:"../../amdin/update",
             data:data,
             success:function(result){
                 var url = "../jsp/index";

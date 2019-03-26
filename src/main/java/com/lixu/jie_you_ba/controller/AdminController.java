@@ -1,6 +1,7 @@
 package com.lixu.jie_you_ba.controller;
 
 import com.lixu.jie_you_ba.entity.Admin;
+import com.lixu.jie_you_ba.entity.StoreApply;
 import com.lixu.jie_you_ba.service.AdminService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Created by lixu
  */
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/amdin")
 public class AdminController extends BaseController{
 
     private static Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -41,6 +42,34 @@ public class AdminController extends BaseController{
         }
         adminService.insert(admin);
         return admin;
+    }
+
+
+    /**
+     * 普通账号更换为店铺管理员账号
+     * @return
+     */
+    @ApiOperation(value="普通账号更换为店铺管理员账号", notes="普通账号更换为店铺管理员账号")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public boolean update(HttpServletRequest request,@CookieValue(value = "token", required = false) String token){
+
+        String personId = readCookie(token);
+        String id = request.getParameter("id");
+        String applyPersonId = request.getParameter("applyPersonId");
+
+        //更改对应账号的状态
+        Admin admin = new Admin();
+        if(null != applyPersonId && applyPersonId != ""){
+            admin.setId(Long.valueOf(applyPersonId));
+        }
+        if(null != id && id != ""){
+            admin.setStoreId(Long.valueOf(id));
+        }
+        admin.setUpdatePerson(personId);
+
+        adminService.update(admin);
+
+        return true;
     }
 
     /**
