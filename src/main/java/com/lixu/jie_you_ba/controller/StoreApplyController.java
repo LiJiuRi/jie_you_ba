@@ -84,14 +84,15 @@ public class StoreApplyController extends BaseController{
     }
 
     /**
-     * 普通用户获取其当前店铺申请记录
+     * 普通用户获取其历史店铺申请记录
      * @return
      */
-    @ApiOperation(value="普通用户获取其当前店铺申请记录", notes="普通用户获取其当前店铺申请记录")
+    @ApiOperation(value="普通用户获取其历史店铺申请记录", notes="普通用户获取其历史店铺申请记录")
     @RequestMapping(value = "/history", method = RequestMethod.POST)
     public List<StoreApply> history(@CookieValue(value = "token", required = false) String token){
         String personId = readCookie(token);
         List<StoreApply> storeApplies = storeApplyService.history(Long.valueOf(personId));
         return storeApplies;
     }
+
 }

@@ -1,3 +1,12 @@
+//查看历史预约记录时，点击确认通过按钮事件
+(function ($) {
+
+    //此时接收过来的参数为string类型
+    $.deleteStore = function (storeId) {
+        $("#DeletestoreId").val(storeId);
+    };
+})(jQuery);
+
 $(document).ready(function(){
 
     //查询账号当前申请店铺记录
@@ -66,6 +75,27 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+
+    //通过店铺申请弹出框确认按钮点击事件
+    $("#confirmPassApply").click(function(){
+
+        var DeletestoreId = $("#DeletestoreId").val();
+        //封装参数
+        var data = {
+            storeId:DeletestoreId
+        }
+        //AJAX
+        $.ajax({
+            type : "post",
+            url:"../../jsp/pass",
+            data:data,
+            success:function(result){
+                var url = "../jsp/index";
+                window.location.href=url;
+            }
+        });
+
     });
 
 })

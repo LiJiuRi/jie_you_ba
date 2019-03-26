@@ -100,11 +100,12 @@
 
             <!-- 预约管理折叠 -->
             <div id="topBD" class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseBookedFunction" aria-expanded="true" aria-controls="collapseOne">
-                <span class="leftitem">申请审核</span><span id="topB" class="glyphicon glyphicon-triangle-right"></span>
+                <img class="leftitem" src="../../static/images/shenqing.png">
+                <span style="padding-left:10px;">我的申请</span>
+                <span id="topB" class="glyphicon glyphicon-triangle-right"></span>
             </div>
             <div id="collapseBookedFunction" class="collapse " aria-expanded="true">
-                <div class="meun-item leftitem" id = "nowBookedMenu" href="#showNowBookedPane" aria-controls="showNowBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看当前申请</div>
-                <div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">查看历史预约</div>
+                <div class="meun-item leftitem" id = "historyBookedMenu" href="#showHistoryBookedPane" aria-controls="showHistoryBookedPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">历史申请</div>
             </div>
 
 
@@ -143,6 +144,32 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
+            <!-- 查看历史申请记录模块 -->
+            <div role="tabpanel" class="tab-pane" id="showHistoryBookedPane">
+
+                <div class="data-div">
+                    <!--自己写table -->
+                    <table style="width: 1240px;" class="table table-striped table-hover">
+                        <caption><div align="center" class="text-success">历史申请列表</div></caption>
+                        <thead class="row tableHeader">
+                        <tr>
+                            <th style="width:12%;text-align: center;">申请记录id</th>
+                            <th style="width:12%;text-align: center;">店铺名称</th>
+                            <th style="width:7%;text-align: center;">店铺类型</th>
+                            <th style="width:22%;text-align: center;">店铺地址</th>
+                            <th style="width:20%;text-align: center;">店铺简介</th>
+                            <th style="width:7%;text-align: center;">审核状态</th>
+                            <th style="width:20%;text-align: center;">审核建议</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tablebody" id = "historyApplyBody">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- 查看历史申请记录模块结束 -->
 
         </div>
     </div>
@@ -151,6 +178,7 @@
 
 <script src="../../static/js/exitLogin.js"></script>
 <script src="../../static/js/manager.commom.js"></script>
+<script src="../../static/js/manager.showHistoryApplyed.js"></script>
 </body>
 
 </html>
