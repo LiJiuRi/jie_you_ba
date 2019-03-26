@@ -16,32 +16,110 @@
 
 				result = $.parseJSON(result);
 
-				if(result){
-					//alert("true");
-					//能登录，转到相应页面,调用自定义函数,后台判断cookie属于哪种身份，就转到那个页面
-					$.navigate();
+				if(!result){
+					$("#firstDoResultTip").text("该账号还未关联店铺");
 				}else{
-					//alert("error");
-					$("#loginTip").hide().html('<label class = "text-danger">提示：该id已被注册过</label>').show(230);
+					$("#firstDoResultTip").text("该账号已关联店铺，审核不通过");
 				}
+				$("#firstDo").modal("show");
 			}
 		})
 	};
 
 	//点击通过按钮
-	$.adminPass = function (storeId) {
-		$("#applyId").val(storeId);
-		$("#applyStatus").val("1");
+	$.adminPass = function (storeId,applyPersonId) {
+		var data={
+			applyPersonId:applyPersonId
+		}
+
+		$.ajax({
+			type : "post",
+			url:"../admin/check",
+			data:data,
+			success:function(result){
+
+				result = $.parseJSON(result);
+
+				if(!result){
+					$("#applyId").val(storeId);
+					$("#applyStatus").val("1");
+					$("#adminPass").modal("show");
+				}else{
+					$("#firstDoResultTip").text("该账号已关联店铺，审核不通过");
+					$("#firstDo").modal("show");
+				}
+
+			}
+		})
 	};
 
 	//点击不通过按钮
 	$.adminNotPass = function (storeId) {
 		$("#applyId").val(storeId);
 		$("#applyStatus").val("2");
+		$("#adminPass").modal("show");
 	};
 })(jQuery);
 
 $(document).ready(function(){
+
+
+	//超级管理员点击通过或不通过按钮弹出
+	$("#adminPassApply").click(function(){
+
+		var applyId = $("#applyId").val();
+		var applyStatus = $("#applyStatus").val();
+		var resultOpinion = $("#resultOpinion").val();
+
+		var data={
+			applyId:applyId,
+			applyStatus:applyStatus,
+			resultOpinion:resultOpinion
+		}
+
+		$.ajax({
+			type : "post",
+			url:"../storeApply/update",
+			data:data,
+			success:function(result){
+				//AJAX
+				$.ajax({
+					type : "post",
+					url:"../storeApply/nowNotDeal",
+					success:function(result){
+						//先删除表格原数据
+						var addRoomRow;
+						$("#nowApplyBody").find("tr").remove();
+						for(var store in result){
+							addRoomRow = '<tr>'+
+								'<td style="color:#e66e79;text-align: center;">'+ result[store].applyPersonName+ '</td>'+
+								'<td style="text-align: center;">'+ result[store].name +'</td>'+
+								'<td style="text-align: center;">'+ result[store].type +'</td>'+
+								'<td style="text-align: center;">'+ result[store].address +'</td>'+
+								'<td style="text-align: center;">'+ result[store].description +'</td>'+
+								'<td style="text-align: center;">'+ result[store].reason +'</td>'+
+								'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#firstDo" onclick="$.firstDo(\''+result[store].applyPersonId+'\')">' +
+								'                                        先阅' +
+								'                                    </button>' +'</td>'+
+								'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" onclick="$.adminPass(\''+result[store].id+'\',\''+result[store].applyPersonId+'\')">' +
+								'                                        通过' +
+								'                                    </button>' +'</td>'+
+								'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" onclick="$.adminNotPass(\''+result[store].id+'\')">' +
+								'                                        不通过' +
+								'                                    </button>' +'</td>'+
+								'</tr>';
+							$("#nowApplyBody").append(addRoomRow);
+						}
+					}
+				});
+			}
+		});
+
+		$("#applyId").val('');
+		$("#applyStatus").val('');
+		$("#resultOpinion").val('');
+
+	});
 
 	//超级管理员查询当前申请未审核记录
 	$("#nowBookedMenu").click(function(){
@@ -65,10 +143,10 @@ $(document).ready(function(){
 						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#firstDo" onclick="$.firstDo(\''+result[store].applyPersonId+'\')">' +
 						'                                        先阅' +
 						'                                    </button>' +'</td>'+
-						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#adminPass" onclick="$.adminPass(\''+result[store].id+'\')">' +
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-success" onclick="$.adminPass(\''+result[store].id+'\',\''+result[store].applyPersonId+'\')">' +
 						'                                        通过' +
 						'                                    </button>' +'</td>'+
-						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#adminPass" onclick="$.adminNotPass(\''+result[store].id+'\')">' +
+						'<td style="color:#e66e79;">'+ '<button type="button" class="btn btn-warning" onclick="$.adminNotPass(\''+result[store].id+'\')">' +
 						'                                        不通过' +
 						'                                    </button>' +'</td>'+
 						'</tr>';
@@ -76,30 +154,6 @@ $(document).ready(function(){
 				}
 			}
 		});
-	});
-
-	//超级管理员点击通过或不通过按钮弹出
-	$("#adminPassApply").click(function(){
-
-		var applyId = $("#applyId").val();
-		var applyStatus = $("#applyStatus").val();
-		var resultOpinion = $("#resultOpinion").val();
-
-		var data={
-			applyId:applyId,
-			applyStatus:applyStatus,
-			resultOpinion:resultOpinion
-		}
-
-		$.ajax({
-			type : "post",
-			url:"../storeApply/update",
-			data:data,
-			success:function(result){
-
-			}
-		})
-
 	});
 
 	//查询超级管理员已审核的记录

@@ -43,5 +43,18 @@ public class AdminController extends BaseController{
         return admin;
     }
 
-
+    /**
+     * 超级管理员审核店铺申请时，检查该账号是否已被注册过商家
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean check(HttpServletRequest request) {
+        String applyPersonId = request.getParameter("applyPersonId");
+        // 确定是否可以审核通过
+        boolean isRegister = adminService.check(Long.valueOf(applyPersonId));
+        return isRegister ;
+    }
 }

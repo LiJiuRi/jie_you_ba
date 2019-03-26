@@ -2,8 +2,8 @@
 (function ($) {
 
     //此时接收过来的参数为string类型
-    $.deleteStore = function (storeId) {
-        $("#DeletestoreId").val(storeId);
+    $.confirmPass = function (storeId) {
+        $("#confirmPassId").val(storeId);
     };
 })(jQuery);
 
@@ -35,7 +35,7 @@ $(document).ready(function(){
         });
     });
 
-    //查询账号当前申请店铺记录
+    //查询账号历史申请店铺记录
     $("#historyBookedMenu").click(function(){
 
         //AJAX
@@ -55,7 +55,7 @@ $(document).ready(function(){
                             '<td style="text-align: center;">'+ result[store].address +'</td>'+
                             '<td style="text-align: center;">'+ result[store].description +'</td>'+
                             '<td style="text-align: center;">'+ "通过" +'</td>'+
-                            '<td style="text-align: center;">'+ '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#deleteStore" onclick="$.deleteStore(\''+result[store].id+'\')">' +
+                            '<td style="text-align: center;">'+ '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmPass" onclick="$.confirmPass(\''+result[store].id+'\')">' +
                             '                                        确认' +
                             '                                    </button>' +'</td>'+
                             '</tr>';

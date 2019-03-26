@@ -316,7 +316,7 @@
 				</div>
 
 				<!--点击确认店铺申请通过弹出提示窗口-->
-				<div class="modal fade" id="deleteStore" role="dialog" aria-labelledby="gridSystemModalLabel">
+				<div class="modal fade" id="confirmPass" role="dialog" aria-labelledby="gridSystemModalLabel">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -326,7 +326,7 @@
 							<div class="modal-body">
 								<div class="container-fluid">
 									<form class="form-horizontal">
-										<input type="hidden" class="form-control input-sm duiqi" id="DeletestoreId" placeholder="此时还没隐藏">
+										<input type="hidden" class="form-control input-sm duiqi" id="confirmPassId" placeholder="此时还没隐藏">
 										<div class="form-group ">
 											<label id="deleteStoreTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">点击确认后将跳转到首页，确认？</label>
 										</div>

@@ -518,7 +518,7 @@
 										<input type="hidden" class="form-control input-sm duiqi" id="applyStatus" placeholder="此时还没隐藏">
 										<label for="resultOpinion" class="col-xs-4 control-label">审批意见：</label>
 										<div class="col-xs-6 ">
-											<textarea rows="3" cols="20" type="text" class="form-control input-sm duiqi" id="resultOpinion" placeholder="请输入审批意见">
+											<textarea rows="3" cols="20" type="text" class="form-control input-sm duiqi" id="resultOpinion" value="请输入审批意见">
 
 											</textarea>
 										</div>
@@ -548,7 +548,7 @@
 								<div class="container-fluid">
 									<form class="form-horizontal">
 										<div class="form-group ">
-											<label id="firstDoResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+											<label id="firstDoResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: green;" class="col-xs-10 control-label"></label>
 										</div>
 									</form>
 								</div>
@@ -581,7 +581,7 @@
 							<th style="width:22%;text-align: center;">店铺地址</th>
 							<th style="width:20%;text-align: center;">店铺简介</th>
 							<th style="width:7%;text-align: center;">审核状态</th>
-							<th style="width:20%;text-align: center;">建议\操作</th>
+							<th style="width:20%;text-align: center;">审核意见</th>
 						</tr>
 						</thead>
 						<tbody class="tablebody" id = "historyApplyBody">

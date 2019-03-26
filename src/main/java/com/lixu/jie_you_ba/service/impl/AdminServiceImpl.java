@@ -45,4 +45,13 @@ public class AdminServiceImpl implements AdminService {
     public List<Admin> list() {
         return adminMapper.list();
     }
+
+    @Override
+    public boolean check(Long adminId){
+        Admin admin = adminMapper.selectByPrimaryKey(adminId);
+        if(null == admin.getStoreId()){
+            return false;
+        }
+        return true;
+    }
 }

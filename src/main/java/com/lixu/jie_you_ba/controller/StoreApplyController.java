@@ -83,9 +83,8 @@ public class StoreApplyController extends BaseController{
         String applyStatus = request.getParameter("applyStatus");
         String resultOpinion = request.getParameter("resultOpinion");
 
-
+        //更改店铺申请表对应记录
         StoreApply storeApply = new StoreApply();
-
         if(null != applyId && applyId != ""){
             storeApply.setId(Long.valueOf(applyId));
         }
@@ -95,9 +94,7 @@ public class StoreApplyController extends BaseController{
         if(null != resultOpinion && resultOpinion != ""){
             storeApply.setResultOpinion(resultOpinion);
         }
-
         storeApply.setUpdatePerson(personId);
-
         storeApplyService.update(storeApply);
 
         return true;

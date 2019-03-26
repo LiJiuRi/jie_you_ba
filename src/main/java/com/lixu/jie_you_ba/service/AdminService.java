@@ -22,4 +22,6 @@ public interface AdminService {
      * @return
      */
     List<Admin> list();
+
+    boolean check(Long adminId);
 }
