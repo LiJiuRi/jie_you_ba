@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface StoreService {
     Store insert(Store store);
+    Store add(Store store);
     List<Store> list(Long storeId,String storeName,String storeTypeSearch);
     Store get(Long storeId);
     int delete(Long storeId);

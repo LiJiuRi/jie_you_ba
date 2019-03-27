@@ -93,7 +93,7 @@ $(document).ready(function(){
         $.ajax({
             type : "post",
             //更新该账号的店铺id
-            url:"../../amdin/update",
+            url:"../../admin/update",
             data:data,
             success:function(result){
                 var url = "../jsp/index";

@@ -40,7 +40,7 @@ public class StoreController extends BaseController{
     private AccountService accountService;
 
     /**
-     * 新建一个店铺
+     * 超级管理员新建一个店铺
      * @param store
      * @return
      */

@@ -34,6 +34,13 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    public Store add(Store store) {
+        store.setCreateTime(new Date());
+        storeMapper.insertSelective(store);
+        return store;
+    }
+
+    @Override
     public List<Store> list(Long storeId, String storeName, String storeTypeSearch) {
         List<Store> storeList = storeMapper.list(storeId,storeName,storeTypeSearch);
         return storeList;

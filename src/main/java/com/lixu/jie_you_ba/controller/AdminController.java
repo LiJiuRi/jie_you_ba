@@ -1,8 +1,11 @@
 package com.lixu.jie_you_ba.controller;
 
+import com.lixu.jie_you_ba.dao.StoreApplyMapper;
 import com.lixu.jie_you_ba.entity.Admin;
+import com.lixu.jie_you_ba.entity.Store;
 import com.lixu.jie_you_ba.entity.StoreApply;
 import com.lixu.jie_you_ba.service.AdminService;
+import com.lixu.jie_you_ba.service.StoreService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +21,19 @@ import javax.servlet.http.HttpServletRequest;
  * @Created by lixu
  */
 @RestController
-@RequestMapping("/amdin")
+@RequestMapping("/admin")
 public class AdminController extends BaseController{
 
     private static Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private StoreService storeService;
+
+    @Autowired
+    private StoreApplyMapper storeApplyMapper;
 
     /**
      * 此时为超级管理员新建店铺的时候增加的一个管理员账号，与自己注册方式增加的管理员账号不一样
@@ -68,6 +77,19 @@ public class AdminController extends BaseController{
         admin.setUpdatePerson(personId);
 
         adminService.update(admin);
+
+        //将该申请记录对应的店铺插入店铺表中
+        StoreApply storeApply = storeApplyMapper.selectByPrimaryKey(Long.valueOf(id));
+        Store store = new Store();
+        store.setId(storeApply.getId());
+        store.setName(storeApply.getName());
+        store.setType(storeApply.getType());
+        store.setPhone(storeApply.getPhone());
+        store.setAddress(storeApply.getAddress());
+        store.setDescription(storeApply.getDescription());
+        store.setCreatePerson(personId);
+
+        storeService.add(store);
 
         return true;
     }
