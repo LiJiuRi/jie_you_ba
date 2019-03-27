@@ -19,6 +19,8 @@ public interface AdminMapper {
 
     List<Admin> list();
 
+    List<Admin> listByIdOrName(@Param("id") Long adminId,@Param("name") String adminName);
+
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);

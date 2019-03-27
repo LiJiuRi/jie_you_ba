@@ -13,6 +13,7 @@ import java.util.List;
 public interface AdminService {
     Admin insert(Admin admin);
     Admin update(Admin admin);
+    Admin select(Long adminId);
     /**
      * 删除店铺时，将对应管理员的storeid置空
      */
@@ -23,6 +24,12 @@ public interface AdminService {
      * @return
      */
     List<Admin> list();
+
+    /**
+     * 根据账号id或姓名参数获取所有未关联店铺的账号
+     * @return
+     */
+    List<Admin> listByIdOrName(Long adminId,String adminName);
 
     boolean check(Long adminId);
 }

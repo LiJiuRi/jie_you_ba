@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Classname AdminController
@@ -35,7 +36,6 @@ public class AdminController extends BaseController{
     @Autowired
     private StoreApplyMapper storeApplyMapper;
 
-
     /**
      * 此时为超级管理员新建店铺的时候增加的一个管理员账号，与自己注册方式增加的管理员账号不一样
      * @param admin
@@ -54,6 +54,18 @@ public class AdminController extends BaseController{
         return admin;
     }
 
+    /**
+     * 根据账号id或姓名参数获取所有未关联店铺的账号
+     * @return
+     */
+    @ApiOperation(value="根据账号id或姓名参数获取所有未关联店铺的账号", notes="根据账号id或姓名参数获取所有未关联店铺的账号")
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public List<Admin> list(HttpServletRequest request, @CookieValue(value = "token", required = false) String token){
+        String userIdSearch = request.getParameter("userIdSearch");
+        String userNameSearch = request.getParameter("userNameSearch");
+        List<Admin> adminList = adminService.listByIdOrName(Long.valueOf(userIdSearch),userNameSearch);
+        return adminList;
+    }
 
     /**
      * 普通账号更换为店铺管理员账号

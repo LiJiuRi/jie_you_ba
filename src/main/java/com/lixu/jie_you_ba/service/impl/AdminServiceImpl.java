@@ -26,6 +26,11 @@ public class AdminServiceImpl implements AdminService {
     private UidService uidService;
 
     @Override
+    public Admin select(Long adminId){
+        return adminMapper.selectByPrimaryKey(adminId);
+    }
+
+    @Override
     public Admin insert(Admin admin) {
         if (null == admin.getId()){
             admin.setId(uidService.genId());
@@ -51,6 +56,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Admin> list() {
         return adminMapper.list();
+    }
+
+    @Override
+    public List<Admin> listByIdOrName(Long adminId,String adminName) {
+        return adminMapper.listByIdOrName(adminId,adminName);
     }
 
     @Override

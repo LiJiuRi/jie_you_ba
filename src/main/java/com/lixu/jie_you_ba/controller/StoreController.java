@@ -58,11 +58,11 @@ public class StoreController extends BaseController{
     }
 
     /**
-     * 根据店铺id或店铺名一个店铺
+     * 超级管理员根据店铺id或店铺名一个店铺
      * @param
      * @return
      */
-    @ApiOperation(value="根据店铺id或店铺名一个店铺", notes="根据店铺id或店铺名一个店铺")
+    @ApiOperation(value="超级管理员根据店铺id或店铺名一个店铺", notes="超级管理员根据店铺id或店铺名一个店铺")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public List<Store> list(StoreDto storeDto){
         Long storeIdSearch = storeDto.getStoreIdSearch();
@@ -82,6 +82,19 @@ public class StoreController extends BaseController{
     public Store get(HttpServletRequest request){
         String storeId = request.getParameter("storeId");
         Store store = storeService.get(Long.valueOf(storeId));
+        return store;
+    }
+
+    /**根据管理员id过去一个店铺
+     * @param
+     * @return
+     */
+    @ApiOperation(value="根据管理员id过去一个店铺", notes="根据管理员id过去一个店铺")
+    @RequestMapping(value = "/getStoreByAdminId", method = RequestMethod.POST)
+    public Store getStoreByAdminId(@CookieValue(value = "token", required = false) String token){
+        String adminId = readCookie(token);
+        Admin admin = adminService.select(Long.valueOf(adminId));
+        Store store = storeService.get(admin.getStoreId());
         return store;
     }
 
@@ -177,7 +190,19 @@ public class StoreController extends BaseController{
         String storePhone = request.getParameter("storePhone");
         String storeAddress = request.getParameter("storeAddress");
         String storeDescription = request.getParameter("storeDescription");
+        String storeBusStop = request.getParameter("storeBusStop");
+        String storeBusStopDistance = request.getParameter("storeBusStopDistance");
+        String storeSubwayStation = request.getParameter("storeSubwayStation");
+        String storeSubwayStationDistance = request.getParameter("storeSubwayStationDistance");
+        String storeDeliveryTime = request.getParameter("storeDeliveryTime");
+        String storeDeliveryType = request.getParameter("storeDeliveryType");
+        String storeDeliveryInitPrice = request.getParameter("storeDeliveryInitPrice");
+        String storeDeliveryCost = request.getParameter("storeDeliveryCost");
+        String storeWifiName = request.getParameter("storeWifiName");
+        String storeWifiPassword = request.getParameter("storeWifiPassword");
+        String storeOpenTime = request.getParameter("storeOpenTime");
         String storeId = request.getParameter("storeId");
+
 
         //新建店铺
         Store store = new Store();
@@ -192,6 +217,30 @@ public class StoreController extends BaseController{
             store.setAddress(storeAddress);
         if(null != storeDescription && storeDescription != "")
             store.setDescription(storeDescription);
+        if(null != storeBusStop && storeBusStop != "")
+            store.setBusStop(storeBusStop);
+        if(null != storeBusStopDistance && storeBusStopDistance != "")
+            store.setBusStopDistance(storeBusStopDistance);
+        if(null != storeSubwayStation && storeSubwayStation != "")
+            store.setSubwayStation(storeSubwayStation);
+        if(null != storeSubwayStationDistance && storeSubwayStationDistance != "")
+            store.setSubwayStationDistance(storeSubwayStationDistance);
+        if(null != storeDeliveryTime && storeDeliveryTime != "")
+            store.setDeliveryTime(storeDeliveryTime);
+        if(null != storeDeliveryType && storeDeliveryType != "")
+            store.setDeliveryType(storeDeliveryType);
+        if(null != storeDeliveryInitPrice && storeDeliveryInitPrice != "")
+            store.setDeliveryInitPrice(storeDeliveryInitPrice);
+        if(null != storeDeliveryCost && storeDeliveryCost != "")
+            store.setDeliveryCost(storeDeliveryCost);
+        if(null != storeWifiName && storeWifiName != "")
+            store.setWifiName(storeWifiName);
+        if(null != storeWifiPassword && storeWifiPassword != "")
+            store.setWifiPassword(storeWifiPassword);
+        if(null != storeOpenTime && storeOpenTime != "")
+            store.setOpenTime(storeOpenTime);
+
+
         String personId = readCookie(token);
         if(null != personId) {
             store.setUpdatePerson(personId);

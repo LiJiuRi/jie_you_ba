@@ -24,6 +24,20 @@
     from admin
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="listByIdOrName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    <where>
+      <if test="id != null and id != ''">
+        id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="name != null and name !=''">
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      and store_id = '' and type = 0
+    </where>
+  </select>
   <select id="list" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
