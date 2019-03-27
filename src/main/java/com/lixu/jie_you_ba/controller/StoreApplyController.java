@@ -1,7 +1,12 @@
 package com.lixu.jie_you_ba.controller;
 
+import com.lixu.jie_you_ba.dao.StoreApplyMapper;
+import com.lixu.jie_you_ba.entity.Admin;
+import com.lixu.jie_you_ba.entity.Store;
 import com.lixu.jie_you_ba.entity.StoreApply;
+import com.lixu.jie_you_ba.service.AdminService;
 import com.lixu.jie_you_ba.service.StoreApplyService;
+import com.lixu.jie_you_ba.service.StoreService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +30,44 @@ public class StoreApplyController extends BaseController{
 
     @Autowired
     private StoreApplyService storeApplyService;
+
+    @Autowired
+    private StoreService storeService;
+
+    @Autowired
+    private AdminService adminService;
+
+    /**
+     *将该店铺管理员对应的店铺连同这两个参数，组合成一条申请记录插入store_apply表中
+     * @param request
+     * @param token
+     * @return
+     */
+    @ApiOperation(value="", notes="")
+    @RequestMapping(value = "/invite", method = RequestMethod.POST)
+    public boolean invite(HttpServletRequest request,@CookieValue(value = "token", required = false) String token){
+        String applyPersonId = request.getParameter("userId");
+        String applyPersonName = request.getParameter("userName");
+        String adminId = readCookie(token);
+        Admin admin = adminService.select(Long.valueOf(adminId));
+        Store store = storeService.get(admin.getStoreId());
+        StoreApply storeApply = new StoreApply();
+        storeApply.setId(store.getId());
+        storeApply.setApplyPersonId(Long.valueOf(applyPersonId));
+        storeApply.setApplyPersonName(applyPersonName);
+        storeApply.setName(store.getName());
+        storeApply.setType(store.getType());
+        storeApply.setPhone(store.getPhone());
+        storeApply.setAddress(store.getAddress());
+        storeApply.setDescription(store.getDescription());
+        storeApply.setResultOpinion("邀请你成为店铺管理员");
+        storeApply.setStatus(2);
+        storeApply.setCreatePerson(adminId);
+        storeApply.setCreateTime(new Date());
+
+        storeApplyService.invite(storeApply);
+        return true;
+    }
 
     /**
      * 普通用户申请开通一个店铺

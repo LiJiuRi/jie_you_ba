@@ -31,6 +31,12 @@ public class StoreApplyServiceImpl implements StoreApplyService {
     private AdminMapper adminMapper;
 
     @Override
+    public StoreApply invite(StoreApply storeApply) {
+        storeApplyMapper.insertSelective(storeApply);
+        return storeApply;
+    }
+
+    @Override
     public StoreApply insert(StoreApply storeApply) {
         storeApply.setId(uidService.genId());
         storeApply.setStatus(0);

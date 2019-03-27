@@ -1,6 +1,7 @@
 package com.lixu.jie_you_ba.controller;
 
 import com.lixu.jie_you_ba.dao.StoreApplyMapper;
+import com.lixu.jie_you_ba.dto.AdminDto;
 import com.lixu.jie_you_ba.entity.Admin;
 import com.lixu.jie_you_ba.entity.Store;
 import com.lixu.jie_you_ba.entity.StoreApply;
@@ -60,10 +61,10 @@ public class AdminController extends BaseController{
      */
     @ApiOperation(value="根据账号id或姓名参数获取所有未关联店铺的账号", notes="根据账号id或姓名参数获取所有未关联店铺的账号")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public List<Admin> list(HttpServletRequest request, @CookieValue(value = "token", required = false) String token){
-        String userIdSearch = request.getParameter("userIdSearch");
-        String userNameSearch = request.getParameter("userNameSearch");
-        List<Admin> adminList = adminService.listByIdOrName(Long.valueOf(userIdSearch),userNameSearch);
+    public List<Admin> list(AdminDto adminDto){
+        Long userIdSearch = adminDto.getUserIdSearch();
+        String userNameSearch = adminDto.getUserNameSearch();
+        List<Admin> adminList = adminService.listByIdOrName(userIdSearch,userNameSearch);
         return adminList;
     }
 

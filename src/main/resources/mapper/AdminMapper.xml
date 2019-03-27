@@ -32,10 +32,10 @@
       <if test="id != null and id != ''">
         id = #{id,jdbcType=BIGINT}
       </if>
-      <if test="name != null and name !=''">
-        and name = #{name,jdbcType=VARCHAR}
+      <if test="name != null and name != ''">
+        and name LIKE CONCAT(CONCAT('%',#{name},'%'))
       </if>
-      and store_id = '' and type = 0
+      and type = 0 and store_id is null
     </where>
   </select>
   <select id="list" resultMap="BaseResultMap">

@@ -11,6 +11,7 @@ import java.util.List;
  * @Created by lixu
  */
 public interface StoreApplyService {
+    StoreApply invite(StoreApply storeApply);
     StoreApply insert(StoreApply storeApply);
     StoreApply update(StoreApply storeApply);
     List<StoreApply> nowNotDeal();

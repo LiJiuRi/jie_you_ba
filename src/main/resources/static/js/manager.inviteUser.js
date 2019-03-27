@@ -2,9 +2,9 @@
 (function ($) {
 
     //此时接收过来的参数为string类型
-    $.invite = function (userId) {
+    $.invite = function (userId,userName) {
         $("#userId").val(userId);
-
+        $("#ApplyUserName").val(userName);
     };
 })(jQuery);
 
@@ -24,7 +24,7 @@ var ready = $(document).ready(function(){
         $.ajax({
             type : "post",
             //根据参数获取所有未关联店铺的账号
-            url:"../store/list",
+            url:"../admin/list",
             //contentType:"application/json",
             //data:JSON.stringify(data),
             data:data,
@@ -40,7 +40,7 @@ var ready = $(document).ready(function(){
                             '<td style="color:#e66e79;text-align: center;">'+ result[user].phone +'</td>'+
                             '<td style="text-align: center;">'+ result[user].e_mail +'</td>'+
                             '<td style="text-align: center;">'+ "男" +'</td>'+
-                            '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#inviteUserIn"  onclick="$.invite(\''+result[user].id+'\')">' +
+                            '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#inviteUserIn"  onclick="$.invite(\''+result[user].id+'\',\''+result[user].name+'\')">' +
                             '                                        邀请' +
                             '                                    </button>' +'</td>'+
                             '</tr>';
@@ -51,7 +51,7 @@ var ready = $(document).ready(function(){
                             '<td style="color:#e66e79;text-align: center;">'+ result[user].phone +'</td>'+
                             '<td style="text-align: center;">'+ result[user].e_mail +'</td>'+
                             '<td style="text-align: center;">'+ "女" +'</td>'+
-                            '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#inviteUserIn"   onclick="$.invite(\''+result[user].id+'\')">' +
+                            '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#inviteUserIn"  onclick="$.invite(\''+result[user].id+'\',\''+result[user].name+'\')">' +
                             '                                        邀请' +
                             '                                    </button>' +'</td>'+
                             '</tr>';
@@ -67,24 +67,26 @@ var ready = $(document).ready(function(){
     $("#confirmInviteUser").click(function(){
 
         var userId = $("#userId").val();
+        var userName = $("#ApplyUserName").val();
         //封装参数
         var data = {
-            userId:userId
+            userId:userId,
+            userName:userName
         }
         //AJAX
         $.ajax({
             type : "post",
-            url:"../store/delete",
-            //contentType:"application/json",
-            //data:JSON.stringify(data),
+            url:"../storeApply/invite",
+            //将该店铺管理员对应的店铺连同这两个参数，组合成一条申请记录插入store_apply表中
             data:data,
             success:function(result){
+                alert(result);
                 if(result){
-                    $("#deleteStoreResultTip").text('已成功删除该店铺');
+                    $("#inviteResult").text('已成功发送邀请');
                 }else {
-                    $("#deleteStoreResultTip").text('删除该店铺失败');
+                    $("#inviteResult").text('发送邀请失败');
                 }
-                $("#deleteStoreResult").modal("show");
+                $("#inviteResultTip").modal("show");
             }
         });
 
