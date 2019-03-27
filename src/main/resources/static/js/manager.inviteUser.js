@@ -80,16 +80,14 @@ var ready = $(document).ready(function(){
             //将该店铺管理员对应的店铺连同这两个参数，组合成一条申请记录插入store_apply表中
             data:data,
             success:function(result){
-                alert(result);
                 if(result){
                     $("#inviteResult").text('已成功发送邀请');
                 }else {
                     $("#inviteResult").text('发送邀请失败');
                 }
-                $("#inviteResultTip").modal("show");
             }
         });
-
+        $("#inviteResultTip").modal("show");
     });
 
 });

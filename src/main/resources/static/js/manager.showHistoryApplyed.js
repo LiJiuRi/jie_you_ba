@@ -17,6 +17,18 @@ $(document).ready(function(){
 				var addRoomRow;
 				$("#historyApplyBody").find("tr").remove();
 				for(var store in result){
+					if(result[store].status == "1"){
+						addRoomRow = '<tr>'+
+							'<td style="color:#e66e79;text-align: center;">'+ result[store].id+ '</td>'+
+							'<td style="text-align: center;">'+ result[store].name +'</td>'+
+							'<td style="text-align: center;">'+ result[store].type +'</td>'+
+							'<td style="text-align: center;">'+ result[store].address +'</td>'+
+							'<td style="text-align: center;">'+ result[store].description +'</td>'+
+							'<td style="color:#e66e79;text-align: center;">'+ "通过" +'</td>'+
+							'<td style="text-align: center;">'+ result[store].resultOpinion +'</td>'+
+							'</tr>';
+						$("#historyApplyBody").append(addRoomRow);
+					}
 					if(result[store].status == "2"){
 						addRoomRow = '<tr>'+
 							'<td style="color:#e66e79;text-align: center;">'+ result[store].id+ '</td>'+
@@ -24,11 +36,23 @@ $(document).ready(function(){
 							'<td style="text-align: center;">'+ result[store].type +'</td>'+
 							'<td style="text-align: center;">'+ result[store].address +'</td>'+
 							'<td style="text-align: center;">'+ result[store].description +'</td>'+
-							'<td style="text-align: center;">'+ "不通过" +'</td>'+
+							'<td style="color:#e66e79;text-align: center;">'+ "不通过" +'</td>'+
 							'<td style="text-align: center;">'+ result[store].resultOpinion +'</td>'+
 							'</tr>';
+						$("#historyApplyBody").append(addRoomRow);
 					}
-					$("#historyApplyBody").append(addRoomRow);
+					if(result[store].status == "3"){
+						addRoomRow = '<tr>'+
+							'<td style="color:#e66e79;text-align: center;">'+ result[store].id+ '</td>'+
+							'<td style="text-align: center;">'+ result[store].name +'</td>'+
+							'<td style="text-align: center;">'+ result[store].type +'</td>'+
+							'<td style="text-align: center;">'+ result[store].address +'</td>'+
+							'<td style="text-align: center;">'+ result[store].description +'</td>'+
+							'<td style="color:green;text-align: center;">'+ "邀请" +'</td>'+
+							'<td style="text-align: center;">'+ result[store].resultOpinion +'</td>'+
+							'</tr>';
+						$("#historyApplyBody").append(addRoomRow);
+					}
 				}
 				$.ajax({
 					type : "post",
@@ -42,7 +66,7 @@ $(document).ready(function(){
 								'<td style="text-align: center;">'+ result[store].type +'</td>'+
 								'<td style="text-align: center;">'+ result[store].address +'</td>'+
 								'<td style="text-align: center;">'+ result[store].description +'</td>'+
-								'<td style="text-align: center;">'+ "未审核" +'</td>'+
+								'<td style="color:black;text-align: center;">'+ "未审核" +'</td>'+
 								'<td style="text-align: center;">'+ " " +'</td>'+
 								'</tr>';
 							$("#historyApplyBody").append(addRoomRow);

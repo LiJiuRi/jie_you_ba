@@ -61,11 +61,12 @@ public class StoreApplyController extends BaseController{
         storeApply.setAddress(store.getAddress());
         storeApply.setDescription(store.getDescription());
         storeApply.setResultOpinion("邀请你成为店铺管理员");
-        storeApply.setStatus(2);
+        storeApply.setStatus(3);
         storeApply.setCreatePerson(adminId);
         storeApply.setCreateTime(new Date());
 
         storeApplyService.invite(storeApply);
+
         return true;
     }
 

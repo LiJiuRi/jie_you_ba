@@ -82,9 +82,7 @@ public class AdminController extends BaseController{
 
         //更改对应账号的状态
         Admin admin = new Admin();
-        if(null != applyPersonId && applyPersonId != ""){
-            admin.setId(Long.valueOf(applyPersonId));
-        }
+        admin.setId(Long.valueOf(personId));
         if(null != id && id != ""){
             admin.setStoreId(Long.valueOf(id));
         }
@@ -92,18 +90,20 @@ public class AdminController extends BaseController{
 
         adminService.update(admin);
 
-        //将该申请记录对应的店铺插入店铺表中
-        StoreApply storeApply = storeApplyMapper.selectByPrimaryKey(Long.valueOf(id));
-        Store store = new Store();
-        store.setId(storeApply.getId());
-        store.setName(storeApply.getName());
-        store.setType(storeApply.getType());
-        store.setPhone(storeApply.getPhone());
-        store.setAddress(storeApply.getAddress());
-        store.setDescription(storeApply.getDescription());
-        store.setCreatePerson(personId);
+        //将该申请记录对应的店铺插入店铺表中，如果没有applyPersonId传过来，则代表是普通管理员通过店铺管理员邀请其成为店铺管理员的，此时不用插入店铺表中
+        if(null != applyPersonId && applyPersonId != ""){
+            StoreApply storeApply = storeApplyMapper.selectByPrimaryKey(Long.valueOf(id));
+            Store store = new Store();
+            store.setId(storeApply.getId());
+            store.setName(storeApply.getName());
+            store.setType(storeApply.getType());
+            store.setPhone(storeApply.getPhone());
+            store.setAddress(storeApply.getAddress());
+            store.setDescription(storeApply.getDescription());
+            store.setCreatePerson(personId);
 
-        storeService.add(store);
+            storeService.add(store);
+        }
 
         return true;
     }

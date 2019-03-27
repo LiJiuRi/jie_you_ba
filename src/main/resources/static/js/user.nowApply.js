@@ -61,7 +61,8 @@ $(document).ready(function(){
                             '                                        确认' +
                             '                                    </button>' +'</td>'+
                             '</tr>';
-                    }else {
+                    }
+                    if(result[store].status == "2"){
                         addRoomRow = '<tr>'+
                             '<td style="color:#e66e79;text-align: center;">'+ result[store].id+ '</td>'+
                             '<td style="text-align: center;">'+ result[store].name +'</td>'+
@@ -70,6 +71,19 @@ $(document).ready(function(){
                             '<td style="text-align: center;">'+ result[store].description +'</td>'+
                             '<td style="text-align: center;">'+ "不通过" +'</td>'+
                             '<td style="text-align: center;">'+ result[store].resultOpinion +'</td>'+
+                            '</tr>';
+                    }
+                    if(result[store].status == "3"){
+                        addRoomRow = '<tr>'+
+                            '<td style="color:#e66e79;text-align: center;">'+ result[store].id+ '</td>'+
+                            '<td style="text-align: center;">'+ result[store].name +'</td>'+
+                            '<td style="text-align: center;">'+ result[store].type +'</td>'+
+                            '<td style="text-align: center;">'+ result[store].address +'</td>'+
+                            '<td style="text-align: center;">'+ result[store].description +'</td>'+
+                            '<td style="text-align: center;">'+ "邀请" +'</td>'+
+                            '<td style="text-align: center;">'+ '<button type="button" class="btn btn-success" onclick="$.confirmPass(\''+result[store].id+'\',\''+''+'\')">' +
+                            '                                        确认邀请' +
+                            '                                    </button>' +'</td>'+
                             '</tr>';
                     }
 
