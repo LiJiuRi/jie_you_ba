@@ -92,9 +92,9 @@
             </div>
             <div id="collapseMeeting" class="collapse" aria-expanded="true">
 
-                <div class="meun-item leftitem" id="addRoomDiv" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/add_grey.png">新增店铺</div>
-
                 <div class="meun-item leftitem" id="showRoomDiv" href="#showRoomPane" aria-controls="showRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/search_grey.png">店铺操作</div>
+
+                <div class="meun-item leftitem" id="addRoomDiv" href="#addRoomPane" aria-controls="addRoomPane" role="tab" data-toggle="tab"><img src="../../static/images/add_grey.png">新增店铺</div>
 
             </div>
 
@@ -144,6 +144,340 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
+            <!-- 店铺操作模块 -->
+            <div role="tabpanel" class="tab-pane" id="showRoomPane">
+
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control input-sm" id = "storeIdSearch" placeholder="输入店铺号搜索">
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="storeTypeSearch" class="form-control input-sm" placeholder="店铺类型">
+                            <option selected="selected" value=''>全部</option>
+                            <option value="正餐">正餐</option>
+                            <option value="水果">水果</option>
+                            <option value="蛋糕">蛋糕</option>
+                            <option value="汉堡">汉堡</option>
+                            <option value="夜宵">夜宵</option>
+                            <option value="药">药</option>
+                            <option value="鲜花">鲜花</option>
+                            <option value="饮料">饮料</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" id = "storeNameSearch" placeholder="输入店铺名称搜索">
+                        <button class="btn btn-white btn-xs " id="searchStore" style="margin-left:40px;">查 询 </button>
+                    </div>
+                </div>
+
+                <div class="data-div">
+                    <!--自己写table -->
+                    <table style="width: 1240px;" class="table table-striped table-hover">
+                        <caption><div align="center" class="text-success" id = "storeTableTip">店铺信息查询结果</div></caption>
+                        <thead class="row tableHeader">
+                        <tr>
+                            <th style="width:10%;">店铺编号</th>
+                            <th style="width:10%;">店铺名称</th>
+                            <th style="width:10%;">店铺类型</th>
+                            <th style="width:14%;">店铺地址</th>
+                            <th style="width:34%;">店铺简介</th>
+                            <th style="width:7%;">总销量</th>
+                            <th style="width:5%;">详情</th>
+                            <th style="width:5%;">修改</th>
+                            <th style="width:5%;">删除</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tablebody" id = "searchStoreBody">
+                        <!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--点击详情弹出窗口-->
+                <div class="modal fade" id="storeDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="storeDetailsPane">店铺详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="storeName" class="col-xs-3 control-label">公交站：</label>
+                                            <label id="storeDetailsbusStop" class="control-label"></label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeName" class="col-xs-3 control-label">地铁站：</label>
+                                            <label id="storeDetailsubwayStation" class="control-label"></label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeName" class="col-xs-3 control-label">配送：</label>
+                                            <label id="storeDetaildelivery" class="control-label"></label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeName" class="col-xs-3 control-label">WiFi：</label>
+                                            <label id="storeDetailwifi" class="control-label"></label>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeName" class="col-xs-3 control-label">时间：</label>
+                                            <label id="storeDetailopenTime" class="control-label"></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--点击修改店铺弹出窗口-->
+                <div class="modal fade" id="modifyStore" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">请输入要修改的资料</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="ModifystoreId" placeholder="此时还没隐藏">
+                                        <div class="form-group ">
+                                            <label for="storeName" class="col-xs-3 control-label">店铺名称：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreName" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="ModifystoreType" class="col-xs-3 control-label">店铺类型：</label>
+                                            <div class="col-xs-2">
+                                                <select id="ModifystoreType" class="form-control input-sm duiqi">
+                                                    <option value="正餐">正餐</option>
+                                                    <option value="水果">水果</option>
+                                                    <option value="蛋糕">蛋糕</option>
+                                                    <option value="汉堡">汉堡</option>
+                                                    <option value="夜宵">夜宵</option>
+                                                    <option value="药">药</option>
+                                                    <option value="鲜花">鲜花</option>
+                                                    <option value="饮料">饮料</option>
+                                                    <option value="其他">其他</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storePhone" class="col-xs-3 control-label">电话号码：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="ModifystorePhone" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeAddress" class="col-xs-3 control-label">店铺地址：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreAddress" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeDescription" class="col-xs-3 control-label">店铺简介：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreDescription" placeholder="">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelModifyRoom">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmModifyRoom">修 改</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击修改店铺弹出窗口-->
+
+
+                <!--点击删除店铺弹出窗口-->
+                <div class="modal fade" id="deleteStore" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">操作提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="DeletestoreId" placeholder="此时还没隐藏">
+                                        <div class="form-group ">
+                                            <label id="deleteStoreTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">确认要删除选择的数据吗？</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelDeleteRoom">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStore">删 除</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击删除店铺弹出窗口 -->
+
+                <!--删除店铺处理结果-->
+                <div class="modal fade" id="deleteStoreResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">操作提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label id="deleteStoreResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStoreUpdate">确 认</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal删除店铺处理结果 -->
+
+            </div>
+            <!-- 店铺操作模块结束 -->
+
+            <!-- 新增会议室模块 -->
+            <div role="tabpanel" class="tab-pane" id="addRoomPane">
+
+                <div class="check-div">
+                    <button id = "addRoomBtn" class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addRoomPop">添加店铺</button>
+                </div>
+                <div class="data-div">
+
+                    <!--自己写table -->
+                    <table style="width:1240px;" id = "addRoomTable">
+                        <caption><div align="center" class="text-success">店铺信息</div></caption>
+                        <thead class="row tableHeader">
+                        <tr>
+                            <th style="width:10%;text-align: center;">店铺编号</th>
+                            <th style="width:10%;text-align: center;">店铺名称</th>
+                            <th style="width:10%;text-align: center;">店铺类型</th>
+                            <th style="width:19%;text-align: center;">店铺地址</th>
+                            <th style="width:31%;text-align: center;">店铺简介</th>
+                            <th style="width:10%;text-align: center;">管理员id</th>
+                            <th style="width:10%;text-align: center;">管理员名称</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tablebody" id = "addRoomBody">
+                        <!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--添加会议室弹出窗口-->
+                <div class="modal fade" id="addRoomPop" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">添加店铺</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="storeName" class="col-xs-3 control-label">店铺名称：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="storeName" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeType" class="col-xs-3 control-label">店铺类型：</label>
+                                            <div class="col-xs-2">
+                                                <select id="storeType" class="form-control input-sm duiqi">
+                                                    <option value="正餐">正餐</option>
+                                                    <option value="水果">水果</option>
+                                                    <option value="蛋糕">蛋糕</option>
+                                                    <option value="汉堡">汉堡</option>
+                                                    <option value="夜宵">夜宵</option>
+                                                    <option value="药">药</option>
+                                                    <option value="鲜花">鲜花</option>
+                                                    <option value="饮料">饮料</option>
+                                                    <option value="其他">其他</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storePhone" class="col-xs-3 control-label">电话号码：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="storePhone" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeAddress" class="col-xs-3 control-label">店铺地址：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="storeAddress" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="storeDescription" class="col-xs-3 control-label">店铺简介：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="storeDescription" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="adminName" class="col-xs-3 control-label">管理员：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="adminName" placeholder="">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelAddRoom">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmAddRoom">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </div>
+            <!-- 新增会议室模块结束 -->
+
             <!-- 查看历史申请记录模块 -->
             <div role="tabpanel" class="tab-pane" id="showHistoryBookedPane">
 
@@ -179,6 +513,7 @@
 <script src="../../static/js/exitLogin.js"></script>
 <script src="../../static/js/manager.commom.js"></script>
 <script src="../../static/js/manager.showHistoryApplyed.js"></script>
+<script src="../../static/js/manager.storeDeal.js"></script>
 </body>
 
 </html>

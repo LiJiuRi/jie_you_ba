@@ -135,6 +135,7 @@
 		</a>
 		<!-- Tab panes -->
 		<div class="tab-content">
+
 			<!-- 新增会议室模块 -->
 			<div role="tabpanel" class="tab-pane" id="addRoomPane">
 
@@ -918,11 +919,11 @@
 </div>
 
 <!-- <script src="js/jquery.nouislider.js"></script> -->
-<script src="../../static/js/manager.addroom.js"></script>
+<script src="../../static/js/admin.addStore.js"></script>
 <script src="../../static/js/manager.modifyRoom.js"></script>
 <script src="../../static/js/exitLogin.js"></script>
 <script src="../../static/js/manager.commom.js"></script>
-<script src="../../static/js/manager.showRoom.js"></script>
+<script src="../../static/js/admin.showStore.js"></script>
 <script src="../../static/js/manager.showUser.js"></script>
 <script src="../../static/js/manager.modifyPass.js"></script>
 <script src="../../static/js/manager.addDevice.js"></script>

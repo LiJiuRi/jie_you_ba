@@ -35,6 +35,7 @@ public class AdminController extends BaseController{
     @Autowired
     private StoreApplyMapper storeApplyMapper;
 
+
     /**
      * 此时为超级管理员新建店铺的时候增加的一个管理员账号，与自己注册方式增加的管理员账号不一样
      * @param admin
