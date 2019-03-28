@@ -68,6 +68,37 @@ public class AdminController extends BaseController{
         return adminList;
     }
 
+    @ApiOperation(value="获取个人信息详情", notes="获取个人信息详情")
+    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    public Admin get(@CookieValue(value = "token", required = false) String token){
+        String personId = readCookie(token);
+        Admin admin = adminService.select(Long.valueOf(personId));
+        return admin;
+    }
+
+    /**
+     * 修改个人信息
+     * @return
+     */
+    @ApiOperation(value="修改个人信息", notes="修改个人信息")
+    @RequestMapping(value = "/updateAdmin", method = RequestMethod.POST)
+    public boolean updateAdmin(Admin admin,@CookieValue(value = "token", required = false) String token){
+        String personId = readCookie(token);
+        if(admin.getName() == ""){
+            admin.setName(null);
+        }
+        if(admin.geteMail() == ""){
+            admin.seteMail(null);
+        }
+        if(admin.getPhone() == ""){
+            admin.setPhone(null);
+        }
+        admin.setId(Long.valueOf(personId));
+        admin.setUpdatePerson(personId);
+        adminService.update(admin);
+        return true;
+    }
+
     /**
      * 普通账号更换为店铺管理员账号
      * @return

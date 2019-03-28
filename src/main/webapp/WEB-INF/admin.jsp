@@ -103,11 +103,14 @@
 
 			<!-- 用户管理折叠 -->
 			<div id="topCD" class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseStaffFunction" aria-expanded="true" aria-controls="collapseOne">
-				<span class="leftitem">用户管理</span><span id="topC" class="glyphicon glyphicon-triangle-right"></span>
+				<img class="leftitem" src="../../static/images/password.png">
+				<span style="padding-left:10px;">用户管理</span>
+				<span id="topC" class="glyphicon glyphicon-triangle-right"></span>
 			</div>
 			<div id="collapseStaffFunction" class="collapse " aria-expanded="true">
-				<div class="meun-item leftitem" id="showUsersMenu" href="#showStaffPane" aria-controls="showStaffPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看用户</div>
 				<div class="meun-item leftitem" id="modifyPassM" href="#modifyPassword" aria-controls="modifyPassword" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改密码</div>
+				<div class="meun-item leftitem" id="updateAdmin" href="#updateAdminPane" aria-controls="updateAdminPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">修改资料</div>
+				<div class="meun-item leftitem" id="showUsersMenu" href="#showStaffPane" aria-controls="showStaffPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">查看用户</div>
 			</div>
 
 
@@ -649,44 +652,110 @@
 				</div>
 			</div>
 
-
 			<!-- 修改密码 模块-->
 			<div role="tabpanel" class="tab-pane" id="modifyPassword">
 				<div class="check-div">
-					<!-- 原始密码为12312313 -->
-					<!-- 用于显示用户修改密码操作结果 -->
-					<div align="center"><span id="isTwoPassSame"></span></div>
 				</div>
-				<div style="padding: 50px 0;margin-top: 50px;background-color: #fff; text-align: right;width: 420px;margin: 50px auto;">
-					<div class="form-horizontal">
-						<div class="form-group">
-							<label for="userId" class="col-xs-4 control-label">ID：</label>
-							<div class="col-xs-5">
-								<input type="text" class="form-control input-sm duiqi" id="userIdModifyP" placeholder="" style="margin-top: 7px;">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="sKnot" class="col-xs-4 control-label">新密码：</label>
-							<div class="col-xs-5">
-								<input type="password" class="form-control input-sm duiqi" id="newPassword1" placeholder="" style="margin-top: 7px;">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="sKnot" class="col-xs-4 control-label" >确认密码：</label>
-							<div class="col-xs-5">
-								<input type="password" class="form-control input-sm duiqi" id="defineNewPassword1" placeholder="" style="margin-top: 7px;">
-							</div>
-						</div>
-						<div class="form-group text-right">
-							<div class="col-xs-offset-4 col-xs-5" style="margin-left: 169px;">
-								<button type="reset" class="btn btn-xs btn-white">取 消</button>
-								<button type="submit" class="btn btn-xs btn-green" id = "modifyPassBtn">修改</button>
-							</div>
-						</div>
-					</div>
+				<div style="padding: 50px 0;background-color: #fff; text-align: center;width: 420px;margin: 50px auto;">
+
+						<input type="password" id="oldPassword" placeholder="请输入原密码" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
+
+						<input type="password" id="newPassword" placeholder="请输入新密码" autocomplete="new-password" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
+
+						<input type="password" id="defineNewPassword" placeholder="请输入确认密码" autocomplete="new-password" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
+
+					    <div align = "center" id = "modifyResultTip" style="margin-top: 5px;">两次密码不一致</div>
+
+						<input type="submit" value="修改"  id="modifyPassBtn" style="margin-top: 10px;width: 80px;height: 36px;border-radius: 7px;border: none;background-color: #86ce2f;"/>
 				</div>
 			</div>
 			<!--修改密码模块结束(上面的div) -->
+
+			<!-- 修改资料 模块-->
+			<div role="tabpanel" class="tab-pane" id="updateAdminPane">
+				<div class="check-div">
+					<button id = "getAdmin" class="btn btn-yellow btn-xs">个人资料详情</button>
+				</div>
+
+				<div style="padding: 50px 0;background-color: #fff; text-align: center;width: 420px;margin: 50px auto;">
+
+					<input type="text" id="name" placeholder="请输入姓名" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
+
+					<input type="text" id="phone" placeholder="请输入电话号码" autocomplete="new-password" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
+
+					<input type="text" id="e_mail" placeholder="请输入邮箱号" autocomplete="new-password" style="margin-top: 20px;margin-left: 23px;height: 46px;width:270px;border-radius: 15px;border: none;background-color: rgb(206, 206, 206);"><br/>
+
+					<input type="submit" value="修改"  id="modifyAdmin" style="margin-top: 10px;width: 80px;height: 36px;border-radius: 7px;border: none;background-color: #86ce2f;"/>
+				</div>
+
+				<!--modal个人资料详情弹出窗口-->
+				<div class="modal fade" id="AdminDetail" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">资料详情</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">个人id：</label>
+											<label id="adminIdDetail" class="control-label"></label>
+										</div>
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">姓名：</label>
+											<label id="adminNameDetail" class="control-label"></label>
+										</div>
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">电话：</label>
+											<label id="adminPhoneDetail" class="control-label"></label>
+										</div>
+										<div class="form-group ">
+											<label for="storeName" class="col-xs-3 control-label">邮箱：</label>
+											<label id="adminEmailDetail" class="control-label"></label>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal">关 闭</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal个人资料详情弹出窗口 -->
+
+				<!--点击修改资料处理结果-->
+				<div class="modal fade" id="ModifyAdminResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title">操作提示</h4>
+							</div>
+							<div class="modal-body">
+								<div class="container-fluid">
+									<form class="form-horizontal">
+										<div class="form-group ">
+											<label id="ModifyAdminResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-xs btn-green" data-dismiss="modal">关 闭</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal点击修改密码处理结果 -->
+			</div>
+			<!--修改资料模块结束(上面的div) -->
 
 		</div>
 	</div>
@@ -701,11 +770,9 @@
 <script src="../../static/js/manager.commom.js"></script>
 <script src="../../static/js/admin.showStore.js"></script>
 <script src="../../static/js/manager.showUser.js"></script>
-<script src="../../static/js/manager.modifyPass.js"></script>
-<script src="../../static/js/manager.addDevice.js"></script>
-<script src="../../static/js/manager.modifyDevice.js"></script>
+<script src="../../static/js/common.modifyPass.js"></script>
 <script src="../../static/js/admin.apply.js"></script>
-
+<script src="../../static/js/common.modifyAdmin.js"></script>
 </body>
 
 </html>

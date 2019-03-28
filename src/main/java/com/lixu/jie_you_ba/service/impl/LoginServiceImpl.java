@@ -94,8 +94,8 @@ public class LoginServiceImpl implements LoginService {
 	 * @return boolean
 	 */
 	@Override
-	public boolean modifyPassword(String staffNumber, String oldPass,String newPass) {
-		return loginDao.modifyPassword(staffNumber,oldPass,newPass);
+	public boolean modifyPassword(Long staffNumber, String oldPass,String newPass) {
+		return accountMapper.modifyPassword(staffNumber,oldPass,newPass);
 	}
 
 

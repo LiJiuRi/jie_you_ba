@@ -161,31 +161,13 @@ public class LoginAndRegisterController extends BaseController{
 	 */
 	@RequestMapping(value = "/modifyPassword", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean modifyPassword(@RequestBody(required=false) Map<String,Object> map) {
-		String staffNumber = map.get("staffNumber").toString();
+	public boolean modifyPassword(@RequestBody(required=false) Map<String,Object> map,@CookieValue(value = "token", required = false) String token) {
+		String staffNumber = readCookie(token);
 		String oldPass = map.get("oldPass").toString();
 		String newPass = map.get("newPass").toString();
-		//System.out.println("已进入modifyPassword方法");
-		//System.out.println(staffNumber+"   "+oldPass+"   "+newPass);
-		boolean isOK = loginService.modifyPassword(staffNumber,oldPass,newPass);
-		//System.out.println("ISOK：" + isOK);
+		boolean isOK = loginService.modifyPassword(Long.valueOf(staffNumber),oldPass,newPass);
 		return isOK;
 	}
-	
-	
-	//管理员修改密码，即强制修改密码
-	@RequestMapping(value = "/managerModifyPass", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean managerModifyPass(@RequestBody(required=false) Map<String,Object> map) {
-		String staffNumber = map.get("staffNumber").toString();
-		
-		String newPass = map.get("newPassword").toString();
-		
-		boolean isOK = loginService.managerModifyPassword(staffNumber,newPass);
-		//System.out.println("ISOK：" + isOK);
-		return isOK;
-	}
-	
 	
 	
 }

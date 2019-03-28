@@ -20,6 +20,12 @@
     from account
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <!-- 修改密码 -->
+  <update id="modifyPassword">
+		update account
+		set password=#{newPass}
+		where person_id=#{staffNumber} and password=#{oldPass}
+  </update>
   <select id="getByPersonId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />

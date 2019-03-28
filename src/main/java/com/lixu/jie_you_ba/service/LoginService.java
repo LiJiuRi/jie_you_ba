@@ -35,7 +35,7 @@ public interface LoginService {
 	 * @param 新密码newPass
 	 * @return boolean
 	 */
-	public boolean modifyPassword(String staffNumber, String oldPass,
+	boolean modifyPassword(Long staffNumber, String oldPass,
                                   String newPass);
 
 
