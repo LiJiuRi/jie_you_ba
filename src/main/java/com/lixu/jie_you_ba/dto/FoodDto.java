@@ -19,6 +19,9 @@ public class FoodDto extends BaseInfo{
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private Long storeId;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long foodCatalogId;
 
     private String name;

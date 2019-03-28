@@ -51,6 +51,8 @@ public class FoodController extends BaseController{
             foodDto.setImage(null);
         }
         String personId = readCookie(token);
+        Admin admin = adminService.select(Long.valueOf(personId));
+        foodDto.setStoreId(admin.getStoreId());
         if(null != personId){
             foodDto.setCreatePerson(personId);
         }

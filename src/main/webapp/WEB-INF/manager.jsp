@@ -471,61 +471,37 @@
                 </div>
                 <!-- /.modal点击修改菜品弹出窗口-->
 
-                <!--点击删除店铺弹出窗口-->
-                <div class="modal fade" id="deleteStore" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <!--点击删除菜品弹出窗口-->
+                <div class="modal fade" id="deleteFood" role="dialog" aria-labelledby="gridSystemModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">操作提示</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <input type="hidden" class="form-control input-sm duiqi" id="DeletestoreId" placeholder="此时还没隐藏">
-                                        <div class="form-group ">
-                                            <label id="deleteStoreTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">确认要删除选择的数据吗？</label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelDeleteRoom">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStore">删 除</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal点击删除店铺弹出窗口 -->
 
-                <!--删除店铺处理结果-->
-                <div class="modal fade" id="deleteStoreResult" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">操作提示</h4>
-                            </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label id="deleteStoreResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+                                        <input type="hidden" class="form-control input-sm duiqi" id="Deleteid" placeholder="此时还没隐藏">
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <form class="form-horizontal">
+                                                    <div class="form-group ">
+                                                        <label style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">请再次确认是否删除该菜品</label>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStoreUpdate">确 认</button>
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteFood">删 除</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal删除店铺处理结果 -->
+                <!-- /.modal点击删除菜品弹出窗口-->
 
             </div>
             <!-- 菜品管理模块结束 -->

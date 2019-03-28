@@ -4,6 +4,11 @@
     $.modifyFood = function (foodId) {
         $("#Modifyid").val(foodId);
     };
+
+    //删除菜品
+    $.deleteFood = function (foodId) {
+        $("#Deleteid").val(foodId);
+    };
 })(jQuery);
 
 var ready = $(document).ready(function(){
@@ -45,10 +50,10 @@ var ready = $(document).ready(function(){
                                 '<td style="text-align: center;">'+ result[store].price +'</td>'+
                                 '<td style="text-align: center;">'+ result[store].praise +'</td>'+
                                 '<td style="text-align: center;">'+ result[store].sale +'</td>'+
-                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyStore" onclick="$.modifyStore(\''+result[store].id+'\')">' +
+                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyFood" onclick="$.modifyFood(\''+result[store].id+'\')">' +
                                 '                                        修改' +
                                 '                                    </button>' +'</td>'+
-                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteStore" onclick="$.deleteStore(\''+result[store].id+'\')">' +
+                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFood" onclick="$.deleteFood(\''+result[store].id+'\')">' +
                                 '                                        删除' +
                                 '                                    </button>' +'</td>'+
                                 '</tr>';
@@ -90,7 +95,7 @@ var ready = $(document).ready(function(){
                         '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyFood" onclick="$.modifyFood(\''+result[store].id+'\')">' +
                         '                                        修改' +
                         '                                    </button>' +'</td>'+
-                        '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteStore" onclick="$.deleteStore(\''+result[store].id+'\')">' +
+                        '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFood" onclick="$.deleteFood(\''+result[store].id+'\')">' +
                         '                                        删除' +
                         '                                    </button>' +'</td>'+
                         '</tr>';
@@ -147,7 +152,7 @@ var ready = $(document).ready(function(){
                                 '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyFood" onclick="$.modifyFood(\''+result[store].id+'\')">' +
                                 '                                        修改' +
                                 '                                    </button>' +'</td>'+
-                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteStore" onclick="$.deleteStore(\''+result[store].id+'\')">' +
+                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFood" onclick="$.deleteFood(\''+result[store].id+'\')">' +
                                 '                                        删除' +
                                 '                                    </button>' +'</td>'+
                                 '</tr>';
@@ -167,5 +172,61 @@ var ready = $(document).ready(function(){
         $("#Modifyimage").val('');
     });
     //修改菜品弹出框确认按钮点击事件结束
+
+    //删除菜品弹出框确认按钮点击事件
+    $("#confirmDeleteFood").click(function(){
+
+        var id = $("#Deleteid").val();
+        //封装参数
+        var data = {
+            id:id
+        }
+        //AJAX
+        $.ajax({
+            type : "post",
+            url:"../food/delete",
+            data:data,
+            success:function(result){
+                var showCatalog = $("#showCatalog").val();
+                //封装参数
+                var data = {
+                    catalogId:showCatalog
+                }
+                //AJAX
+                $.ajax({
+                    type : "post",
+                    url:"../food/listByStoreId",
+                    data:data,
+                    success:function(result){
+                        //先删除表格原数据
+                        var addRoomRow;
+                        $("#searchFoodBody").find("tr").remove();
+                        for(var store in result){
+                            addRoomRow = '<tr>'+
+                                '<td style="color:#e66e79;text-align: center;">'+ result[store].id+ '</td>'+
+                                '<td style="text-align: center;">'+ result[store].name +'</td>'+
+                                '<td style="color:#e66e79;text-align: center;">'+ result[store].count +'</td>'+
+                                '<td style="text-align: center;">'+ result[store].price +'</td>'+
+                                '<td style="text-align: center;">'+ result[store].praise +'</td>'+
+                                '<td style="text-align: center;">'+ result[store].sale +'</td>'+
+                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modifyFood" onclick="$.modifyFood(\''+result[store].id+'\')">' +
+                                '                                        修改' +
+                                '                                    </button>' +'</td>'+
+                                '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteFood" onclick="$.deleteFood(\''+result[store].id+'\')">' +
+                                '                                        删除' +
+                                '                                    </button>' +'</td>'+
+                                '</tr>';
+                            $("#searchFoodBody").append(addRoomRow);
+                        }
+                    }
+                });
+                $("#ModifyFoodResultTip").text('已成功删除菜品');
+                $("#ModifyFoodResult").modal("show");
+            }
+        });
+
+        $("#Deleteid").val('');
+    });
+    //删除菜品弹出框确认按钮点击事件结束
 
 });
