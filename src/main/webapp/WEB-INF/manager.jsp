@@ -115,9 +115,8 @@
                 <span id="topD" class="glyphicon  glyphicon-triangle-right"></span>
             </div>
             <div id="collapseDeviceFunction" class="collapse " aria-expanded="true">
-                <div class="meun-item leftitem" id = "addDeviceMenu" href="#addDevicePane" aria-controls="addDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">新增设备</div>
-                <div class="meun-item leftitem" id = "modifyDeviceMenu" href="#modifyDevicePane" aria-controls="modifyDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改设备</div>
-                <div class="meun-item leftitem" id = "showDeviceMenu" href="#showDevicePane" aria-controls="showDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_card_grey.png">查看设备</div>
+                <div class="meun-item leftitem" id = "ClassifyMenu" href="#ClassifyPane" aria-controls="ClassifyPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">菜品分类</div>
+                <div class="meun-item leftitem" id = "CaiMenu" href="#CaiPane" aria-controls="CaiPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_card_grey.png">菜品管理</div>
             </div>
 
             <!-- 用户管理折叠 -->
@@ -144,6 +143,392 @@
         </a>
         <!-- Tab panes -->
         <div class="tab-content">
+
+            <!-- 菜品分类模块 -->
+            <div role="tabpanel" class="tab-pane" id="ClassifyPane">
+
+                <div class="check-div">
+                    <button id = "addRoomBtn" class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addRoomPop">添加目录</button>
+                    <button id = "showAllCatalog" class="btn btn-green btn-xs">展示所以目录</button>
+                </div>
+                <div class="data-div">
+
+                    <!--自己写table -->
+                    <table style="width: 1240px;" class="table table-striped table-hover">
+                        <caption><div align="center" class="text-success">目录信息</div></caption>
+                        <thead class="row tableHeader">
+                        <tr>
+                            <th style="width:20%;text-align: center;">目录编号</th>
+                            <th style="width:25%;text-align: center;">目录名称</th>
+                            <th style="width:25%;text-align: center;">创建时间</th>
+                            <th style="width:10%;text-align: center;">添加菜品</th>
+                            <th style="width:10%;text-align: center;">修改</th>
+                            <th style="width:10%;text-align: center;">删除</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tablebody" id = "addClassifyBody">
+                        <!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--点击删除目录弹出窗口-->
+                <div class="modal fade" id="deleteClassify" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="deleteCatalogId" placeholder="此时还没隐藏">
+                                        <div class="form-group ">
+                                            <label for="ModifyCatalogName" class="col-xs-6 control-label">您确认删除该目录吗？</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteCatalog">删 除</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击删除目录弹出窗口-->
+
+                <!--点击修改目录弹出窗口-->
+                <div class="modal fade" id="modifyClassify" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">请输入要修改的资料</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="ModifyCatalogId" placeholder="此时还没隐藏">
+                                        <div class="form-group ">
+                                            <label for="ModifyCatalogName" class="col-xs-3 control-label">目录名称：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="ModifyCatalogName" placeholder="">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmModifyCatalog">修 改</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击修改目录弹出窗口-->
+
+                <!--添加菜单目录弹出窗口-->
+                <div class="modal fade" id="addRoomPop" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">添加菜单目录</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="CatalogName" class="col-xs-4 control-label">菜单目录名称：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="CatalogName" placeholder="">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmAddCatalog">添 加</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.添加菜单目录弹出窗口 -->
+
+                <!--点击添加菜品-->
+                <div class="modal fade" id="addCai" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">请输入要添加的菜品信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="food_catalog_id" placeholder="此时还没隐藏">
+                                        <div class="form-group ">
+                                            <label for="name" class="col-xs-3 control-label">菜品名称：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="name" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="price" class="col-xs-3 control-label">售价：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="price" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sale" class="col-xs-3 control-label">打折幅度：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="sale" placeholder="例：9折添0.9">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sale" class="col-xs-3 control-label">图片地址：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="image" placeholder="">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmAddCai">添 加</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.点击添加菜品结束-->
+
+                <!--点击添加菜品处理结果-->
+                <div class="modal fade" id="addCaiResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">操作提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label id="addCaiResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal">关 闭</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击添加菜品处理结果 -->
+
+            </div>
+            <!-- 菜品分类模块结束 -->
+
+            <!-- 菜品管理模块 -->
+            <div role="tabpanel" class="tab-pane" id="CaiPane">
+
+                <div class="check-div form-inline">
+                    <div class="col-xs-2">
+                        <select id="showCatalog" class="form-control input-sm" placeholder="分类类型">
+
+                        </select>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-white btn-xs " id="searchCai" style="margin-left:5px;">按 目 录 查 询 </button>
+                    </div>
+                </div>
+
+                <div class="data-div">
+                    <!--自己写table -->
+                    <table style="width: 1240px;" class="table table-striped table-hover">
+                        <caption><div align="center" class="text-success" id = "">菜品查询结果</div></caption>
+                        <thead class="row tableHeader">
+                        <tr>
+                            <th style="width:25%;text-align: center;">菜编号</th>
+                            <th style="width:15%;text-align: center;">菜名</th>
+                            <th style="width:12%;text-align: center;">销量</th>
+                            <th style="width:12%;text-align: center;">价格</th>
+                            <th style="width:11%;text-align: center;">好评率</th>
+                            <th style="width:11%;text-align: center;">打折幅度</th>
+                            <th style="width:7%;text-align: center;">修改</th>
+                            <th style="width:7%;text-align: center;">删除</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tablebody" id = "searchFoodBody">
+                        <!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--点击修改菜品处理结果-->
+                <div class="modal fade" id="ModifyFoodResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">操作提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label id="ModifyFoodResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal">关 闭</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击修改菜品处理结果 -->
+
+                <!--点击修改菜品弹出窗口-->
+                <div class="modal fade" id="modifyFood" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">请输入要修改的资料</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="Modifyid" placeholder="此时还没隐藏">
+                                        <div class="form-group ">
+                                            <label for="name" class="col-xs-3 control-label">菜品名称：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="Modifyname" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="price" class="col-xs-3 control-label">售价：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="Modifyprice" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sale" class="col-xs-3 control-label">打折幅度：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="Modifysale" placeholder="例：9折添0.9">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sale" class="col-xs-3 control-label">图片地址：</label>
+                                            <div class="col-xs-6 ">
+                                                <input type="text" class="form-control input-sm duiqi" id="Modifyimage" placeholder="">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmModifyFood">修 改</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击修改菜品弹出窗口-->
+
+                <!--点击删除店铺弹出窗口-->
+                <div class="modal fade" id="deleteStore" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">操作提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="DeletestoreId" placeholder="此时还没隐藏">
+                                        <div class="form-group ">
+                                            <label id="deleteStoreTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">确认要删除选择的数据吗？</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelDeleteRoom">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStore">删 除</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal点击删除店铺弹出窗口 -->
+
+                <!--删除店铺处理结果-->
+                <div class="modal fade" id="deleteStoreResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">操作提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label id="deleteStoreResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStoreUpdate">确 认</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal删除店铺处理结果 -->
+
+            </div>
+            <!-- 菜品管理模块结束 -->
 
             <!-- 店铺详情模块 -->
             <div role="tabpanel" class="tab-pane" id="showStorePane">
@@ -551,6 +936,8 @@
 <script src="../../static/js/manager.showHistoryApplyed.js"></script>
 <script src="../../static/js/manager.storeDeal.js"></script>
 <script src="../../static/js/manager.inviteUser.js"></script>
+<script src="../../static/js/manager.classify.js"></script>
+<script src="../../static/js/manager.cai.js"></script>
 </body>
 
 </html>

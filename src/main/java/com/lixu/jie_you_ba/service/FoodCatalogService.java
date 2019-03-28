@@ -13,7 +13,7 @@ import java.util.List;
  * @Created by lixu
  */
 public interface FoodCatalogService {
-    int insert(FoodCatalogDto foodCatalogDto);
+    int insert(FoodCatalog foodCatalog);
 
     int update(FoodCatalogDto foodCatalogDto);
 

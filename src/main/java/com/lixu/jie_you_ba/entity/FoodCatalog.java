@@ -1,19 +1,26 @@
 package com.lixu.jie_you_ba.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class FoodCatalog {
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private Long storeId;
 
     private String name;
 
     private String createPerson;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     private String updatePerson;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     public Long getId() {
@@ -22,6 +29,14 @@ public class FoodCatalog {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
     public String getName() {

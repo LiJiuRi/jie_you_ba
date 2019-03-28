@@ -85,11 +85,11 @@ public class StoreController extends BaseController{
         return store;
     }
 
-    /**根据管理员id过去一个店铺
+    /**根据店铺管理员id获取一个店铺
      * @param
      * @return
      */
-    @ApiOperation(value="根据管理员id过去一个店铺", notes="根据管理员id过去一个店铺")
+    @ApiOperation(value="根据店铺管理员id获取一个店铺", notes="根据管理员id过去一个店铺")
     @RequestMapping(value = "/getStoreByAdminId", method = RequestMethod.POST)
     public Store getStoreByAdminId(@CookieValue(value = "token", required = false) String token){
         String adminId = readCookie(token);

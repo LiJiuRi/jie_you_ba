@@ -38,19 +38,9 @@ public class FoodCatalogServiceImpl implements FoodCatalogService {
     private UidService uidService;
 
     @Override
-    public int insert(FoodCatalogDto foodCatalogDto) {
-        FoodCatalog foodCatalog = new FoodCatalog();
-        foodCatalogDto.setId(uidService.genId());
-        foodCatalogDto.setCreateTime(new Date());
-        BeanUtils.copyProperties(foodCatalogDto,foodCatalog);
-        //插入菜单
-        if(null != foodCatalogDto.getFoods()){
-            for(FoodDto foodDto :  foodCatalogDto.getFoods()){
-                foodDto.setFoodCatalogId(foodCatalogDto.getId());
-                foodDto.setCreatePerson(foodCatalogDto.getCreatePerson());
-                foodService.insert(foodDto);
-            }
-        }
+    public int insert(FoodCatalog foodCatalog) {
+        foodCatalog.setId(uidService.genId());
+        foodCatalog.setCreateTime(new Date());
         return foodCatalogMapper.insertSelective(foodCatalog);
     }
 

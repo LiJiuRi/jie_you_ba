@@ -2,18 +2,6 @@
 
 //自定义函数，得到所有设备
 (function ($) {
-	//往下拉框添加选项，参数：下拉框，设备数组
-	$.showDevices = function(selector , devices){
-		//先移除所有选项
-		selector.find("option").remove();
-		//alert("展示所有设备");
-		for(var i = 0 ; i < devices.length ; i ++){
-			//得到设备名(id)
-			var text = devices[i].name+"("+devices[i].deviceId+")";
-			selector.append("<option value='"+devices[i].deviceId+"'>"+text+"</option>");
-
-		}
-	};
 
 	//此时接收过来的参数为string类型
 	$.storeDetails = function (storeId) {

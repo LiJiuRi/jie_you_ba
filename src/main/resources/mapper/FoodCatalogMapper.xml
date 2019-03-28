@@ -3,6 +3,7 @@
 <mapper namespace="com.lixu.jie_you_ba.dao.FoodCatalogMapper" >
   <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.FoodCatalog" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -10,7 +11,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, create_person, create_time, update_person, update_time
+    id, store_id, name, create_person, create_time, update_person, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -28,18 +29,21 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.FoodCatalog" >
-    insert into food_catalog (id, name, create_person, 
-      create_time, update_person, update_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+    insert into food_catalog (id, store_id, name, 
+      create_person, create_time, update_person, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.FoodCatalog" >
     insert into food_catalog
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
       </if>
       <if test="name != null" >
         name,
@@ -61,6 +65,9 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
@@ -81,6 +88,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.FoodCatalog" >
     update food_catalog
     <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -101,7 +111,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.FoodCatalog" >
     update food_catalog
-    set name = #{name,jdbcType=VARCHAR},
+    set store_id = #{storeId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_person = #{updatePerson,jdbcType=VARCHAR},

@@ -19,7 +19,6 @@ public class FoodDto extends BaseInfo{
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    @JsonProperty("food_catalog_id")
     private Long foodCatalogId;
 
     private String name;

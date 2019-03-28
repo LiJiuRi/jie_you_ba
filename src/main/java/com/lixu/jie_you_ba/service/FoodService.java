@@ -1,6 +1,7 @@
 package com.lixu.jie_you_ba.service;
 
 import com.lixu.jie_you_ba.dto.FoodDto;
+import com.lixu.jie_you_ba.entity.Food;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface FoodService {
     FoodDto get(Long id);
 
     List<FoodDto> list(Long foodCatalogId);
+
+    List<Food> listByStoreId(Long foodCatalogId,Long storeId);
 }

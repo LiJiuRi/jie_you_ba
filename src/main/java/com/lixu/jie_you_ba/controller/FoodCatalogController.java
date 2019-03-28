@@ -1,8 +1,9 @@
 package com.lixu.jie_you_ba.controller;
 
 import com.lixu.jie_you_ba.dto.FoodCatalogDto;
-import com.lixu.jie_you_ba.dto.LoginUserVo;
+import com.lixu.jie_you_ba.entity.Admin;
 import com.lixu.jie_you_ba.entity.FoodCatalog;
+import com.lixu.jie_you_ba.service.AdminService;
 import com.lixu.jie_you_ba.service.FoodCatalogService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -29,22 +30,26 @@ public class FoodCatalogController extends BaseController{
     @Autowired
     private FoodCatalogService foodCatalogService;
 
+    @Autowired
+    private AdminService adminService;
+
     /**
      * 插入一条菜品分类
-     * @param foodCatalogDto
      * @return
      */
     @ApiOperation(value="插入一条菜品分类", notes="插入一条菜品分类")
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public FoodCatalogDto insert(@RequestBody FoodCatalogDto foodCatalogDto, @CookieValue(value = "token", required = false) String token){
-        logger.info("foodCatalogDto={}",foodCatalogDto);
-        //获取操作人
+    public FoodCatalog insert(HttpServletRequest request, @CookieValue(value = "token", required = false) String token){
+        //获取菜单目录名称
+        String catalogName = request.getParameter("CatalogName");
         String personId = readCookie(token);
-        if(null != personId){
-            foodCatalogDto.setCreatePerson(personId);
-        }
-        foodCatalogService.insert(foodCatalogDto);
-        return foodCatalogDto;
+        Admin admin = adminService.select(Long.valueOf(personId));
+        FoodCatalog foodCatalog = new FoodCatalog();
+        foodCatalog.setName(catalogName);
+        foodCatalog.setCreatePerson(personId);
+        foodCatalog.setStoreId(admin.getStoreId());
+        foodCatalogService.insert(foodCatalog);
+        return foodCatalog;
     }
 
     /**
@@ -54,7 +59,7 @@ public class FoodCatalogController extends BaseController{
      */
     @ApiOperation(value="更新一条菜品分类", notes="更新一条菜品分类")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public FoodCatalogDto update(@RequestBody FoodCatalogDto foodCatalogDto, @CookieValue(value = "token", required = false) String token){
+    public FoodCatalogDto update(FoodCatalogDto foodCatalogDto, @CookieValue(value = "token", required = false) String token){
         Assert.notNull(foodCatalogDto.getId(),"菜品分类id不能为空");
         //获取操作人
         String personId = readCookie(token);

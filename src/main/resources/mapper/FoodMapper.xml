@@ -3,6 +3,7 @@
 <mapper namespace="com.lixu.jie_you_ba.dao.FoodMapper" >
   <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.Food" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
     <result column="food_catalog_id" property="foodCatalogId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="count" property="count" jdbcType="INTEGER" />
@@ -17,37 +18,50 @@
     <result column="sale_price" property="salePrice" jdbcType="REAL" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, food_catalog_id, name, count, price, praise, image, create_person, create_time, 
-    update_person, update_time, sale, sale_price
+    id, store_id, food_catalog_id, name, count, price, praise, image, create_person, 
+    create_time, update_person, update_time, sale, sale_price
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from food
-    where id = #{id,jdbcType=BIGINT}
-  </select>
+  <delete id="remove" parameterType="java.lang.Long" >
+    delete from food
+    where food_catalog_id = #{foodCatalogId,jdbcType=BIGINT}
+  </delete>
   <select id="list" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />
     from food
     where food_catalog_id = #{foodCatalogId,jdbcType=BIGINT}
   </select>
+  <select id="listByStoreId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from food
+    <where>
+      <if test="foodCatalogId != null and foodCatalogId != ''">
+        food_catalog_id = #{foodCatalogId,jdbcType=BIGINT}
+      </if>
+      <if test="storeId != null and storeId !=''">
+        and store_id = #{storeId,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where id = #{id,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from food
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="remove" parameterType="java.lang.Long" >
-    delete from food
-    where food_catalog_id = #{foodCatalogId,jdbcType=BIGINT}
-  </delete>
   <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Food" >
-    insert into food (id, food_catalog_id, name, 
-      count, price, praise, 
+    insert into food (id, store_id, food_catalog_id, 
+      name, count, price, praise, 
       image, create_person, create_time, 
       update_person, update_time, sale, 
       sale_price)
-    values (#{id,jdbcType=BIGINT}, #{foodCatalogId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{count,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{praise,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{foodCatalogId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{praise,jdbcType=VARCHAR}, 
       #{image,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{sale,jdbcType=REAL}, 
       #{salePrice,jdbcType=REAL})
@@ -57,6 +71,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
       </if>
       <if test="foodCatalogId != null" >
         food_catalog_id,
@@ -99,6 +116,9 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
       <if test="foodCatalogId != null" >
         #{foodCatalogId,jdbcType=BIGINT},
       </if>
@@ -140,6 +160,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Food" >
     update food
     <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
       <if test="foodCatalogId != null" >
         food_catalog_id = #{foodCatalogId,jdbcType=BIGINT},
       </if>
@@ -181,7 +204,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.Food" >
     update food
-    set food_catalog_id = #{foodCatalogId,jdbcType=BIGINT},
+    set store_id = #{storeId,jdbcType=BIGINT},
+      food_catalog_id = #{foodCatalogId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
       count = #{count,jdbcType=INTEGER},
       price = #{price,jdbcType=REAL},

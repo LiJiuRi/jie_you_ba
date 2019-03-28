@@ -92,4 +92,9 @@ public class FoodServiceImpl implements FoodService {
         }
         return foodDtoList;
     }
+
+    @Override
+    public List<Food> listByStoreId(Long foodCatalogId,Long storeId) {
+        return foodMapper.listByStoreId(foodCatalogId,storeId);
+    }
 }
