@@ -1,10 +1,14 @@
-package com.lixu.jie_you_ba.dao;
+package com.lixu.jie_you_ba.service;
 
 import com.lixu.jie_you_ba.entity.User;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface UserMapper {
+/**
+ * @Classname UserService
+ * @Description TODO
+ * @Date 2019-03-29 19:46
+ * @Created by lixu
+ */
+public interface UserService {
     int deleteByPrimaryKey(String id);
 
     int insert(User record);

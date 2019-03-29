@@ -3,7 +3,7 @@ package com.lixu.jie_you_ba.entity;
 import java.util.Date;
 
 public class User {
-    private Long id;
+    private String id;
 
     private String name;
 
@@ -23,12 +23,12 @@ public class User {
 
     private Date updateTime;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getName() {

@@ -34,7 +34,7 @@ public class BaseController {
         String token = null;
         token = jwtService.create(personId);
         Cookie cookie = new Cookie("token", token);
-        cookie.setMaxAge(7 * 24 * 60 * 60);// 设置时间为7天
+        cookie.setMaxAge(1 * 24 * 60 * 60);// 设置时间为1天
         cookie.setPath("/");
         response.addCookie(cookie);
     }
