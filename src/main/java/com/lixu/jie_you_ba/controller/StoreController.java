@@ -58,11 +58,11 @@ public class StoreController extends BaseController{
     }
 
     /**
-     * 超级管理员根据店铺id或店铺名一个店铺
+     * 超级管理员根据店铺id或店铺名获取一个店铺
      * @param
      * @return
      */
-    @ApiOperation(value="超级管理员根据店铺id或店铺名一个店铺", notes="超级管理员根据店铺id或店铺名一个店铺")
+    @ApiOperation(value="超级管理员根据店铺id或店铺名获取一个店铺", notes="超级管理员根据店铺id或店铺名获取一个店铺")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public List<Store> list(StoreDto storeDto){
         Long storeIdSearch = storeDto.getStoreIdSearch();
