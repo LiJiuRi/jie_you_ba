@@ -1,6 +1,5 @@
 package com.lixu.jie_you_ba.controller;
 
-import com.lixu.jie_you_ba.dao.StoreApplyMapper;
 import com.lixu.jie_you_ba.entity.Admin;
 import com.lixu.jie_you_ba.entity.Store;
 import com.lixu.jie_you_ba.entity.StoreApply;

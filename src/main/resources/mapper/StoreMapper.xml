@@ -7,6 +7,7 @@
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="bus_stop" property="busStop" jdbcType="VARCHAR" />
     <result column="bus_stop_distance" property="busStopDistance" jdbcType="VARCHAR" />
     <result column="subway_station" property="subwayStation" jdbcType="VARCHAR" />
@@ -26,10 +27,10 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, type, phone, address, bus_stop, bus_stop_distance, subway_station, subway_station_distance, 
-    sale_amount, delivery_time, delivery_type, delivery_init_price, delivery_cost, wifi_name, 
-    wifi_password, description, open_time, create_person, create_time, update_person, 
-    update_time
+    id, name, type, phone, address, url, bus_stop, bus_stop_distance, subway_station, 
+    subway_station_distance, sale_amount, delivery_time, delivery_type, delivery_init_price, 
+    delivery_cost, wifi_name, wifi_password, description, open_time, create_person, create_time, 
+    update_person, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -59,21 +60,21 @@
   </delete>
   <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Store" >
     insert into store (id, name, type, 
-      phone, address, bus_stop, 
-      bus_stop_distance, subway_station, subway_station_distance, 
-      sale_amount, delivery_time, delivery_type, 
-      delivery_init_price, delivery_cost, wifi_name, 
-      wifi_password, description, open_time, 
-      create_person, create_time, update_person, 
-      update_time)
+      phone, address, url, 
+      bus_stop, bus_stop_distance, subway_station, 
+      subway_station_distance, sale_amount, delivery_time, 
+      delivery_type, delivery_init_price, delivery_cost, 
+      wifi_name, wifi_password, description, 
+      open_time, create_person, create_time, 
+      update_person, update_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{busStop,jdbcType=VARCHAR}, 
-      #{busStopDistance,jdbcType=VARCHAR}, #{subwayStation,jdbcType=VARCHAR}, #{subwayStationDistance,jdbcType=VARCHAR}, 
-      #{saleAmount,jdbcType=INTEGER}, #{deliveryTime,jdbcType=VARCHAR}, #{deliveryType,jdbcType=VARCHAR}, 
-      #{deliveryInitPrice,jdbcType=VARCHAR}, #{deliveryCost,jdbcType=VARCHAR}, #{wifiName,jdbcType=VARCHAR}, 
-      #{wifiPassword,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{openTime,jdbcType=VARCHAR}, 
-      #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{busStop,jdbcType=VARCHAR}, #{busStopDistance,jdbcType=VARCHAR}, #{subwayStation,jdbcType=VARCHAR}, 
+      #{subwayStationDistance,jdbcType=VARCHAR}, #{saleAmount,jdbcType=INTEGER}, #{deliveryTime,jdbcType=VARCHAR}, 
+      #{deliveryType,jdbcType=VARCHAR}, #{deliveryInitPrice,jdbcType=VARCHAR}, #{deliveryCost,jdbcType=VARCHAR}, 
+      #{wifiName,jdbcType=VARCHAR}, #{wifiPassword,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{openTime,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Store" >
     insert into store
@@ -92,6 +93,9 @@
       </if>
       <if test="address != null" >
         address,
+      </if>
+      <if test="url != null" >
+        url,
       </if>
       <if test="busStop != null" >
         bus_stop,
@@ -161,6 +165,9 @@
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
       <if test="busStop != null" >
         #{busStop,jdbcType=VARCHAR},
       </if>
@@ -229,6 +236,9 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
       <if test="busStop != null" >
         bus_stop = #{busStop,jdbcType=VARCHAR},
       </if>
@@ -289,6 +299,7 @@
       type = #{type,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
       bus_stop = #{busStop,jdbcType=VARCHAR},
       bus_stop_distance = #{busStopDistance,jdbcType=VARCHAR},
       subway_station = #{subwayStation,jdbcType=VARCHAR},
