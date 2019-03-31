@@ -72,13 +72,31 @@ public class StoreController extends BaseController{
         return storeList;
     }
 
+
+    /**
+     * 微信小程序端调用获取店铺，因为小程序调用post方式会出现问题，所以复制一份单独给小程序用
+     * @param
+     * @return
+     */
+    @ApiOperation(value="微信小程序端调用获取店铺", notes="微信小程序端调用获取店铺")
+    @RequestMapping(value = "/storeList", method = RequestMethod.GET)
+    public List<Store> storeList(HttpServletRequest request){
+        String storeNameSearch = request.getParameter("storeNameSearch");
+        Long storeIdSearch = null;
+        String storeTypeSearch = request.getParameter("storeTypeSearch");
+        logger.info("storeNameSearch={}",storeNameSearch);
+        logger.info("storeTypeSearch={}",storeTypeSearch);
+        List<Store> storeList  = storeService.list(storeIdSearch,storeNameSearch,storeTypeSearch);
+        return storeList;
+    }
+
     /**
      * 根据店铺id获取一个店铺
      * @param
      * @return
      */
     @ApiOperation(value="根据店铺id获取一个店铺", notes="根据店铺id获取一个店铺")
-    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    @RequestMapping(value = "/get", method = {RequestMethod.POST,RequestMethod.GET})
     public Store get(HttpServletRequest request){
         String storeId = request.getParameter("storeId");
         Store store = storeService.get(Long.valueOf(storeId));

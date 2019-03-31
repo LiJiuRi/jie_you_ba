@@ -75,9 +75,9 @@ public class FoodCatalogServiceImpl implements FoodCatalogService {
     }
 
     @Override
-    public List<FoodCatalogDto> list() {
+    public List<FoodCatalogDto> list(Long storeId) {
         List<FoodCatalogDto> foodCatalogDtoList = new ArrayList<>();
-        List<FoodCatalog> foodCatalogList = foodCatalogMapper.list();
+        List<FoodCatalog> foodCatalogList = foodCatalogMapper.list(storeId);
         if(null != foodCatalogList && !foodCatalogList.isEmpty()){
             for (FoodCatalog foodCatalog : foodCatalogList){
                 FoodCatalogDto foodCatalogDto = new FoodCatalogDto();

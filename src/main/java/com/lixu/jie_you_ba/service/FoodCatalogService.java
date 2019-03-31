@@ -21,6 +21,6 @@ public interface FoodCatalogService {
 
     FoodCatalogDto get(Long id);
 
-    List<FoodCatalogDto> list();
+    List<FoodCatalogDto> list(Long storeId);
 
 }

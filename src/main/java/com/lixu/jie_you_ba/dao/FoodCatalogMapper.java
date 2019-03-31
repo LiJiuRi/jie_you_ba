@@ -15,7 +15,7 @@ public interface FoodCatalogMapper {
 
     FoodCatalog selectByPrimaryKey(Long id);
 
-    List<FoodCatalog> list();
+    List<FoodCatalog> list(Long storeId);
 
     int updateByPrimaryKeySelective(FoodCatalog record);
 

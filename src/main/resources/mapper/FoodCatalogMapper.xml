@@ -23,6 +23,7 @@
     select
     <include refid="Base_Column_List" />
     from food_catalog
+    where store_id = #{storeId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from food_catalog

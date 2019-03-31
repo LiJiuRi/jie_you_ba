@@ -102,8 +102,14 @@ public class FoodCatalogController extends BaseController{
      */
     @ApiOperation(value="获取全部菜品分类", notes="获取全部菜品分类")
     @RequestMapping(value = "/list", method = {RequestMethod.GET,RequestMethod.POST})
-    public List<FoodCatalogDto> list(){
-        return foodCatalogService.list();
+    public List<FoodCatalogDto> list(HttpServletRequest request,@CookieValue(value = "token", required = false) String token){
+        if(null != token){
+            String personId = readCookie(token);
+            Admin admin = adminService.select(Long.valueOf(personId));
+            return foodCatalogService.list(admin.getStoreId());
+        }
+        String storeId = request.getParameter("storeId");
+        return foodCatalogService.list(Long.valueOf(storeId));
     }
 }
 
