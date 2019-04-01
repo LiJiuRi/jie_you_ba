@@ -1,15 +1,27 @@
 package com.lixu.jie_you_ba.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Order {
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
-    private Long userId;
+    private String userId;
 
-    private Long adminId;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private Long storeId;
 
-    private Float cost;
+    private Float deliveryCost;
+
+    private Float totalCost;
+
+    private Long couponId;
+
+    private Float payCost;
+
+    private String payType;
 
     private String remark;
 
@@ -19,14 +31,20 @@ public class Order {
 
     private String orderAddress;
 
+    private String deliveryName;
+
+    private String deliveryPhone;
+
     private Integer status;
 
     private String createPerson;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     private String updatePerson;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     public Long getId() {
@@ -37,28 +55,60 @@ public class Order {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
-    public Long getAdminId() {
-        return adminId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setAdminId(Long adminId) {
-        this.adminId = adminId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
-    public Float getCost() {
-        return cost;
+    public Float getDeliveryCost() {
+        return deliveryCost;
     }
 
-    public void setCost(Float cost) {
-        this.cost = cost;
+    public void setDeliveryCost(Float deliveryCost) {
+        this.deliveryCost = deliveryCost;
+    }
+
+    public Float getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Float totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public Long getCouponId() {
+        return couponId;
+    }
+
+    public void setCouponId(Long couponId) {
+        this.couponId = couponId;
+    }
+
+    public Float getPayCost() {
+        return payCost;
+    }
+
+    public void setPayCost(Float payCost) {
+        this.payCost = payCost;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType == null ? null : payType.trim();
     }
 
     public String getRemark() {
@@ -91,6 +141,22 @@ public class Order {
 
     public void setOrderAddress(String orderAddress) {
         this.orderAddress = orderAddress == null ? null : orderAddress.trim();
+    }
+
+    public String getDeliveryName() {
+        return deliveryName;
+    }
+
+    public void setDeliveryName(String deliveryName) {
+        this.deliveryName = deliveryName == null ? null : deliveryName.trim();
+    }
+
+    public String getDeliveryPhone() {
+        return deliveryPhone;
+    }
+
+    public void setDeliveryPhone(String deliveryPhone) {
+        this.deliveryPhone = deliveryPhone == null ? null : deliveryPhone.trim();
     }
 
     public Integer getStatus() {

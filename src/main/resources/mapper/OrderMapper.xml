@@ -3,13 +3,19 @@
 <mapper namespace="com.lixu.jie_you_ba.dao.OrderMapper" >
   <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.Order" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="admin_id" property="adminId" jdbcType="BIGINT" />
-    <result column="cost" property="cost" jdbcType="REAL" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="delivery_cost" property="deliveryCost" jdbcType="REAL" />
+    <result column="total_cost" property="totalCost" jdbcType="REAL" />
+    <result column="coupon_id" property="couponId" jdbcType="BIGINT" />
+    <result column="pay_cost" property="payCost" jdbcType="REAL" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="order_name" property="orderName" jdbcType="VARCHAR" />
     <result column="order_phone" property="orderPhone" jdbcType="VARCHAR" />
     <result column="order_address" property="orderAddress" jdbcType="VARCHAR" />
+    <result column="delivery_name" property="deliveryName" jdbcType="VARCHAR" />
+    <result column="delivery_phone" property="deliveryPhone" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -17,33 +23,38 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, admin_id, cost, remark, order_name, order_phone, order_address, status, 
+    id, user_id, store_id, delivery_cost, total_cost, coupon_id, pay_cost, pay_type, 
+    remark, order_name, order_phone, order_address, delivery_name, delivery_phone, status, 
     create_person, create_time, update_person, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from order
+    from user_order
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from order
+    delete from user_order
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Order" >
-    insert into order (id, user_id, admin_id, 
-      cost, remark, order_name, 
-      order_phone, order_address, status, 
+    insert into user_order (id, user_id, store_id, 
+      delivery_cost, total_cost, coupon_id, 
+      pay_cost, pay_type, remark, 
+      order_name, order_phone, order_address, 
+      delivery_name, delivery_phone, status, 
       create_person, create_time, update_person, 
       update_time)
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{adminId,jdbcType=BIGINT}, 
-      #{cost,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, #{orderName,jdbcType=VARCHAR}, 
-      #{orderPhone,jdbcType=VARCHAR}, #{orderAddress,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{storeId,jdbcType=BIGINT}, 
+      #{deliveryCost,jdbcType=REAL}, #{totalCost,jdbcType=REAL}, #{couponId,jdbcType=BIGINT}, 
+      #{payCost,jdbcType=REAL}, #{payType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{orderName,jdbcType=VARCHAR}, #{orderPhone,jdbcType=VARCHAR}, #{orderAddress,jdbcType=VARCHAR}, 
+      #{deliveryName,jdbcType=VARCHAR}, #{deliveryPhone,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Order" >
-    insert into order
+    insert into user_order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -51,11 +62,23 @@
       <if test="userId != null" >
         user_id,
       </if>
-      <if test="adminId != null" >
-        admin_id,
+      <if test="storeId != null" >
+        store_id,
       </if>
-      <if test="cost != null" >
-        cost,
+      <if test="deliveryCost != null" >
+        delivery_cost,
+      </if>
+      <if test="totalCost != null" >
+        total_cost,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="payCost != null" >
+        pay_cost,
+      </if>
+      <if test="payType != null" >
+        pay_type,
       </if>
       <if test="remark != null" >
         remark,
@@ -68,6 +91,12 @@
       </if>
       <if test="orderAddress != null" >
         order_address,
+      </if>
+      <if test="deliveryName != null" >
+        delivery_name,
+      </if>
+      <if test="deliveryPhone != null" >
+        delivery_phone,
       </if>
       <if test="status != null" >
         status,
@@ -90,13 +119,25 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="adminId != null" >
-        #{adminId,jdbcType=BIGINT},
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
       </if>
-      <if test="cost != null" >
-        #{cost,jdbcType=REAL},
+      <if test="deliveryCost != null" >
+        #{deliveryCost,jdbcType=REAL},
+      </if>
+      <if test="totalCost != null" >
+        #{totalCost,jdbcType=REAL},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="payCost != null" >
+        #{payCost,jdbcType=REAL},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -109,6 +150,12 @@
       </if>
       <if test="orderAddress != null" >
         #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null" >
+        #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPhone != null" >
+        #{deliveryPhone,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -128,16 +175,28 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Order" >
-    update order
+    update user_order
     <set >
       <if test="userId != null" >
-        user_id = #{userId,jdbcType=BIGINT},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="adminId != null" >
-        admin_id = #{adminId,jdbcType=BIGINT},
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
       </if>
-      <if test="cost != null" >
-        cost = #{cost,jdbcType=REAL},
+      <if test="deliveryCost != null" >
+        delivery_cost = #{deliveryCost,jdbcType=REAL},
+      </if>
+      <if test="totalCost != null" >
+        total_cost = #{totalCost,jdbcType=REAL},
+      </if>
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="payCost != null" >
+        pay_cost = #{payCost,jdbcType=REAL},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -150,6 +209,12 @@
       </if>
       <if test="orderAddress != null" >
         order_address = #{orderAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null" >
+        delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPhone != null" >
+        delivery_phone = #{deliveryPhone,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -170,14 +235,20 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.Order" >
-    update order
-    set user_id = #{userId,jdbcType=BIGINT},
-      admin_id = #{adminId,jdbcType=BIGINT},
-      cost = #{cost,jdbcType=REAL},
+    update user_order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      delivery_cost = #{deliveryCost,jdbcType=REAL},
+      total_cost = #{totalCost,jdbcType=REAL},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      pay_cost = #{payCost,jdbcType=REAL},
+      pay_type = #{payType,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       order_name = #{orderName,jdbcType=VARCHAR},
       order_phone = #{orderPhone,jdbcType=VARCHAR},
       order_address = #{orderAddress,jdbcType=VARCHAR},
+      delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      delivery_phone = #{deliveryPhone,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_person = #{createPerson,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

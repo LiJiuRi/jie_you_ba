@@ -244,3 +244,37 @@ CREATE TABLE IF NOT EXISTS `store_apply` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+十五、优惠卷表（此表用于给超级管理员后台设置的，提供给用户）
+CREATE TABLE IF NOT EXISTS `coupon` (
+  `id` bigint(20) NOT NULL COMMENT '优惠卷id',
+  `value` float(6,3) COLLATE utf8mb4_general_ci DEFAULT '1.00' COMMENT '10￥，9折等的数据部分',
+  `sale` varchar(3) COLLATE utf8mb4_general_ci DEFAULT '￥' COMMENT '10￥，9折等的非数字部分',
+  `regular` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规则描述',
+  `type` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '优惠卷类型',
+  `status` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '1-可用，2-过期',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+十六、用户优惠卷表（此表提供给用户）
+CREATE TABLE IF NOT EXISTS `user_coupon` (
+  `id` bigint(20) NOT NULL COMMENT 'id',
+  `user_id` bigint(20) NOT NULL COMMENT '用户id',
+  `coupon_id` bigint(20) NOT NULL COMMENT '优惠卷id',
+  `value` float(6,3) COLLATE utf8mb4_general_ci DEFAULT '1.00' COMMENT '10￥，9折等的数据部分',
+  `sale` varchar(3) COLLATE utf8mb4_general_ci DEFAULT '￥' COMMENT '10￥，9折等的非数字部分',
+  `regular` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规则描述',
+  `type` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '优惠卷类型',
+  `status` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '1-未使用，2-已使用',
+  `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

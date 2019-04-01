@@ -1,7 +1,9 @@
 package com.lixu.jie_you_ba.dao;
 
 import com.lixu.jie_you_ba.entity.Order;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface OrderMapper {
     int deleteByPrimaryKey(Long id);
 
