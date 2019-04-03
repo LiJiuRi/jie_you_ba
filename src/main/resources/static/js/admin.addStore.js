@@ -35,11 +35,6 @@
 
 var ready = $(document).ready(function(){
 
-	//定义全局变量，会议室号，根据按钮点击事件改变
-	var roomNumber ;
-	//定义全局变量；保存所有设备信息，方便设置设备信息的下拉框
-	var allDevices ;
-
 	//新增会议室弹出框确认按钮点击事件
 	$("#confirmAddRoom").click(function(){
 
