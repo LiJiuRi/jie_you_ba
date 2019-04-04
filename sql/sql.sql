@@ -270,6 +270,7 @@ CREATE TABLE IF NOT EXISTS `user_coupon` (
   `value` float(6,3) COLLATE utf8mb4_general_ci DEFAULT '1.00' COMMENT '10￥，9折等的数据部分',
   `sale` varchar(3) COLLATE utf8mb4_general_ci DEFAULT '￥' COMMENT '10￥，9折等的非数字部分',
   `regular` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规则描述',
+  `regular_value` float  COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规则描述所对应的数值',
   `type` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '优惠卷类型',
   `status` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '1-未使用，2-已使用',
   `create_person` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',

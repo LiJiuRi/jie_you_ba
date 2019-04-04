@@ -2,6 +2,8 @@ package com.lixu.jie_you_ba.service;
 
 import com.lixu.jie_you_ba.entity.Coupon;
 
+import java.util.List;
+
 /**
  * @Classname CouponService
  * @Description TODO
@@ -10,4 +12,6 @@ import com.lixu.jie_you_ba.entity.Coupon;
  */
 public interface CouponService {
     Coupon insert(Coupon coupon);
+    List<Coupon> list(String couponType,String couponStatus);
+    int update(Coupon coupon);
 }

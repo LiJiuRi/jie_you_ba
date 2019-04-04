@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Classname CouponServiceImpl
@@ -31,5 +32,19 @@ public class CouponServiceImpl implements CouponService {
         coupon.setStatus("可用");
         couponMapper.insertSelective(coupon);
         return coupon;
+    }
+
+    @Override
+    public List<Coupon> list(String couponType, String couponStatus) {
+        List<Coupon> couponList = couponMapper.list(couponType,couponStatus);
+        return couponList;
+    }
+
+    @Override
+    public int update(Coupon coupon) {
+        coupon.setStatus("失效");
+        coupon.setUpdateTime(new Date());
+        couponMapper.updateByPrimaryKeySelective(coupon);
+        return 0;
     }
 }
