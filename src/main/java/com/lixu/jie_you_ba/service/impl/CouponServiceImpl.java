@@ -47,4 +47,9 @@ public class CouponServiceImpl implements CouponService {
         couponMapper.updateByPrimaryKeySelective(coupon);
         return 0;
     }
+
+    @Override
+    public Coupon select(Long id) {
+        return couponMapper.selectByPrimaryKey(id);
+    }
 }

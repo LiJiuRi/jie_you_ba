@@ -14,4 +14,5 @@ public interface CouponService {
     Coupon insert(Coupon coupon);
     List<Coupon> list(String couponType,String couponStatus);
     int update(Coupon coupon);
+    Coupon select(Long id);
 }

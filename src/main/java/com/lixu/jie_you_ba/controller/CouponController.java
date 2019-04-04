@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/coupon")
 public class CouponController extends BaseController{
 
-    private static Logger logger = LoggerFactory.getLogger(StoreController.class);
+    private static Logger logger = LoggerFactory.getLogger(CouponController.class);
 
     @Autowired
     private CouponService couponService;
