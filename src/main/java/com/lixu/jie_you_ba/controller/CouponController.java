@@ -49,7 +49,7 @@ public class CouponController extends BaseController{
      * @return
      */
     @ApiOperation(value="超级管理员查询优惠卷", notes="超级管理员查询优惠卷")
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = {RequestMethod.POST,RequestMethod.GET})
     public List<Coupon> insert(HttpServletRequest request){
         String couponType = request.getParameter("couponType");
         String couponStatus = request.getParameter("couponStatus");

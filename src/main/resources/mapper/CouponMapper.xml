@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lixu.jie_you_ba.dao.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.lixu.jie_you_ba.entity.Coupon" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="value" property="value" jdbcType="REAL" />
+    <result column="sale" property="sale" jdbcType="VARCHAR" />
+    <result column="regular" property="regular" jdbcType="VARCHAR" />
+    <result column="regular_value" property="regularValue" jdbcType="REAL" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, value, sale, regular, regular_value, type, status, create_person, create_time, 
+    update_person, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from coupon
+    <where>
+      <if test="couponStatus != null and couponStatus != ''">
+        status = #{couponStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="couponType != null and couponType !=''">
+        and type = #{couponType,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from coupon
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lixu.jie_you_ba.entity.Coupon" >
+    insert into coupon (id, value, sale, 
+      regular, regular_value, type, 
+      status, create_person, create_time, 
+      update_person, update_time)
+    values (#{id,jdbcType=BIGINT}, #{value,jdbcType=REAL}, #{sale,jdbcType=VARCHAR}, 
+      #{regular,jdbcType=VARCHAR}, #{regularValue,jdbcType=REAL}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lixu.jie_you_ba.entity.Coupon" >
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+      <if test="regular != null" >
+        regular,
+      </if>
+      <if test="regularValue != null" >
+        regular_value,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createPerson != null" >
+        create_person,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updatePerson != null" >
+        update_person,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=REAL},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=VARCHAR},
+      </if>
+      <if test="regular != null" >
+        #{regular,jdbcType=VARCHAR},
+      </if>
+      <if test="regularValue != null" >
+        #{regularValue,jdbcType=REAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lixu.jie_you_ba.entity.Coupon" >
+    update coupon
+    <set >
+      <if test="value != null" >
+        value = #{value,jdbcType=REAL},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=VARCHAR},
+      </if>
+      <if test="regular != null" >
+        regular = #{regular,jdbcType=VARCHAR},
+      </if>
+      <if test="regularValue != null" >
+        regular_value = #{regularValue,jdbcType=REAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lixu.jie_you_ba.entity.Coupon" >
+    update coupon
+    set value = #{value,jdbcType=REAL},
+      sale = #{sale,jdbcType=VARCHAR},
+      regular = #{regular,jdbcType=VARCHAR},
+      regular_value = #{regularValue,jdbcType=REAL},
+      type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
