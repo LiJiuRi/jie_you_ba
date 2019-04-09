@@ -2,6 +2,9 @@ package com.lixu.jie_you_ba.dao;
 
 import com.lixu.jie_you_ba.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface OrderMapper {
@@ -12,6 +15,8 @@ public interface OrderMapper {
     int insertSelective(Order record);
 
     Order selectByPrimaryKey(Long id);
+
+    List<Order> list(@Param("status") Integer status, @Param("personId") String personId);
 
     int updateByPrimaryKeySelective(Order record);
 

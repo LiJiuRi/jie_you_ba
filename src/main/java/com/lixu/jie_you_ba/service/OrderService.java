@@ -1,6 +1,9 @@
 package com.lixu.jie_you_ba.service;
 
+import com.lixu.jie_you_ba.dto.OrderDto;
 import com.lixu.jie_you_ba.entity.Order;
+
+import java.util.List;
 
 /**
  * @Classname OrderService
@@ -10,4 +13,6 @@ import com.lixu.jie_you_ba.entity.Order;
  */
 public interface OrderService {
     Order insert(Order order);
+    int update(Order order);
+    List<OrderDto> list(Integer status,String personId);
 }

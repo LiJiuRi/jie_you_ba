@@ -1,12 +1,17 @@
 package com.lixu.jie_you_ba.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class FoodSale {
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long orderId;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long foodId;
 
     private String foodName;

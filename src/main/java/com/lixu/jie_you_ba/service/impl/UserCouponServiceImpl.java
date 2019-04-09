@@ -50,4 +50,10 @@ public class UserCouponServiceImpl implements UserCouponService {
     public List<UserCoupon> list(Long id,String couponStatus,String userId) {
         return userCouponMapper.list(id,couponStatus,userId);
     }
+
+    @Override
+    public UserCoupon update(UserCoupon userCoupon) {
+        userCouponMapper.updateByPrimaryKeySelective(userCoupon);
+        return userCoupon;
+    }
 }

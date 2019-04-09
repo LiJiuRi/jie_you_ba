@@ -14,4 +14,5 @@ public interface UserCouponService {
     boolean check(Long coupon,String userId);
     UserCoupon insert(UserCoupon userCoupon);
     List<UserCoupon> list(Long id,String couponStatus,String userId);
+    UserCoupon update(UserCoupon userCoupon);
 }

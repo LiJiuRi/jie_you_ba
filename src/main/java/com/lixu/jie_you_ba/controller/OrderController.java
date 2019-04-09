@@ -1,17 +1,18 @@
 package com.lixu.jie_you_ba.controller;
 
+import com.lixu.jie_you_ba.dto.OrderDto;
 import com.lixu.jie_you_ba.entity.Order;
+import com.lixu.jie_you_ba.entity.UserCoupon;
 import com.lixu.jie_you_ba.service.OrderService;
+import com.lixu.jie_you_ba.service.UserCouponService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Classname OrderController
@@ -27,6 +28,9 @@ public class OrderController extends BaseController{
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private UserCouponService userCouponService;
 
     /**
      * 新建一个订单
@@ -44,6 +48,36 @@ public class OrderController extends BaseController{
         order.setCreatePerson(personId);
         orderService.insert(order);
         return order;
+    }
+
+    /**
+     * 用户更新订单
+     * @return
+     */
+    @ApiOperation(value="用户更新订单", notes="用户更新订单")
+    @RequestMapping(value = "/update", method = {RequestMethod.POST,RequestMethod.GET})
+    public Order update(@RequestBody(required = false) Order order){
+        //有使用到优惠卷的话，需更改其状态
+        if(null != order.getCouponId()){
+            UserCoupon userCoupon = new UserCoupon();
+            userCoupon.setStatus("已使用");
+            userCoupon.setId(order.getCouponId());
+            userCouponService.update(userCoupon);
+        }
+        orderService.update(order);
+        return order;
+    }
+
+    /**
+     * 用户根据订单状态获取所有对应状态的订单
+     * @return
+     */
+    @ApiOperation(value="用户根据订单状态获取所有对应状态的订单", notes="用户根据订单状态获取所有对应状态的订单")
+    @RequestMapping(value = "/list", method = {RequestMethod.POST,RequestMethod.GET})
+    public List<OrderDto> list(@RequestParam(required = false,value = "status") Integer status, @CookieValue(value = "token", required = false) String token){
+        String personId = readCookie(token);
+        List<OrderDto> orderDtos = orderService.list(status,personId);
+        return orderDtos;
     }
 
 }
