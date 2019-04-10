@@ -117,6 +117,12 @@ public class OrderController extends BaseController{
     /**
      * 店铺管理员查询未接单的订单，因为接单与当前订单、历史订单查询条件不一样，所以分开
      * 上面做法替换方案：直接更改前端查询条件即可，不要重复查询（login/current设置了adminId了，就无需通过token获取）
+     *
+     *
+     * 总结：
+     * （1）查询待接单订单时传送参数为storeId、status=2
+     * （2）查询待发货、待收货、退款、退货订单时传送参数为updatePerson，此时status为null，sql语句使用status in {3,4,6,7}
+     * （3）查询历史订单时传送参数为updatePerson、status = 0
      * @return
      */
     @ApiOperation(value="店铺管理员查询订单", notes="店铺管理员查询订单")

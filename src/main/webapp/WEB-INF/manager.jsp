@@ -372,6 +372,87 @@
             </div>
             <!-- 当前订单模块结束 -->
 
+            <!-- 历史订单模块 -->
+            <div role="tabpanel" class="tab-pane" id="historyOrderPane">
+
+                <div class="data-div">
+                    <!--自己写table -->
+                    <table style="width: 1240px;" class="table table-striped table-hover">
+                        <caption><div align="center" class="text-success">当前订单</div></caption>
+                        <thead class="row tableHeader">
+                        <tr>
+                            <th style="width:17%;text-align: center;">订单编号</th>
+                            <th style="width:7%;text-align: center;">下单人</th>
+                            <th style="width:10%;text-align: center;">联系电话</th>
+                            <th style="width:17%;text-align: center;">送餐地址</th>
+                            <th style="width:15%;text-align: center;">备注</th>
+                            <th style="width:11%;text-align: center;">支付方式</th>
+                            <th style="width:7%;text-align: center;">总价</th>
+                            <th style="width:8%;text-align: center;">菜单详情</th>
+                            <th style="width:8%;text-align: center;">沟通记录</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tablebody" id = "historyOrderBody">
+                        <!--<tr>
+                            <td>1</td>
+                            <td>10001</td>
+                            <td>100</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                            <td>椅子*120</td>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--点击菜单弹出窗口-->
+                <div class="modal fade" id="historyOrderDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">菜单详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal" id="historyOrderFoodSales">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--点击沟通记录弹出窗口-->
+                <div class="modal fade" id="communicateDetailsHistory" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">菜单详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal" id="communicateDetailBody">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!-- 历史订单模块结束 -->
+
             <!-- 菜品分类模块 -->
             <div role="tabpanel" class="tab-pane" id="ClassifyPane">
 
@@ -1271,6 +1352,7 @@
 <script src="../../static/js/manager.commom.js"></script>
 <script src="../../static/js/manager.receiveOrder.js"></script>
 <script src="../../static/js/manager.nowOrder.js"></script>
+<script src="../../static/js/manager.historyOrder.js"></script>
 <script src="../../static/js/manager.showHistoryApplyed.js"></script>
 <script src="../../static/js/manager.storeDeal.js"></script>
 <script src="../../static/js/manager.inviteUser.js"></script>
