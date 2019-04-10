@@ -1,6 +1,7 @@
 package com.lixu.jie_you_ba.controller;
 
 import com.lixu.jie_you_ba.dto.OrderDto;
+import com.lixu.jie_you_ba.dto.ReceiveOrderDto;
 import com.lixu.jie_you_ba.entity.Order;
 import com.lixu.jie_you_ba.entity.UserCoupon;
 import com.lixu.jie_you_ba.service.OrderService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,4 +82,19 @@ public class OrderController extends BaseController{
         return orderDtos;
     }
 
+    /**
+     * 店铺管理员查询未接单的订单，因为接单与当前订单、历史订单查询条件不一样，所以分开
+     * 上面做法替换方案：直接更改前端查询条件即可，不要重复查询（login/current设置了adminId了，就无需通过token获取）
+     * (1)接单查询时，就不
+     * @return
+     */
+    @ApiOperation(value="店铺管理员查询订单", notes="店铺管理员查询订单")
+    @RequestMapping(value = "/listOrder", method = {RequestMethod.POST,RequestMethod.GET})
+    public List<Order> listOrder(@RequestParam(required = false,value = "status") Integer status, @RequestParam(required = false,value = "storeId") String storeId,@RequestParam(required = false,value = "updatePerson") String updatePerson){
+        logger.info("status={}",status);
+        logger.info("storeId={}",storeId);
+        logger.info("updatePerson={}",updatePerson);
+        List<Order> receiveOrderDtos = orderService.listOrder(status,Long.valueOf(storeId),updatePerson);
+        return receiveOrderDtos;
+    }
 }

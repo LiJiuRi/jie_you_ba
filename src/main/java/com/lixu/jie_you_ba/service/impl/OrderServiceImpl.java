@@ -2,6 +2,7 @@ package com.lixu.jie_you_ba.service.impl;
 
 import com.lixu.jie_you_ba.dao.OrderMapper;
 import com.lixu.jie_you_ba.dto.OrderDto;
+import com.lixu.jie_you_ba.dto.ReceiveOrderDto;
 import com.lixu.jie_you_ba.entity.Store;
 import com.lixu.jie_you_ba.service.OrderService;
 import com.lixu.jie_you_ba.service.StoreService;
@@ -83,5 +84,11 @@ public class OrderServiceImpl implements OrderService {
             orderDtos.add(orderDto);
         }
         return orderDtos;
+    }
+
+    @Override
+    public List<Order> listOrder(Integer status, Long storeId, String updatePerson) {
+        List<Order> orders = orderMapper.listOrder(status,storeId,updatePerson);
+        return orders;
     }
 }

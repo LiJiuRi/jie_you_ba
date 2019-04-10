@@ -2,6 +2,8 @@ package com.lixu.jie_you_ba.service;
 
 import com.lixu.jie_you_ba.entity.FoodSale;
 
+import java.util.List;
+
 /**
  * @Classname FoodSaleService
  * @Description TODO
@@ -10,4 +12,5 @@ import com.lixu.jie_you_ba.entity.FoodSale;
  */
 public interface FoodSaleService {
     FoodSale insert(FoodSale foodSale);
+    List<FoodSale> list(Long orderId);
 }

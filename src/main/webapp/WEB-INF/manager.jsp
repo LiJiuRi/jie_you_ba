@@ -85,6 +85,8 @@
         </div>
         <div id="personInfor">
             <p style="margin-left:30px;margin-bottom:5px;">欢迎您！</p>
+            <p id="adminId"></p>
+            <p id="storeId"></p>
             <p id="userName" style="margin-left:25px;margin-bottom:15px;color:#e66e79;"></p>
         </div>
         <div id ="accordion" style="padding-left:0px;">
@@ -170,18 +172,18 @@
                         <caption><div align="center" class="text-success">待处理订单列表</div></caption>
                         <thead class="row tableHeader">
                         <tr>
-                            <th style="width:10%;">店铺编号</th>
-                            <th style="width:10%;">店铺名称</th>
-                            <th style="width:10%;">店铺类型</th>
-                            <th style="width:14%;">店铺地址</th>
-                            <th style="width:34%;">店铺简介</th>
-                            <th style="width:7%;">总销量</th>
-                            <th style="width:5%;">详情</th>
-                            <th style="width:5%;">修改</th>
-                            <th style="width:5%;">注销</th>
+                            <th style="width:7%;text-align: center;">下单人</th>
+                            <th style="width:10%;text-align: center;">联系电话</th>
+                            <th style="width:20%;text-align: center;">送餐地址</th>
+                            <th style="width:20%;text-align: center;">备注</th>
+                            <th style="width:10%;text-align: center;">支付方式</th>
+                            <th style="width:7%;text-align: center;">订单总价</th>
+                            <th style="width:11%;text-align: center;">下单时间</th>
+                            <th style="width:8%;text-align: center;">菜单详情</th>
+                            <th style="width:7%;text-align: center;">接单</th>
                         </tr>
                         </thead>
-                        <tbody class="tablebody" id = "showStoreBody">
+                        <tbody class="tablebody" id = "receiveOrderBody">
                         <!--<tr>
                             <td>1</td>
                             <td>10001</td>
@@ -195,37 +197,18 @@
                     </table>
                 </div>
 
-                <!--点击详情弹出窗口-->
-                <div class="modal fade" id="storeDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <!--点击菜单弹出窗口-->
+                <div class="modal fade" id="orderDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="storeDetailsPane">店铺详情</h4>
+                                <h4 class="modal-title">菜单详情</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="storeDetailsbusStop" class="col-xs-3 control-label">公交站：</label>
-                                            <label id="storeDetailsbusStop" class="control-label"></label>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="storeDetailsubwayStation" class="col-xs-3 control-label">地铁站：</label>
-                                            <label id="storeDetailsubwayStation" class="control-label"></label>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="storeDetaildelivery" class="col-xs-3 control-label">配送：</label>
-                                            <label id="storeDetaildelivery" class="control-label"></label>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="storeDetailwifi" class="col-xs-3 control-label">WiFi：</label>
-                                            <label id="storeDetailwifi" class="control-label"></label>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="storeDetailopenTime" class="col-xs-3 control-label">时间：</label>
-                                            <label id="storeDetailopenTime" class="control-label"></label>
-                                        </div>
+                                    <form class="form-horizontal" id="OrderFoodSales">
+
                                     </form>
                                 </div>
                             </div>
@@ -1375,6 +1358,7 @@
 
 <script src="../../static/js/exitLogin.js"></script>
 <script src="../../static/js/manager.commom.js"></script>
+<script src="../../static/js/manager.receiveOrder.js"></script>
 <script src="../../static/js/manager.showHistoryApplyed.js"></script>
 <script src="../../static/js/manager.storeDeal.js"></script>
 <script src="../../static/js/manager.inviteUser.js"></script>

@@ -43,4 +43,17 @@ public class FoodSaleController extends BaseController{
         }
         return true;
     }
+
+    /**
+     * 店铺管理员根据订单id获取该订单的菜单列表
+     * @return
+     */
+    @ApiOperation(value="店铺管理员根据订单id获取该订单的菜单列表", notes="店铺管理员根据订单id获取该订单的菜单列表")
+    @RequestMapping(value = "/list", method = {RequestMethod.POST,RequestMethod.GET})
+    public List<FoodSale> list(@RequestParam("orderId") Long orderId){
+        logger.info("orderId={}",orderId);
+        List<FoodSale> foodSales = foodSaleService.list(orderId);
+        return foodSales;
+    }
+
 }

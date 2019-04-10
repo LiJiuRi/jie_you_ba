@@ -16,6 +16,10 @@ $(document).ready(function(){
 			JSON.stringify(result);
         	if(result != ""){
 				$("#userName").text(result.name);
+				$("#storeId").hide();
+				$("#storeId").text(result.store_id);
+				$("#adminId").hide();
+				$("#adminId").text(result.id);
 			}else {
 				var url = "../jsp/index";
 				window.location.href=url;

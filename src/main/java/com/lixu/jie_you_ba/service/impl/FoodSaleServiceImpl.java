@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Classname FoodSaleServiceImpl
@@ -30,5 +31,10 @@ public class FoodSaleServiceImpl implements FoodSaleService {
         foodSale.setCreateTime(new Date());
         foodSaleMapper.insertSelective(foodSale);
         return foodSale;
+    }
+
+    @Override
+    public List<FoodSale> list(Long orderId) {
+        return foodSaleMapper.list(orderId);
     }
 }
