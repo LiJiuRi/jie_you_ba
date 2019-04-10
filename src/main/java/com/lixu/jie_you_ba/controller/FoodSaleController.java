@@ -37,7 +37,6 @@ public class FoodSaleController extends BaseController{
     @ApiOperation(value="订单更新时也要插入对应的菜单", notes="订单更新时也要插入对应的菜单")
     @RequestMapping(value = "/insert", method = {RequestMethod.POST,RequestMethod.GET})
     public boolean insert(@RequestBody(required = false)List<FoodSale> foodSales){
-        logger.info("foodSales={}",foodSales);
         for(FoodSale foodSale : foodSales){
             foodSaleService.insert(foodSale);
         }
@@ -51,7 +50,6 @@ public class FoodSaleController extends BaseController{
     @ApiOperation(value="店铺管理员根据订单id获取该订单的菜单列表", notes="店铺管理员根据订单id获取该订单的菜单列表")
     @RequestMapping(value = "/list", method = {RequestMethod.POST,RequestMethod.GET})
     public List<FoodSale> list(@RequestParam("orderId") Long orderId){
-        logger.info("orderId={}",orderId);
         List<FoodSale> foodSales = foodSaleService.list(orderId);
         return foodSales;
     }

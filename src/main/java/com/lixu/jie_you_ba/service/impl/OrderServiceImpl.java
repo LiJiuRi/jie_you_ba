@@ -43,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public int update(Order order) {
+        order.setUpdateTime(new Date());
         return orderMapper.updateByPrimaryKeySelective(order);
     }
 
@@ -87,8 +88,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> listOrder(Integer status, Long storeId, String updatePerson) {
-        List<Order> orders = orderMapper.listOrder(status,storeId,updatePerson);
+    public List<Order> listNowOrder(Integer status, Long storeId, String updatePerson) {
+        List<Order> orders = orderMapper.listNowOrder(status,storeId,updatePerson);
         return orders;
     }
 }

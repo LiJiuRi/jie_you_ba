@@ -39,13 +39,16 @@
     from user_order
     where status = #{status,jdbcType=INTEGER} and user_id = #{personId,jdbcType=VARCHAR}
   </select>
-  <select id="listOrder" resultMap="BaseResultMap">
+  <select id="listNowOrder" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user_order
     <where>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="status == null">
+        status in (3,4,6,7)
       </if>
       <if test="storeId != null">
         and store_id = #{storeId,jdbcType=BIGINT}

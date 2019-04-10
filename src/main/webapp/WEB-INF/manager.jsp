@@ -219,169 +219,8 @@
                 </div>
                 <!-- /.modal -->
 
-                <!--点击修改店铺弹出窗口-->
-                <div class="modal fade" id="modifyStore" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">请输入要修改的资料</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <input type="hidden" class="form-control input-sm duiqi" id="ModifystoreId" placeholder="此时还没隐藏">
-                                        <div class="form-group ">
-                                            <label for="ModifystoreName" class="col-xs-3 control-label">店铺名称：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreType" class="col-xs-3 control-label">店铺类型：</label>
-                                            <div class="col-xs-2">
-                                                <select id="ModifystoreType" class="form-control input-sm duiqi">
-                                                    <option value="正餐">正餐</option>
-                                                    <option value="水果">水果</option>
-                                                    <option value="蛋糕">蛋糕</option>
-                                                    <option value="汉堡">汉堡</option>
-                                                    <option value="夜宵">夜宵</option>
-                                                    <option value="药">药</option>
-                                                    <option value="鲜花">鲜花</option>
-                                                    <option value="饮料">饮料</option>
-                                                    <option value="其他">其他</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystorePhone" class="col-xs-3 control-label">电话号码：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystorePhone" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreAddress" class="col-xs-3 control-label">店铺地址：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreAddress" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreDescription" class="col-xs-3 control-label">店铺简介：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreDescription" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreBusStop" class="col-xs-3 control-label">公交站：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreBusStop" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreBusStopDistance" class="col-xs-3 control-label">距离：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreBusStopDistance" placeholder="输入公交站距离（）米">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreSubwayStation" class="col-xs-3 control-label">地铁站：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreSubwayStation" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreSubwayStationDistance" class="col-xs-3 control-label">距离：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreSubwayStationDistance" placeholder="输入地铁站距离（）米">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreDeliveryTime" class="col-xs-3 control-label">配送时间：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreDeliveryTime" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreDeliveryType" class="col-xs-3 control-label">配送方式：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreDeliveryType" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreDeliveryInitPrice" class="col-xs-3 control-label">起送价：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreDeliveryInitPrice" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreDeliveryCost" class="col-xs-3 control-label">配送费：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreDeliveryCost" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreWifiName" class="col-xs-3 control-label">wifi名：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreWifiName" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreWifiPassword" class="col-xs-3 control-label">wifi密码：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreWifiPassword" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="ModifystoreOpenTime" class="col-xs-3 control-label">营业时间：</label>
-                                            <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="ModifystoreOpenTime" placeholder="">
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelModifyRoom">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmModifyRoom">修 改</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal点击修改店铺弹出窗口-->
-
-                <!--点击删除店铺弹出窗口-->
-                <div class="modal fade" id="deleteStore" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">操作提示</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <input type="hidden" class="form-control input-sm duiqi" id="DeletestoreId" placeholder="此时还没隐藏">
-                                        <div class="form-group ">
-                                            <label id="deleteStoreTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">请再次确认是否注销店铺？</label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id ="cancelDeleteRoom">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStore">注 销</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal点击删除店铺弹出窗口 -->
-
-                <!--删除店铺处理结果-->
-                <div class="modal fade" id="deleteStoreResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <!--接单处理结果-->
+                <div class="modal fade" id="receiveOrderResult" role="dialog" aria-labelledby="gridSystemModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -392,20 +231,20 @@
                                 <div class="container-fluid">
                                     <form class="form-horizontal">
                                         <div class="form-group ">
-                                            <label id="deleteStoreResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+                                            <label style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label">您已成功接单</label>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal" id = "confirmDeleteStoreUpdate">确 认</button>
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal">确 认</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal删除店铺处理结果 -->
+                <!-- /.modal接单处理结果 -->
 
             </div>
             <!-- 接单模块结束 -->
@@ -418,7 +257,6 @@
                         <select id='orderStatus' class="form-control input-sm" placeholder="分类类型">
                             <option value="3">待发货</option>
                             <option value="4">待缺认收货</option>
-                            <option value="5">待评价</option>
                             <option value="6">退款</option>
                             <option value="7">退货</option>
                         </select>
@@ -431,20 +269,22 @@
                 <div class="data-div">
                     <!--自己写table -->
                     <table style="width: 1240px;" class="table table-striped table-hover">
-                        <caption><div align="center" class="text-success">订单查询结果</div></caption>
+                        <caption><div align="center" class="text-success">当前订单</div></caption>
                         <thead class="row tableHeader">
                         <tr>
-                            <th style="width:25%;text-align: center;">菜编号</th>
-                            <th style="width:15%;text-align: center;">菜名</th>
-                            <th style="width:12%;text-align: center;">销量</th>
-                            <th style="width:12%;text-align: center;">价格</th>
-                            <th style="width:11%;text-align: center;">好评率</th>
-                            <th style="width:11%;text-align: center;">打折幅度</th>
-                            <th style="width:7%;text-align: center;">修改</th>
-                            <th style="width:7%;text-align: center;">删除</th>
+                            <th style="width:16%;text-align: center;">订单编号</th>
+                            <th style="width:6%;text-align: center;">下单人</th>
+                            <th style="width:9%;text-align: center;">联系电话</th>
+                            <th style="width:16%;text-align: center;">送餐地址</th>
+                            <th style="width:14%;text-align: center;">备注</th>
+                            <th style="width:10%;text-align: center;">支付方式</th>
+                            <th style="width:6%;text-align: center;">总价</th>
+                            <th style="width:7%;text-align: center;">菜单详情</th>
+                            <th style="width:7%;text-align: center;">沟通记录</th>
+                            <th style="width:9%;text-align: center;">操作</th>
                         </tr>
                         </thead>
-                        <tbody class="tablebody" id = "searchOrderBody">
+                        <tbody class="tablebody" id = "nowOrderBody">
                         <!--<tr>
                             <td>1</td>
                             <td>10001</td>
@@ -457,6 +297,77 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!--点击菜单弹出窗口-->
+                <div class="modal fade" id="nowOrderDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">菜单详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal" id="nowOrderFoodSales">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--点击沟通记录弹出窗口-->
+                <div class="modal fade" id="communicateDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">菜单详情</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal" id="communicateDetailBody">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--更新订单处理结果-->
+                <div class="modal fade" id="updateOrderResult" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">操作提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label id="updateOrderResultTip" style="text-align: left;font-size: 25px;font-weight: bold;color: red;" class="col-xs-10 control-label"></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal">确 认</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal更新订单处理结果 -->
 
             </div>
             <!-- 当前订单模块结束 -->
@@ -1359,6 +1270,7 @@
 <script src="../../static/js/exitLogin.js"></script>
 <script src="../../static/js/manager.commom.js"></script>
 <script src="../../static/js/manager.receiveOrder.js"></script>
+<script src="../../static/js/manager.nowOrder.js"></script>
 <script src="../../static/js/manager.showHistoryApplyed.js"></script>
 <script src="../../static/js/manager.storeDeal.js"></script>
 <script src="../../static/js/manager.inviteUser.js"></script>

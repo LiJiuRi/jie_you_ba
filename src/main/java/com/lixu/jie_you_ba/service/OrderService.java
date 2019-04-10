@@ -16,5 +16,5 @@ public interface OrderService {
     Order insert(Order order);
     int update(Order order);
     List<OrderDto> list(Integer status,String personId);
-    List<Order> listOrder(Integer status,Long storeId,String updatePerson);
+    List<Order> listNowOrder(Integer status,Long storeId,String updatePerson);
 }

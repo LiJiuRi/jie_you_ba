@@ -84,8 +84,6 @@ public class StoreController extends BaseController{
         String storeNameSearch = request.getParameter("storeNameSearch");
         Long storeIdSearch = null;
         String storeTypeSearch = request.getParameter("storeTypeSearch");
-        logger.info("storeNameSearch={}",storeNameSearch);
-        logger.info("storeTypeSearch={}",storeTypeSearch);
         List<Store> storeList  = storeService.list(storeIdSearch,storeNameSearch,storeTypeSearch);
         return storeList;
     }

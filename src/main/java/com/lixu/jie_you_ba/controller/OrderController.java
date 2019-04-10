@@ -2,8 +2,10 @@ package com.lixu.jie_you_ba.controller;
 
 import com.lixu.jie_you_ba.dto.OrderDto;
 import com.lixu.jie_you_ba.dto.ReceiveOrderDto;
+import com.lixu.jie_you_ba.entity.Admin;
 import com.lixu.jie_you_ba.entity.Order;
 import com.lixu.jie_you_ba.entity.UserCoupon;
+import com.lixu.jie_you_ba.service.AdminService;
 import com.lixu.jie_you_ba.service.OrderService;
 import com.lixu.jie_you_ba.service.UserCouponService;
 import io.swagger.annotations.ApiOperation;
@@ -33,6 +35,9 @@ public class OrderController extends BaseController{
 
     @Autowired
     private UserCouponService userCouponService;
+
+    @Autowired
+    private AdminService adminService;
 
     /**
      * 新建一个订单
@@ -71,6 +76,33 @@ public class OrderController extends BaseController{
     }
 
     /**
+     * 管理员更新订单
+     * @return
+     */
+    @ApiOperation(value="管理员更新订单", notes="管理员更新订单")
+    @RequestMapping(value = "/updateByAdmin", method = {RequestMethod.POST,RequestMethod.GET})
+    public boolean updateByAdmin(HttpServletRequest request,@CookieValue(value = "token", required = false) String token){
+        String orderId = request.getParameter("orderId");
+        String status = request.getParameter("status");
+        String personId = readCookie(token);
+        logger.info("status={}",status);
+        logger.info("orderId={}",orderId);
+        logger.info("personId={}",personId);
+        Order order = new Order();
+        order.setId(Long.valueOf(orderId));
+        order.setStatus(Integer.valueOf(status));
+        order.setUpdatePerson(personId);
+        //接单的时候，将送餐人信息补充上
+        if(Long.valueOf(status) == 2 ){
+            Admin admin = adminService.select(Long.valueOf(personId));
+            order.setDeliveryName(admin.getName());
+            order.setDeliveryPhone(admin.getPhone());
+        }
+        orderService.update(order);
+        return true;
+    }
+
+    /**
      * 用户根据订单状态获取所有对应状态的订单
      * @return
      */
@@ -85,16 +117,19 @@ public class OrderController extends BaseController{
     /**
      * 店铺管理员查询未接单的订单，因为接单与当前订单、历史订单查询条件不一样，所以分开
      * 上面做法替换方案：直接更改前端查询条件即可，不要重复查询（login/current设置了adminId了，就无需通过token获取）
-     * (1)接单查询时，就不
      * @return
      */
     @ApiOperation(value="店铺管理员查询订单", notes="店铺管理员查询订单")
-    @RequestMapping(value = "/listOrder", method = {RequestMethod.POST,RequestMethod.GET})
-    public List<Order> listOrder(@RequestParam(required = false,value = "status") Integer status, @RequestParam(required = false,value = "storeId") String storeId,@RequestParam(required = false,value = "updatePerson") String updatePerson){
+    @RequestMapping(value = "/listNowOrder", method = {RequestMethod.POST,RequestMethod.GET})
+    public List<Order> listNowOrder(@RequestParam(required = false,value = "status") Integer status, @RequestParam(required = false,value = "storeId") String storeId,@RequestParam(required = false,value = "updatePerson") String updatePerson){
         logger.info("status={}",status);
         logger.info("storeId={}",storeId);
         logger.info("updatePerson={}",updatePerson);
-        List<Order> receiveOrderDtos = orderService.listOrder(status,Long.valueOf(storeId),updatePerson);
+        Long sI = null;
+        if(null != storeId){
+            sI = Long.valueOf(storeId);
+        }
+        List<Order> receiveOrderDtos = orderService.listNowOrder(status,sI,updatePerson);
         return receiveOrderDtos;
     }
 }

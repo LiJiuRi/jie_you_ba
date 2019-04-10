@@ -18,7 +18,7 @@ public interface OrderMapper {
 
     List<Order> list(@Param("status") Integer status, @Param("personId") String personId);
 
-    List<Order> listOrder(@Param("status")Integer status, @Param("storeId")Long storeId, @Param("updatePerson")String updatePerson);
+    List<Order> listNowOrder(@Param("status")Integer status, @Param("storeId")Long storeId, @Param("updatePerson")String updatePerson);
 
     int updateByPrimaryKeySelective(Order record);
 
