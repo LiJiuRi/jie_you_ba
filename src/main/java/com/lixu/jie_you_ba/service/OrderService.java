@@ -13,6 +13,7 @@ import java.util.List;
  * @Created by lixu
  */
 public interface OrderService {
+    Order get(Long orderId);
     Order insert(Order order);
     int update(Order order);
     List<OrderDto> list(Integer status,String personId);

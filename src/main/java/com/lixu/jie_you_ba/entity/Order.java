@@ -3,8 +3,21 @@ package com.lixu.jie_you_ba.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Order {
+
+    //在订单详情页面需要返回该订单的菜单
+    private List<FoodSale> foodSaleList;
+
+    public List<FoodSale> getFoodSaleList() {
+        return foodSaleList;
+    }
+
+    public void setFoodSaleList(List<FoodSale> foodSaleList) {
+        this.foodSaleList = foodSaleList;
+    }
+
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 
@@ -17,6 +30,7 @@ public class Order {
 
     private Float totalCost;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long couponId;
 
     private Float payCost;

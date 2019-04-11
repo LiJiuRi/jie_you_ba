@@ -34,6 +34,11 @@ public class OrderServiceImpl implements OrderService {
     private StoreService storeService;
 
     @Override
+    public Order get(Long orderId) {
+        return orderMapper.selectByPrimaryKey(orderId);
+    }
+
+    @Override
     public Order insert(Order order) {
         order.setId(uidService.genId());
         order.setCreateTime(new Date());

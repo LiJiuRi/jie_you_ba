@@ -5,6 +5,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 public class FoodSale {
+    //由于订单详情页需要返回图片，偷懒的方式
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long id;
 

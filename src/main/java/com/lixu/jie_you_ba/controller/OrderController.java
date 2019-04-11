@@ -1,13 +1,10 @@
 package com.lixu.jie_you_ba.controller;
 
+import com.lixu.jie_you_ba.dao.FoodMapper;
 import com.lixu.jie_you_ba.dto.OrderDto;
 import com.lixu.jie_you_ba.dto.ReceiveOrderDto;
-import com.lixu.jie_you_ba.entity.Admin;
-import com.lixu.jie_you_ba.entity.Order;
-import com.lixu.jie_you_ba.entity.UserCoupon;
-import com.lixu.jie_you_ba.service.AdminService;
-import com.lixu.jie_you_ba.service.OrderService;
-import com.lixu.jie_you_ba.service.UserCouponService;
+import com.lixu.jie_you_ba.entity.*;
+import com.lixu.jie_you_ba.service.*;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +36,12 @@ public class OrderController extends BaseController{
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private FoodSaleService foodSaleService;
+
+    @Autowired
+    private FoodMapper foodMapper;
+
     /**
      * 新建一个订单
      * @return
@@ -54,6 +57,25 @@ public class OrderController extends BaseController{
         order.setStoreId(Long.valueOf(storeId));
         order.setCreatePerson(personId);
         orderService.insert(order);
+        return order;
+    }
+
+    /**
+     * 用户根据订单id获取一个订单
+     * @return
+     */
+    @ApiOperation(value="用户根据订单id获取一个订单", notes="用户根据订单id获取一个订单")
+    @RequestMapping(value = "/get", method = {RequestMethod.POST,RequestMethod.GET})
+    public Order get(HttpServletRequest request){
+        String orderId = request.getParameter("orderId");
+        logger.info("orderId={}",orderId);
+        Order order = orderService.get(Long.valueOf(orderId));
+        List<FoodSale> foodSales = foodSaleService.list(Long.valueOf(orderId));
+        for(FoodSale foodSale : foodSales){
+            Food food = foodMapper.selectByPrimaryKey(foodSale.getFoodId());
+            foodSale.setImage(food.getImage());
+        }
+        order.setFoodSaleList(foodSales);
         return order;
     }
 
@@ -93,7 +115,7 @@ public class OrderController extends BaseController{
         order.setStatus(Integer.valueOf(status));
         order.setUpdatePerson(personId);
         //接单的时候，将送餐人信息补充上
-        if(Long.valueOf(status) == 2 ){
+        if(Long.valueOf(status) == 3 ){
             Admin admin = adminService.select(Long.valueOf(personId));
             order.setDeliveryName(admin.getName());
             order.setDeliveryPhone(admin.getPhone());

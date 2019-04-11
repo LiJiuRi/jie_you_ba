@@ -1,6 +1,8 @@
 package com.lixu.jie_you_ba.controller;
 
+import com.lixu.jie_you_ba.dao.UserCouponMapper;
 import com.lixu.jie_you_ba.entity.Coupon;
+import com.lixu.jie_you_ba.entity.UserCoupon;
 import com.lixu.jie_you_ba.service.CouponService;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -25,6 +27,9 @@ public class CouponController extends BaseController{
 
     @Autowired
     private CouponService couponService;
+
+    @Autowired
+    private UserCouponMapper userCouponMapper;
 
     /**
      * 超级管理员发放一个优惠卷
@@ -79,6 +84,20 @@ public class CouponController extends BaseController{
         coupon.setId(Long.valueOf(couponId));
         couponService.update(coupon);
         return true;
+    }
+
+    /**
+     * 用户获取一条优惠卷
+     * @return
+     */
+    @ApiOperation(value="用户获取一条优惠卷", notes="用户获取一条优惠卷")
+    @RequestMapping(value = "/get", method = {RequestMethod.POST,RequestMethod.GET})
+    public Coupon update(HttpServletRequest request){
+        String couponId = request.getParameter("couponId");
+        //应到用户优惠卷控制类直接查找就行
+        UserCoupon userCoupon = userCouponMapper.selectByPrimaryKey(Long.valueOf(couponId));
+        Coupon coupon = couponService.select(userCoupon.getCouponId());
+        return coupon;
     }
 
 }
