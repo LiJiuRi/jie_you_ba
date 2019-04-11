@@ -434,11 +434,11 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">菜单详情</h4>
+                                <h4 class="modal-title">沟通记录</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
-                                    <form class="form-horizontal" id="communicateDetailBody">
+                                    <form class="form-horizontal" id="historyCommunicateDetailBody">
 
                                     </form>
                                 </div>
@@ -594,7 +594,7 @@
                                         <div class="form-group ">
                                             <label for="name" class="col-xs-3 control-label">菜品名称：</label>
                                             <div class="col-xs-6 ">
-                                                <input type="text" class="form-control input-sm duiqi" id="name" placeholder="">
+                                                <input type="text" class="form-control input-sm duiqi" id="Cainame" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group ">

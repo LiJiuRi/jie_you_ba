@@ -287,7 +287,7 @@ var ready = $(document).ready(function(){
     $("#confirmAddCai").click(function(){
 
         var food_catalog_id = $("#food_catalog_id").val();
-        var name = $("#name").val();
+        var name = $("#Cainame").val();
         var price = $("#price").val();
         var sale = $("#sale").val();
         var image = $("#image").val();
