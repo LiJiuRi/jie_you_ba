@@ -67,8 +67,8 @@ public class OrderServiceImpl implements OrderService {
             orderDto.setUrl(store.getUrl());
             orderDto.setTime(order.getCreateTime());
             orderDto.setMoney(order.getPayCost());
-            switch (status){
-                case 0: orderDto.setStatus("交易完成");
+            switch (order.getStatus()){
+                case 0: orderDto.setStatus("交易已完成");
                         break;
                 case 1: orderDto.setStatus("待付款");
                         break;
@@ -80,11 +80,11 @@ public class OrderServiceImpl implements OrderService {
                     break;
                 case 5: orderDto.setStatus("待评价");
                     break;
-                case 6: orderDto.setStatus("退款");
+                case 6: orderDto.setStatus("退款处理中");
                     break;
-                case 7: orderDto.setStatus("退货");
+                case 7: orderDto.setStatus("退货处理中");
                     break;
-                case 8: orderDto.setStatus("已取消");
+                case 8: orderDto.setStatus("订单已取消");
                     break;
             }
             orderDtos.add(orderDto);

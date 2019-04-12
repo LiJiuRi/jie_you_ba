@@ -120,6 +120,16 @@ public class OrderController extends BaseController{
             order.setDeliveryName(admin.getName());
             order.setDeliveryPhone(admin.getPhone());
         }
+        //取消订单的同时，若有使用优惠卷，则需同时更改该优惠卷的状态为"未使用"，并且以后支持微信支付后，还有将实现退款付款
+        if(Long.valueOf(status) == 8){
+            Order order1 = orderService.get(Long.valueOf(orderId));
+            UserCoupon userCoupon = new UserCoupon();
+            if(null != order1.getCouponId()){
+                userCoupon.setId(order1.getCouponId());
+                userCoupon.setStatus("未使用");
+                userCouponService.update(userCoupon);
+            }
+        }
         orderService.update(order);
         return true;
     }

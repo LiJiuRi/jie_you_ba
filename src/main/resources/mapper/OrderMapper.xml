@@ -37,15 +37,25 @@
     select
     <include refid="Base_Column_List" />
     from user_order
-    where status = #{status,jdbcType=INTEGER} and user_id = #{personId,jdbcType=VARCHAR}
+    <where>
+      <if test="status == 0">
+        status in (0,8)
+      </if>
+      <if test="status == 1 or status == 2 or status == 3 or status == 4 or status == 5 or status == 6 or status == 7">
+        status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="personId != null">
+        and user_id = #{personId,jdbcType=VARCHAR}
+      </if>
+    </where>
   </select>
   <select id="listNowOrder" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user_order
     <where>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER}
+      <if test="status == 0">
+        status in (0,8)
       </if>
       <if test="status == null">
         status in (3,4,6,7)

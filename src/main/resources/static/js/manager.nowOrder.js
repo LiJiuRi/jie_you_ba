@@ -74,6 +74,10 @@
             case '4': status = 0;
                     $("#updateOrderResultTip").text("该订单已确认收货");
                     break;
+                    //此时还没考虑到有微信支付的情形下
+            case '6': status = 8;
+                    $("#updateOrderResultTip").text("已同意该订单退款");
+                    break;
             case '7': status = 3;//订单状态从待发货开始
                     $("#updateOrderResultTip").text("该订单需重新配送");
                     break;
@@ -125,7 +129,7 @@
                                     break;
                                 case 6: dealType = '<td style="color:#e66e79;text-align: center;">'+
                                     '<button type="button" class="btn btn-danger" data-toggle="modal" ' +
-                                    'data-target="#updateOrderResult" onclick="$.refund(\''+result[i].id+'\',\''+result[i].status+'\')">' +
+                                    'data-target="#updateOrderResult" onclick="$.updateOrder(\''+result[i].id+'\',\''+result[i].status+'\')">' +
                                     '同意退款' +
                                     '</button></td>';
                                     break;
@@ -158,11 +162,6 @@
                 });
             }
         });
-    };
-
-    //退款处理
-    $.refund = function (orderId,orderStatus) {
-        $("#updateOrderResultTip").text("退款功能还未完成，稍安勿躁");
     };
 
 })(jQuery);
@@ -207,7 +206,7 @@ var ready = $(document).ready(function(){
                                 break;
                         case 6: dealType = '<td style="color:#e66e79;text-align: center;">'+
                                 '<button type="button" class="btn btn-danger" data-toggle="modal" ' +
-                                'data-target="#updateOrderResult" onclick="$.refund(\''+result[i].id+'\',\''+result[i].status+'\')">' +
+                                'data-target="#updateOrderResult" onclick="$.updateOrder(\''+result[i].id+'\',\''+result[i].status+'\')">' +
                                 '同意退款' +
                                 '</button></td>';
                                 break;
@@ -280,7 +279,7 @@ var ready = $(document).ready(function(){
                             break;
                         case 6: dealType = '<td style="color:#e66e79;text-align: center;">'+
                             '<button type="button" class="btn btn-danger" data-toggle="modal" ' +
-                            'data-target="#updateOrderResult" onclick="$.refund(\''+result[i].id+'\',\''+result[i].status+'\')">' +
+                            'data-target="#updateOrderResult" onclick="$.updateOrder(\''+result[i].id+'\',\''+result[i].status+'\')">' +
                             '同意退款' +
                             '</button></td>';
                             break;

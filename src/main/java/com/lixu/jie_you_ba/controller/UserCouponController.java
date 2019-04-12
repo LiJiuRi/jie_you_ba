@@ -9,10 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -79,6 +76,20 @@ public class UserCouponController extends BaseController{
         userCoupon.setUserId(personId);
         userCoupon.setCouponId(Long.valueOf(couponId));
         userCouponService.insert(userCoupon);
+        return false;
+    }
+
+    /**
+     * 用户取消订单，同时要修改对应优惠卷状态为未使用状态。
+     * @return
+     */
+    @ApiOperation(value="用户领取优惠卷", notes="用户领取优惠卷")
+    @RequestMapping(value = "/update", method = {RequestMethod.POST,RequestMethod.GET})
+    public boolean update(@RequestParam(required = false,value = "couponId") Long couponId){
+        UserCoupon userCoupon = new UserCoupon();
+        userCoupon.setId(couponId);
+        userCoupon.setStatus("未使用");
+        userCouponService.update(userCoupon);
         return false;
     }
 
