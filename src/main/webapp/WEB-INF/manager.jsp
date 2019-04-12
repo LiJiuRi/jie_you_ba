@@ -320,7 +320,7 @@
                 </div>
                 <!-- /.modal -->
 
-                <!--点击沟通记录弹出窗口-->
+                <!--当前订单点击沟通记录弹出窗口-->
                 <div class="modal fade" id="communicateDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -428,7 +428,7 @@
                 </div>
                 <!-- /.modal -->
 
-                <!--点击沟通记录弹出窗口-->
+                <!--历史订单点击沟通记录弹出窗口-->
                 <div class="modal fade" id="communicateDetailsHistory" role="dialog" aria-labelledby="gridSystemModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

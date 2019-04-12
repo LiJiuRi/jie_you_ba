@@ -54,6 +54,9 @@
     <include refid="Base_Column_List" />
     from user_order
     <where>
+      <if test="status == 2">
+        status = 2
+      </if>
       <if test="status == 0">
         status in (0,8)
       </if>

@@ -279,3 +279,15 @@ CREATE TABLE IF NOT EXISTS `user_coupon` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+十七、订单交流表
+CREATE TABLE IF NOT EXISTS `order_communicate` (
+  `id` bigint(20) NOT NULL COMMENT 'id',
+  `order_id` bigint(20) NOT NULL COMMENT '订单id',
+  `image` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '头像',
+  `name` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '名称',
+  `content` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '内容',
+  `time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -35,32 +35,7 @@
 
     //此时接收过来的参数为string类型
     $.communicateDetails = function (orderId) {
-        $.ajax({
-            type : "post",
-            url:"../foodSale/list",
-            //contentType:"application/json",
-            //data:JSON.stringify(data),
-            data: "orderId="+orderId,
-            success:function(result){
-                $("#OrderFoodSales").find("div").remove();
-                var addDiv = '<div class="form-group">'+
-                    '<label for="deviceModifyCount" style="margin-left: 30px;color:#ff6e7f;">' + '菜名' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
-                    '数量' +'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
-                    '单价' +'</label>'+
-                    '</div>';
-                $("#OrderFoodSales").append(addDiv);
-                for(var i in result){
-                    var addDiv = '<div class="form-group">'+
-                        '<label for="deviceModifyCount" style="margin-left: 30px;">' + result[i].foodName +
-                        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
-                        result[i].number +'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
-                        result[i].payPrice +'</label>'+
-                        '</div>';
-                    $("#OrderFoodSales").append(addDiv);
-                }
-            }
-        });
+
     };
 
     //此时接收过来的参数为string类型

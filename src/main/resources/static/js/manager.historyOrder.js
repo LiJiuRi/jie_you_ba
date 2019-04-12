@@ -34,7 +34,7 @@
     };
 
     //此时接收过来的参数为string类型
-    $.communicateDetails = function (orderId) {
+    $.communicateDetailsHistory = function (orderId) {
         alert("沟通记录还未实现")
     };
 
@@ -78,7 +78,7 @@ var ready = $(document).ready(function(){
                         '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#historyOrderDetails" onclick="$.historyOrderDetails(\''+result[i].id+'\')">' +
                         '                                        菜单详情' +
                         '                                    </button>' +'</td>'+
-                        '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#communicateDetailsHistory" onclick="$.communicateDetails(\''+result[i].id+'\')">' +
+                        '<td style="color:#e66e79;text-align: center;">'+ '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#communicateDetailsHistory" onclick="$.communicateDetailsHistory(\''+result[i].id+'\')">' +
                         '                                        沟通记录' +
                         '                                    </button>' +'</td>'+
                         '</tr>';
