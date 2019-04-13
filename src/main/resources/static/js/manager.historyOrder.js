@@ -35,7 +35,31 @@
 
     //此时接收过来的参数为string类型
     $.communicateDetailsHistory = function (orderId) {
-        alert("沟通记录还未实现")
+        $.ajax({
+            type : "post",
+            url:"../communicate/list",
+            contentType:"application/json",
+            //data:JSON.stringify(data),
+            data: orderId,
+            success:function(result){
+                $("#historyCommunicateDetailBody").find("div").remove();
+                for(var i in result){
+                    var name;
+                    if(result[i].name == "送餐员"){
+                        name = "本人";
+                    }else {
+                        name = result[i].name;
+                    }
+                    var addDiv = '<div class="form-group " style="margin-bottom: 0px;width:100%;padding-right: 0px;">' +
+                        '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: right;"><img style="width:30%;height: 30%;border-radius: 15%;" src=\"'+result[i].image+'\"></label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: left;">' + name + '</label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-5 control-label" style="text-align: left;">' + result[i].content + '</label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-3 control-label" style="text-align: right;">' + result[i].time + '</label>'+
+                        '</div>';
+                    $("#historyCommunicateDetailBody").append(addDiv);
+                }
+            }
+        });
     };
 
 })(jQuery);

@@ -35,7 +35,40 @@
 
     //此时接收过来的参数为string类型
     $.communicateDetails = function (orderId) {
+        $("#orderId").val(orderId);
+        $.ajax({
+            type : "post",
+            url:"../communicate/list",
+            contentType:"application/json",
+            //data:JSON.stringify(data),
+            data: orderId,
+            success:function(result){
+                $("#nowCommunicateDetailBody").find("div").remove();
+                for(var i in result){
+                    var name;
+                    if(result[i].name == "送餐员"){
+                        name = "本人";
+                    }else {
+                        name = result[i].name;
+                    }
+                    var addDiv = '<div class="form-group " style="margin-bottom: 0px;width:100%;padding-right: 0px;">' +
+                        '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: right;"><img style="width:30%;height: 30%;border-radius: 15%;" src=\"'+result[i].image+'\"></label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: left;">' + name + '</label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-5 control-label" style="text-align: left;">' + result[i].content + '</label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-3 control-label" style="text-align: right;">' + result[i].time + '</label>'+
+                        '</div>';
+                    $("#nowCommunicateDetailBody").append(addDiv);
+                }
 
+                var add = '<div class="form-group " xmlns="http://www.w3.org/1999/html">' +
+                    '<label for="price" class="col-xs-2 control-label">留言：</label>' +
+                    '<div class="col-xs-4 ">' +
+                    '<input type="text" class="form-control input-sm duiqi" id="communicateContent" placeholder="">' +
+                    '</div></div>';
+                $("#nowCommunicateDetailBody").append(add);
+
+            }
+        });
     };
 
     //此时接收过来的参数为string类型
@@ -142,6 +175,78 @@
 })(jQuery);
 
 var ready = $(document).ready(function(){
+
+    //点击发送留言
+    $("#communicate").click(function(){
+        var orderId = $("#orderId").val();
+        var communicateContent = $("#communicateContent").val();
+        $("#nowCommunicateDetailBody > .form-group:last-child").remove();
+        var addDiv = '<div class="form-group " style="margin-bottom: 0px;width:100%;padding-right: 0px;">' +
+            '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: right;"><img style="width:30%;height: 30%;border-radius: 15%;" src="https://www.litianxu.com/images/ai.jpg"></label>'+
+            '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: left;">本人</label>'+
+            '<label for="storeDetailsbusStop" class="col-xs-5 control-label" style="text-align: left;">' + communicateContent + '</label>'+
+            '<label for="storeDetailsbusStop" class="col-xs-3 control-label" style="text-align: right;">刚刚</label>'+
+            '</div>';
+        $("#nowCommunicateDetailBody").append(addDiv);
+        var add = '<div class="form-group " xmlns="http://www.w3.org/1999/html">' +
+            '<label for="price" class="col-xs-2 control-label">留言：</label>' +
+            '<div class="col-xs-4 ">' +
+            '<input type="text" class="form-control input-sm duiqi" id="communicateContent" placeholder="">' +
+            '</div></div>';
+        $("#nowCommunicateDetailBody").append(add);
+        var data ={
+            orderId:orderId,
+            content:communicateContent
+        };
+        $.ajax({
+            type : "post",
+            url:"../communicate/add",
+            contentType:"application/json",
+            data:JSON.stringify(data),
+            success:function(result){
+
+            }
+        })
+    });
+
+    //点击刷新留言
+    $("#updateCommunicate").click(function(){
+        var orderId = $("#orderId").val();
+        $.ajax({
+            type : "post",
+            url:"../communicate/list",
+            contentType:"application/json",
+            //data:JSON.stringify(data),
+            data: orderId,
+            success:function(result){
+                $("#nowCommunicateDetailBody").find("div").remove();
+                for(var i in result){
+                    var name;
+                    if(result[i].name == "送餐员"){
+                        name = "本人";
+                    }else {
+                        name = result[i].name;
+                    }
+                    var addDiv = '<div class="form-group " style="margin-bottom: 0px;width:100%;padding-right: 0px;">' +
+                        '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: right;"><img style="width:30%;height: 30%;border-radius: 15%;" src=\"'+result[i].image+'\"></label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: left;">' + name + '</label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-5 control-label" style="text-align: left;">' + result[i].content + '</label>'+
+                        '<label for="storeDetailsbusStop" class="col-xs-3 control-label" style="text-align: right;">' + result[i].time + '</label>'+
+                        '</div>';
+                    $("#nowCommunicateDetailBody").append(addDiv);
+                }
+
+                var add = '<div class="form-group " xmlns="http://www.w3.org/1999/html">' +
+                    '<label for="price" class="col-xs-2 control-label">留言：</label>' +
+                    '<div class="col-xs-4 ">' +
+                    '<input type="text" class="form-control input-sm duiqi" id="communicateContent" placeholder="">' +
+                    '</div></div>';
+                $("#nowCommunicateDetailBody").append(add);
+
+            }
+        });
+    });
+
 
     //查看所有当前订单
     $("#nowOrderMenu").click(function(){

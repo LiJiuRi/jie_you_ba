@@ -39,7 +39,7 @@ public class CommunicateController extends BaseController{
         String personId = readCookie(token);
         //此时为店铺管理员
         if(personId != null){
-            communicate.setImage("/images/ai.jpg");
+            communicate.setImage("https://www.litianxu.com/images/ai.jpg");
             communicate.setName("送餐员");
         }
         communicateService.add(communicate);

@@ -309,7 +309,6 @@
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     <form class="form-horizontal" id="nowOrderFoodSales">
-
                                     </form>
                                 </div>
                             </div>
@@ -322,18 +321,22 @@
 
                 <!--当前订单点击沟通记录弹出窗口-->
                 <div class="modal fade" id="communicateDetails" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                    <div class="modal-dialog" role="document" style="width:800px;">
+                        <div class="modal-content" style="width:100%;">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">菜单详情</h4>
+                                <h4 class="modal-title">在线聊天记录</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal" id="communicateDetailBody">
-
+                                <div class="container-fluid" style="height: 400px;overflow: auto;padding-right: 0px;">
+                                    <form class="form-horizontal" id="nowCommunicateDetailBody">
+                                        <input type="hidden" class="form-control input-sm duiqi" id="orderId" placeholder="此时还没隐藏">
                                     </form>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" id="updateCommunicate">刷 新</button>
+                                <button type="button" class="btn btn-xs btn-green" id = "communicate">回 复</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
@@ -430,18 +433,21 @@
 
                 <!--历史订单点击沟通记录弹出窗口-->
                 <div class="modal fade" id="communicateDetailsHistory" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                    <div class="modal-dialog" role="document" style="width:800px;">
+                        <div class="modal-content" style="width:100%;">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">沟通记录</h4>
+                                <h4 class="modal-title">在线聊天记录</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="container-fluid">
+                                <div class="container-fluid" style="height: 400px;overflow: auto;padding-right: 0px;">
                                     <form class="form-horizontal" id="historyCommunicateDetailBody">
 
                                     </form>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-green" data-dismiss="modal">关 闭</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
