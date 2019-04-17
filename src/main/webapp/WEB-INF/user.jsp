@@ -111,16 +111,6 @@
 				<div class="meun-item leftitem" id="updateAdmin" href="#updateAdminPane" aria-controls="updateAdminPane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">修改资料</div>
 			</div>
 
-
-			<!-- 设备管理折叠 -->
-			<div id="topDD" class="meun-title"  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDeviceFunction" aria-expanded="true" aria-controls="collapseOne">
-				<span class="leftitem">设备管理</span><span id="topD" class="glyphicon  glyphicon-triangle-right"></span>
-			</div>
-			<div id="collapseDeviceFunction" class="collapse " aria-expanded="true">
-				<div class="meun-item leftitem" id = "addDeviceMenu" href="#addDevicePane" aria-controls="addDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_house_grey.png">新增设备</div>
-				<div class="meun-item leftitem" id = "modifyDeviceMenu" href="#modifyDevicePane" aria-controls="modifyDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_rule_grey.png">修改设备</div>
-				<div class="meun-item leftitem" id = "showDeviceMenu" href="#showDevicePane" aria-controls="showDevicePane" role="tab" data-toggle="tab"><img src="../../static/images/icon_card_grey.png">查看设备</div>
-			</div>
 		</div>
 		<p style="margin-bottom:5px;margin-left:45px;">
 			<!-- 退出登录按钮 -->
