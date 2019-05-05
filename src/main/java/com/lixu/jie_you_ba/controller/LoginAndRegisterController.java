@@ -42,6 +42,12 @@ public class LoginAndRegisterController extends BaseController{
 		return "login";
 	}
 
+	@RequestMapping("/socket")
+	public String toWebsocket() {
+
+		return "websocket";
+	}
+
 	/**
 	 * 验证登陆，isLogin中返回验证状态，并返回其他个人信息 若登陆成功，创建token并写入cookie
 	 * 
