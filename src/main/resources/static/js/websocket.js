@@ -3,14 +3,13 @@ $(function() {
     var websocket;
     var orderId = "12345";
 
-
     // 首先判断是否 支持 WebSocket
     if('WebSocket' in window) {
         websocket = new WebSocket("ws://localhost:8080/websocket/" + orderId);
     } else if('MozWebSocket' in window) {
-        websocket = new MozWebSocket("ws://localhost:8080/SpringMVC_WebSocket/websocket");
+        websocket = new MozWebSocket("ws://localhost:8080/websocket");
     } else {
-        websocket = new SockJS("http://localhost:8080/SpringMVC_WebSocket/sockjs/websocket");
+        websocket = new SockJS("http://localhost:8080/sockjs/websocket");
     }
 
     // 打开时

@@ -176,24 +176,79 @@
 
 var ready = $(document).ready(function(){
 
+    var websocket;
+
+    $('#communicateDetails').on('show.bs.modal', function () {
+        var temp = $("#orderId").val();
+        var orderId = 'web' + temp;
+        // 首先判断是否 支持 WebSocket
+        if('WebSocket' in window) {
+            websocket = new WebSocket("ws://localhost:8080/websocket/" + orderId);
+        } else if('MozWebSocket' in window) {
+            websocket = new MozWebSocket("ws://localhost:8080/websocket");
+        } else {
+
+            websocket = new SockJS("http://localhost:8080/sockjs/websocket");
+        }
+
+        // 处理消息时
+        websocket.onmessage = function(evnt) {
+            var msg = JSON.parse(evnt.data);
+            var date = new Date();
+            var year = date.getFullYear(),
+                month = date.getMonth() + 1,//月份是从0开始的
+                day = date.getDate(),
+                hour = date.getHours(),
+                min = date.getMinutes(),
+                sec = date.getSeconds();
+            var newTime = year + '-' +
+                (month < 10 ? '0' + month : month) + '-' +
+                (day < 10 ? '0' + day : day) + ' ' +
+                (hour < 10 ? '0' + hour : hour) + ':' +
+                (min < 10 ? '0' + min : min) + ':' +
+                (sec < 10 ? '0' + sec : sec);
+            msg.time = newTime;
+            $("#nowCommunicateDetailBody > .form-group:last-child").remove();
+            var name;
+            if(msg.name == "送餐员"){
+                name = "本人";
+            }else {
+                name = msg.name;
+            }
+            var addDiv = '<div class="form-group " style="margin-bottom: 0px;width:100%;padding-right: 0px;">' +
+                '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: right;"><img style="width:30%;height: 30%;border-radius: 15%;" src="' + msg.image + '"></label>'+
+                '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: left;">' + name + '</label>'+
+                '<label for="storeDetailsbusStop" class="col-xs-5 control-label" style="text-align: left;">' + msg.content + '</label>'+
+                '<label for="storeDetailsbusStop" class="col-xs-3 control-label" style="text-align: right;">' + msg.time + '</label>'+
+                '</div>';
+            $("#nowCommunicateDetailBody").append(addDiv);
+            var add = '<div class="form-group " xmlns="http://www.w3.org/1999/html">' +
+                '<label for="price" class="col-xs-2 control-label">留言：</label>' +
+                '<div class="col-xs-4 ">' +
+                '<input type="text" class="form-control input-sm duiqi" id="communicateContent" placeholder="">' +
+                '</div></div>';
+            $("#nowCommunicateDetailBody").append(add);
+            console.log("websocket处理消息");
+        };
+
+        websocket.onerror = function(evnt) {
+            console.log("websocket出错");
+        };
+
+        websocket.onclose = function(evnt) {
+            console.log("websocket关闭");
+        };
+    });
+
+
+    $('#communicateDetails').on('hidden.bs.modal', function () {
+        websocket.close();
+    });
+
     //点击发送留言
     $("#communicate").click(function(){
         var orderId = $("#orderId").val();
         var communicateContent = $("#communicateContent").val();
-        $("#nowCommunicateDetailBody > .form-group:last-child").remove();
-        var addDiv = '<div class="form-group " style="margin-bottom: 0px;width:100%;padding-right: 0px;">' +
-            '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: right;"><img style="width:30%;height: 30%;border-radius: 15%;" src="https://www.litianxu.com/images/ai.jpg"></label>'+
-            '<label for="storeDetailsbusStop" class="col-xs-2 control-label" style="text-align: left;">本人</label>'+
-            '<label for="storeDetailsbusStop" class="col-xs-5 control-label" style="text-align: left;">' + communicateContent + '</label>'+
-            '<label for="storeDetailsbusStop" class="col-xs-3 control-label" style="text-align: right;">刚刚</label>'+
-            '</div>';
-        $("#nowCommunicateDetailBody").append(addDiv);
-        var add = '<div class="form-group " xmlns="http://www.w3.org/1999/html">' +
-            '<label for="price" class="col-xs-2 control-label">留言：</label>' +
-            '<div class="col-xs-4 ">' +
-            '<input type="text" class="form-control input-sm duiqi" id="communicateContent" placeholder="">' +
-            '</div></div>';
-        $("#nowCommunicateDetailBody").append(add);
         var data ={
             orderId:orderId,
             content:communicateContent
@@ -206,7 +261,12 @@ var ready = $(document).ready(function(){
             success:function(result){
 
             }
-        })
+        });
+
+        // 发送消息
+        websocket.send(JSON.stringify(data));
+        //将留言置空
+        $("#communicateContent").val('');
     });
 
     //点击刷新留言

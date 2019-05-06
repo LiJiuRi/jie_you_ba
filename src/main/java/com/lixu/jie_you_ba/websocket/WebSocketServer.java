@@ -77,9 +77,12 @@ public class WebSocketServer {
             communicate.setName("送餐员");
         }
         communicate.setTime(new Date());
-        //群发消息
+        //communicateService.add(communicate);
+
+
+        //微信用户的orderId格式为"app"+orderId，web端送餐员的orderId格式为"web"+orderId
         for (WebSocketServer item : webSocketSet) {
-            if(item.orderId.equals(orderId)){
+            if(item.orderId.substring(3).equals(orderId.substring(3))){
                 item.sendMessage(gson.toJson(communicate));
             }
         }

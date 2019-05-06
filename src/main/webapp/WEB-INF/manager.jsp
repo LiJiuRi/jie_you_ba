@@ -1358,7 +1358,7 @@
 <script src="../../static/js/manager.commom.js"></script>
 <script src="../../static/js/manager.receiveOrder.js"></script>
 <script src="../../static/js/manager.nowOrder.js"></script>
-<script src="../../static/js/manager.historyOrder.js"></script>
+<script src="../../static/js/manager.historyOrdera.js"></script>
 <script src="../../static/js/manager.showHistoryApplyed.js"></script>
 <script src="../../static/js/manager.storeDeal.js"></script>
 <script src="../../static/js/manager.inviteUser.js"></script>
@@ -1366,6 +1366,8 @@
 <script src="../../static/js/manager.cai.js"></script>
 <script src="../../static/js/common.modifyPass.js"></script>
 <script src="../../static/js/common.modifyAdmin.js"></script>
+<!-- 引入 sockJS  -->
+<script src="../../static/js/sockjs.min.js" ></script>
 </body>
 
 </html>
