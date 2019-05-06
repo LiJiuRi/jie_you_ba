@@ -37,8 +37,7 @@ public class WebSocketServer {
     //接收orderId
     private String orderId="";
 
-    @Autowired
-    private CommunicateService communicateService;
+    static CommunicateService communicateService;
 
     /**
      * 连接建立成功调用的方法*/
@@ -77,7 +76,13 @@ public class WebSocketServer {
             communicate.setName("送餐员");
         }
         communicate.setTime(new Date());
+        //原设计：将发送消息和插入数据库的两个操作分开了，可以像下面一样更改
+        //本来想直接在这个类中通过@Autowired注解注入communicateService，但是发现为null，
+        //因 SpringBoot WebSocket 对每个客户端连接都会创建一个 WebSocketServer（@ServerEndpoint 注解对应的） 对象，
+        //Bean 注入操作会被直接略过，因而手动注入一个全局变量
+        //故在WebsocketConfig类中注册全局变量
         //communicateService.add(communicate);
+        //log.warn("打印communicateService={}",communicateService);
 
 
         //微信用户的orderId格式为"app"+orderId，web端送餐员的orderId格式为"web"+orderId
